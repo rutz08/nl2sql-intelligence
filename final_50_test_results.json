@@ -1,0 +1,309 @@
+[
+  {
+    "id": 1,
+    "question": "Who arrived after 9:30 AM today?",
+    "status": "PASS",
+    "query": "SELECT FullName, ActualInTime, DptName \nFROM Mx_VEW_DailyAttendance \nWHERE CAST(ActualInTime AS TIME) > '09:30:00' \n  AND PDate = CAST(GETDATE() AS DATE)",
+    "answer": "I couldn't find any records matching your request."
+  },
+  {
+    "id": 2,
+    "question": "List the employees who worked less than 5 hours yesterday.",
+    "status": "FAIL",
+    "error": "Groq API Error: {\"error\":{\"message\":\"Rate limit reached for model `llama-3.1-8b-instant` in organization `org_01kfyrtjdmf3k81g2yd2rdaf00` service tier `on_demand` on tokens per minute (TPM): Limit 6000, Used 4093, Requested 3531. Please try again in 16.239999999s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing\",\"type\":\"tokens\",\"code\":\"rate_limit_exceeded\"}}"
+  },
+  {
+    "id": 3,
+    "question": "Show me the attendance trend for Employee 1 for this month.",
+    "status": "FAIL",
+    "error": "Groq API Error: {\"error\":{\"message\":\"Rate limit reached for model `llama-3.1-8b-instant` in organization `org_01kfyrtjdmf3k81g2yd2rdaf00` service tier `on_demand` on tokens per minute (TPM): Limit 6000, Used 2884, Requested 3657. Please try again in 5.41s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing\",\"type\":\"tokens\",\"code\":\"rate_limit_exceeded\"}}"
+  },
+  {
+    "id": 4,
+    "question": "Who has the highest total work time this week?",
+    "status": "PASS",
+    "query": "SELECT TOP 1 FullName, SUM(WorkTime) as TotalWorkTime \nFROM Mx_VEW_DailyAttendance \nWHERE PDate >= CAST(DATEADD(WEEK, DATEDIFF(WEEK, 0, GETDATE()), 0) AS DATE) \nGROUP BY FullName \nORDER BY TotalWorkTime DESC",
+    "answer": "Employee 11 has the highest total work time this week with 990 minutes."
+  },
+  {
+    "id": 5,
+    "question": "List all employees who were absent yesterday.",
+    "status": "FAIL",
+    "error": "Groq API Error: {\"error\":{\"message\":\"Rate limit reached for model `llama-3.1-8b-instant` in organization `org_01kfyrtjdmf3k81g2yd2rdaf00` service tier `on_demand` on tokens per minute (TPM): Limit 6000, Used 4068, Requested 3652. Please try again in 17.2s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing\",\"type\":\"tokens\",\"code\":\"rate_limit_exceeded\"}}"
+  },
+  {
+    "id": 6,
+    "question": "What was the average arrival time for the IT department last week?",
+    "status": "FAIL",
+    "error": "Groq API Error: {\"error\":{\"message\":\"Rate limit reached for model `llama-3.1-8b-instant` in organization `org_01kfyrtjdmf3k81g2yd2rdaf00` service tier `on_demand` on tokens per minute (TPM): Limit 6000, Used 2859, Requested 3487. Please try again in 3.46s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing\",\"type\":\"tokens\",\"code\":\"rate_limit_exceeded\"}}"
+  },
+  {
+    "id": 7,
+    "question": "Who are the top 5 employees with the most overtime this month?",
+    "status": "FAIL",
+    "error": "Groq API Error: {\"error\":{\"message\":\"Rate limit reached for model `llama-3.1-8b-instant` in organization `org_01kfyrtjdmf3k81g2yd2rdaf00` service tier `on_demand` on tokens per minute (TPM): Limit 6000, Used 3269, Requested 3488. Please try again in 7.57s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing\",\"type\":\"tokens\",\"code\":\"rate_limit_exceeded\"}}"
+  },
+  {
+    "id": 8,
+    "question": "Show me the daily logs for user1 for the last 7 days.",
+    "status": "FAIL",
+    "error": "Groq API Error: {\"error\":{\"message\":\"Rate limit reached for model `llama-3.1-8b-instant` in organization `org_01kfyrtjdmf3k81g2yd2rdaf00` service tier `on_demand` on tokens per minute (TPM): Limit 6000, Used 4706, Requested 3489. Please try again in 21.95s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing\",\"type\":\"tokens\",\"code\":\"rate_limit_exceeded\"}}"
+  },
+  {
+    "id": 9,
+    "question": "Which department has the best 'on-time' arrival record this month?",
+    "status": "FAIL",
+    "error": "Groq API Error: {\"error\":{\"message\":\"Rate limit reached for model `llama-3.1-8b-instant` in organization `org_01kfyrtjdmf3k81g2yd2rdaf00` service tier `on_demand` on tokens per minute (TPM): Limit 6000, Used 3497, Requested 3658. Please try again in 11.55s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing\",\"type\":\"tokens\",\"code\":\"rate_limit_exceeded\"}}"
+  },
+  {
+    "id": 10,
+    "question": "List all employees who haven't punched out yet today.",
+    "status": "PASS",
+    "query": "SELECT FullName \nFROM Mx_VEW_DailyAttendance \nWHERE ActualOutTime IS NULL \n  AND PDate = CAST(GETDATE() AS DATE)",
+    "answer": "I couldn't find any records matching your request."
+  },
+  {
+    "id": 11,
+    "question": "Which department employees take more breaks?",
+    "status": "FAIL",
+    "error": "Groq API Error: {\"error\":{\"message\":\"Rate limit reached for model `llama-3.1-8b-instant` in organization `org_01kfyrtjdmf3k81g2yd2rdaf00` service tier `on_demand` on tokens per minute (TPM): Limit 6000, Used 2950, Requested 3481. Please try again in 4.31s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing\",\"type\":\"tokens\",\"code\":\"rate_limit_exceeded\"}}"
+  },
+  {
+    "id": 12,
+    "question": "Who had the longest break time yesterday?",
+    "status": "PASS",
+    "query": "SELECT TOP 1 FullName, BreakTime_HHMM \nFROM Mx_VEW_DailyAttendance \nWHERE CAST(PDate AS DATE) = DATEADD(DAY, -1, CAST(GETDATE() AS DATE)) \nORDER BY BreakTime DESC",
+    "answer": "\"Employee 1 had the longest break time yesterday, with a break of 1 hour and 30 minutes.\""
+  },
+  {
+    "id": 13,
+    "question": "Show me the break start and end times for Employee 2 for the last week.",
+    "status": "FAIL",
+    "error": "Groq API Error: {\"error\":{\"message\":\"Rate limit reached for model `llama-3.1-8b-instant` in organization `org_01kfyrtjdmf3k81g2yd2rdaf00` service tier `on_demand` on tokens per minute (TPM): Limit 6000, Used 4126, Requested 3491. Please try again in 16.17s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing\",\"type\":\"tokens\",\"code\":\"rate_limit_exceeded\"}}"
+  },
+  {
+    "id": 14,
+    "question": "Give me a list of employees who took a break longer than 90 minutes today.",
+    "status": "FAIL",
+    "error": "Groq API Error: {\"error\":{\"message\":\"Rate limit reached for model `llama-3.1-8b-instant` in organization `org_01kfyrtjdmf3k81g2yd2rdaf00` service tier `on_demand` on tokens per minute (TPM): Limit 6000, Used 2915, Requested 3536. Please try again in 4.51s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing\",\"type\":\"tokens\",\"code\":\"rate_limit_exceeded\"}}"
+  },
+  {
+    "id": 15,
+    "question": "What is the average break duration for the HR department this month?",
+    "status": "PASS",
+    "query": "SELECT AVG(BreakTime) \nFROM Mx_VEW_DailyAttendance \nWHERE DptName LIKE '%HR%' \n  AND MONTH(PDate) = MONTH(GETDATE()) \n  AND YEAR(PDate) = YEAR(GETDATE())",
+    "answer": "The average break duration for the HR department this month is 90 minutes."
+  },
+  {
+    "id": 16,
+    "question": "Which employee took more than 3 breaks in a single day last week?",
+    "status": "FAIL",
+    "error": "Groq API Error: {\"error\":{\"message\":\"Rate limit reached for model `llama-3.1-8b-instant` in organization `org_01kfyrtjdmf3k81g2yd2rdaf00` service tier `on_demand` on tokens per minute (TPM): Limit 6000, Used 3063, Requested 3643. Please try again in 7.06s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing\",\"type\":\"tokens\",\"code\":\"rate_limit_exceeded\"}}"
+  },
+  {
+    "id": 17,
+    "question": "Show the trend of break times for the Admin department over the last 30 days.",
+    "status": "FAIL",
+    "error": "Groq API Error: {\"error\":{\"message\":\"Rate limit reached for model `llama-3.1-8b-instant` in organization `org_01kfyrtjdmf3k81g2yd2rdaf00` service tier `on_demand` on tokens per minute (TPM): Limit 6000, Used 3259, Requested 3491. Please try again in 7.5s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing\",\"type\":\"tokens\",\"code\":\"rate_limit_exceeded\"}}"
+  },
+  {
+    "id": 18,
+    "question": "Who had the shortest break yesterday?",
+    "status": "PASS",
+    "query": "SELECT FullName, BreakTime_HHMM \nFROM Mx_VEW_DailyAttendance \nWHERE CAST(PDate AS DATE) = DATEADD(DAY, -1, CAST(GETDATE() AS DATE)) \n  AND BreakTime < (SELECT MIN(BreakTime) FROM Mx_VEW_DailyAttendance WHERE CAST(PDate AS DATE) = DATEADD(DAY, -1, CAST(GETDATE() AS DATE)))",
+    "answer": "I couldn't find any records matching your request."
+  },
+  {
+    "id": 19,
+    "question": "List employees who went on break before 12:30 PM today.",
+    "status": "FAIL",
+    "error": "Groq API Error: {\"error\":{\"message\":\"Rate limit reached for model `llama-3.1-8b-instant` in organization `org_01kfyrtjdmf3k81g2yd2rdaf00` service tier `on_demand` on tokens per minute (TPM): Limit 6000, Used 4467, Requested 3634. Please try again in 21.01s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing\",\"type\":\"tokens\",\"code\":\"rate_limit_exceeded\"}}"
+  },
+  {
+    "id": 20,
+    "question": "Compare the total break time of IT vs HR for this month.",
+    "status": "FAIL",
+    "error": "Groq API Error: {\"error\":{\"message\":\"Rate limit reached for model `llama-3.1-8b-instant` in organization `org_01kfyrtjdmf3k81g2yd2rdaf00` service tier `on_demand` on tokens per minute (TPM): Limit 6000, Used 3264, Requested 3532. Please try again in 7.959999999s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing\",\"type\":\"tokens\",\"code\":\"rate_limit_exceeded\"}}"
+  },
+  {
+    "id": 21,
+    "question": "Who is in MD Cabin right now?",
+    "status": "FAIL",
+    "error": "Groq API Error: {\"error\":{\"message\":\"Rate limit reached for model `llama-3.1-8b-instant` in organization `org_01kfyrtjdmf3k81g2yd2rdaf00` service tier `on_demand` on tokens per minute (TPM): Limit 6000, Used 5689, Requested 3527. Please try again in 32.16s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing\",\"type\":\"tokens\",\"code\":\"rate_limit_exceeded\"}}"
+  },
+  {
+    "id": 22,
+    "question": "Which employees are currently in the Server Room?",
+    "status": "FAIL",
+    "error": "Groq API Error: {\"error\":{\"message\":\"Rate limit reached for model `llama-3.1-8b-instant` in organization `org_01kfyrtjdmf3k81g2yd2rdaf00` service tier `on_demand` on tokens per minute (TPM): Limit 6000, Used 2819, Requested 3483. Please try again in 3.02s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing\",\"type\":\"tokens\",\"code\":\"rate_limit_exceeded\"}}"
+  },
+  {
+    "id": 23,
+    "question": "List everyone currently located in the R&D Lab.",
+    "status": "PASS",
+    "query": "SELECT UserID, FullName \nFROM Mx_VEW_LiveRoomStatus \nWHERE CurrentRoom LIKE '%R&D Lab%'",
+    "answer": "You have 5 colleagues currently located in the R&D Lab: Employee 6, Employee 7, Employee 8, Employee 9, and Employee 10."
+  },
+  {
+    "id": 24,
+    "question": "How many people are in the Finance Office today?",
+    "status": "FAIL",
+    "error": "Groq API Error: {\"error\":{\"message\":\"Rate limit reached for model `llama-3.1-8b-instant` in organization `org_01kfyrtjdmf3k81g2yd2rdaf00` service tier `on_demand` on tokens per minute (TPM): Limit 6000, Used 3893, Requested 3484. Please try again in 13.77s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing\",\"type\":\"tokens\",\"code\":\"rate_limit_exceeded\"}}"
+  },
+  {
+    "id": 25,
+    "question": "What was the last seen location of Employee 5?",
+    "status": "FAIL",
+    "error": "Groq API Error: {\"error\":{\"message\":\"Rate limit reached for model `llama-3.1-8b-instant` in organization `org_01kfyrtjdmf3k81g2yd2rdaf00` service tier `on_demand` on tokens per minute (TPM): Limit 6000, Used 2683, Requested 3485. Please try again in 1.68s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing\",\"type\":\"tokens\",\"code\":\"rate_limit_exceeded\"}}"
+  },
+  {
+    "id": 26,
+    "question": "Who entered the Server Room after 6:00 PM yesterday?",
+    "status": "FAIL",
+    "error": "Invalid column name 'Full Name'."
+  },
+  {
+    "id": 27,
+    "question": "Which room is currently the most occupied?",
+    "status": "FAIL",
+    "error": "Groq API Error: {\"error\":{\"message\":\"Rate limit reached for model `llama-3.1-8b-instant` in organization `org_01kfyrtjdmf3k81g2yd2rdaf00` service tier `on_demand` on tokens per minute (TPM): Limit 6000, Used 3720, Requested 3606. Please try again in 13.26s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing\",\"type\":\"tokens\",\"code\":\"rate_limit_exceeded\"}}"
+  },
+  {
+    "id": 28,
+    "question": "List all access granted events for the Main Gate today.",
+    "status": "FAIL",
+    "error": "Groq API Error: {\"error\":{\"message\":\"Rate limit reached for model `llama-3.1-8b-instant` in organization `org_01kfyrtjdmf3k81g2yd2rdaf00` service tier `on_demand` on tokens per minute (TPM): Limit 6000, Used 2516, Requested 3530. Please try again in 459.999999ms. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing\",\"type\":\"tokens\",\"code\":\"rate_limit_exceeded\"}}"
+  },
+  {
+    "id": 29,
+    "question": "Who is currently in the HR Department room?",
+    "status": "FAIL",
+    "error": "Groq API Error: {\"error\":{\"message\":\"Rate limit reached for model `llama-3.1-8b-instant` in organization `org_01kfyrtjdmf3k81g2yd2rdaf00` service tier `on_demand` on tokens per minute (TPM): Limit 6000, Used 4794, Requested 3528. Please try again in 23.22s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing\",\"type\":\"tokens\",\"code\":\"rate_limit_exceeded\"}}"
+  },
+  {
+    "id": 30,
+    "question": "Show me the movement history of Employee 1 between different rooms today.",
+    "status": "ERROR",
+    "error": "HTTPConnectionPool(host='localhost', port=3000): Max retries exceeded with url: /api/nl2sql (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x00000228D0C61A50>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it'))"
+  },
+  {
+    "id": 31,
+    "question": "How many visitors are expected today?",
+    "status": "ERROR",
+    "error": "HTTPConnectionPool(host='localhost', port=3000): Max retries exceeded with url: /api/nl2sql (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x00000228D0C630D0>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it'))"
+  },
+  {
+    "id": 32,
+    "question": "List all visitors who are currently checked in.",
+    "status": "ERROR",
+    "error": "HTTPConnectionPool(host='localhost', port=3000): Max retries exceeded with url: /api/nl2sql (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x00000228D0C57B90>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it'))"
+  },
+  {
+    "id": 33,
+    "question": "Who was the host for the visitor 'John Smith' yesterday?",
+    "status": "ERROR",
+    "error": "HTTPConnectionPool(host='localhost', port=3000): Max retries exceeded with url: /api/nl2sql (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x00000228D0C63210>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it'))"
+  },
+  {
+    "id": 34,
+    "question": "Show me all visitors from 'Matrix' for this month.",
+    "status": "ERROR",
+    "error": "HTTPConnectionPool(host='localhost', port=3000): Max retries exceeded with url: /api/nl2sql (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x00000228D0C807D0>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it'))"
+  },
+  {
+    "id": 35,
+    "question": "Which visitor has stayed the longest in the premises today?",
+    "status": "ERROR",
+    "error": "HTTPConnectionPool(host='localhost', port=3000): Max retries exceeded with url: /api/nl2sql (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x00000228D0C82B50>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it'))"
+  },
+  {
+    "id": 36,
+    "question": "List all 'Access Denied' events for visitors this week.",
+    "status": "ERROR",
+    "error": "HTTPConnectionPool(host='localhost', port=3000): Max retries exceeded with url: /api/nl2sql (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x00000228D0C8CF10>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it'))"
+  },
+  {
+    "id": 37,
+    "question": "What was the purpose of visit for the visitor at the Finance Office today?",
+    "status": "ERROR",
+    "error": "HTTPConnectionPool(host='localhost', port=3000): Max retries exceeded with url: /api/nl2sql (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x00000228D0C81790>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it'))"
+  },
+  {
+    "id": 38,
+    "question": "Show me the check-in trend for visitors for the last 3 months.",
+    "status": "ERROR",
+    "error": "HTTPConnectionPool(host='localhost', port=3000): Max retries exceeded with url: /api/nl2sql (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x00000228CEAB43D0>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it'))"
+  },
+  {
+    "id": 39,
+    "question": "How many visitor passes were issued yesterday?",
+    "status": "ERROR",
+    "error": "HTTPConnectionPool(host='localhost', port=3000): Max retries exceeded with url: /api/nl2sql (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x00000228D0C55250>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it'))"
+  },
+  {
+    "id": 40,
+    "question": "List visitors who haven't checked out yet.",
+    "status": "ERROR",
+    "error": "HTTPConnectionPool(host='localhost', port=3000): Max retries exceeded with url: /api/nl2sql (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x00000228D0C62710>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it'))"
+  },
+  {
+    "id": 41,
+    "question": "What is the total canteen spend for the IT department this month?",
+    "status": "ERROR",
+    "error": "HTTPConnectionPool(host='localhost', port=3000): Max retries exceeded with url: /api/nl2sql (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x00000228D0C8F350>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it'))"
+  },
+  {
+    "id": 42,
+    "question": "Which food item was consumed the most yesterday?",
+    "status": "ERROR",
+    "error": "HTTPConnectionPool(host='localhost', port=3000): Max retries exceeded with url: /api/nl2sql (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x00000228D0C63FD0>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it'))"
+  },
+  {
+    "id": 43,
+    "question": "How many meals were served in the canteen today?",
+    "status": "ERROR",
+    "error": "HTTPConnectionPool(host='localhost', port=3000): Max retries exceeded with url: /api/nl2sql (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x00000228D0C57310>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it'))"
+  },
+  {
+    "id": 44,
+    "question": "Show me the daily canteen transactions for Employee 1 for this month.",
+    "status": "ERROR",
+    "error": "HTTPConnectionPool(host='localhost', port=3000): Max retries exceeded with url: /api/nl2sql (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x00000228D0C80810>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it'))"
+  },
+  {
+    "id": 45,
+    "question": "What is the total revenue from the canteen for the last 30 days?",
+    "status": "ERROR",
+    "error": "HTTPConnectionPool(host='localhost', port=3000): Max retries exceeded with url: /api/nl2sql (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x00000228D0C8D5D0>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it'))"
+  },
+  {
+    "id": 46,
+    "question": "Which department has the highest canteen usage?",
+    "status": "ERROR",
+    "error": "HTTPConnectionPool(host='localhost', port=3000): Max retries exceeded with url: /api/nl2sql (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x00000228CEAB4410>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it'))"
+  },
+  {
+    "id": 47,
+    "question": "List all employees who consumed 'Lunch' today.",
+    "status": "ERROR",
+    "error": "HTTPConnectionPool(host='localhost', port=3000): Max retries exceeded with url: /api/nl2sql (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x00000228D0C82CD0>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it'))"
+  },
+  {
+    "id": 48,
+    "question": "What is the top spending employee in canteen this month?",
+    "status": "ERROR",
+    "error": "HTTPConnectionPool(host='localhost', port=3000): Max retries exceeded with url: /api/nl2sql (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x00000228D0C3F290>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it'))"
+  },
+  {
+    "id": 49,
+    "question": "What is the average cost per meal this month?",
+    "status": "ERROR",
+    "error": "HTTPConnectionPool(host='localhost', port=3000): Max retries exceeded with url: /api/nl2sql (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x00000228D0C8E090>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it'))"
+  },
+  {
+    "id": 50,
+    "question": "Show me the trend of canteen consumption for the last 6 months.",
+    "status": "ERROR",
+    "error": "HTTPConnectionPool(host='localhost', port=3000): Max retries exceeded with url: /api/nl2sql (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x00000228D0C62D10>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it'))"
+  }
+]

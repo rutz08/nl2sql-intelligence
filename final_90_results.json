@@ -1,0 +1,609 @@
+[
+  {
+    "id": 1,
+    "question": "Who arrived after 9:30 AM today?",
+    "status": "PASS",
+    "query": "SELECT FullName, ActualInTime, DptName \nFROM Mx_VEW_DailyAttendance \nWHERE CAST(ActualInTime AS TIME) > '09:30:00' \n  AND PDate = CAST(GETDATE() AS DATE)",
+    "answer": "I couldn't find any records matching your request."
+  },
+  {
+    "id": 2,
+    "question": "List the employees who worked less than 5 hours yesterday.",
+    "status": "PASS",
+    "query": "SELECT UserID, FullName, DptName, WorkTime \nFROM Mx_VEW_DailyAttendance \nWHERE WorkTime > 0 AND WorkTime < 300 \n  AND PDate = DATEADD(DAY, -1, CAST(GETDATE() AS DATE))",
+    "answer": "I couldn't find any records matching your request."
+  },
+  {
+    "id": 3,
+    "question": "Show me the attendance trend for Employee 1 for this month.",
+    "status": "PASS",
+    "query": "SELECT PDate, CAST(ActualInTime AS TIME) AS ActualInTime, CAST(ActualOutTime AS TIME) AS ActualOutTime, \n       WorkTime, BreakTime\nFROM Mx_VEW_DailyAttendance\nWHERE UserID = 1 AND MONTH(PDate) = MONTH(GETDATE()) AND YEAR(PDate) = YEAR(GETDATE())\nORDER BY PDate",
+    "answer": "For Employee 1, this month's attendance trend shows a consistent pattern. There are 22 days of attendance data available. \n\nOn most days, the employee worked for 450 minutes (7.5 hours) with a 90-minute break. The actual in and out times are the same every day, at 03:30 AM and 12:30 PM, respectively.\n\nSince the standard worktime is 540 minutes (9 hours), the employee did not work any overtime, as the worktime is less than the standard. \n\nKey dates to note are April 1, 2, 5, 6, 7, 8, 9, 12, and 13, which all show the same attendance pattern. If you'd like more information on any specific day, I can provide that for you."
+  },
+  {
+    "id": 4,
+    "question": "Who has the highest total work time this week?",
+    "status": "PASS",
+    "query": "SELECT TOP 1 UserID, FullName, SUM(WorkTime) as TotalWorkTime\nFROM Mx_VEW_DailyAttendance\nWHERE DATEPART(WEEK, PDate) = DATEPART(WEEK, GETDATE())\nGROUP BY UserID, FullName\nORDER BY TotalWorkTime DESC",
+    "answer": "This week, Employee 11 has the highest total work time with 1950 minutes."
+  },
+  {
+    "id": 5,
+    "question": "List all employees who were absent yesterday.",
+    "status": "PASS",
+    "query": "SELECT UserID, FullName, DptName \nFROM Mx_VEW_DailyAttendance \nWHERE PDate = DATEADD(DAY, -1, CAST(GETDATE() AS DATE)) \n  AND WorkTime = 0",
+    "answer": "I couldn't find any records matching your request."
+  },
+  {
+    "id": 6,
+    "question": "What was the average arrival time for the IT department last week?",
+    "status": "PASS",
+    "query": "SELECT CAST(DATEADD(MINUTE, AVG(DATEDIFF(MINUTE, 0, CAST(ActualInTime AS TIME))), 0) AS TIME) AS AverageArrivalTime\nFROM Mx_VEW_DailyAttendance\nWHERE DptName = 'IT'\n  AND PDate >= DATEADD(DAY, -7, CAST(GETDATE() AS DATE))\n  AND PDate < CAST(GETDATE() AS DATE)",
+    "answer": "The average arrival time for the IT department last week was 3:30 AM."
+  },
+  {
+    "id": 7,
+    "question": "Who are the top 5 employees with the most overtime this month?",
+    "status": "PASS",
+    "query": "SELECT TOP 5 FullName, SUM(WorkTime - 540) as TotalOvertime\nFROM Mx_VEW_DailyAttendance\nWHERE MONTH(PDate) = MONTH(GETDATE()) AND YEAR(PDate) = YEAR(GETDATE())\nGROUP BY FullName\nORDER BY TotalOvertime DESC",
+    "answer": "It seems there's an issue with the data. All the top 5 employees listed have the same amount of overtime, which is -1020 minutes. This suggests that there might be some missing or incorrect data. Typically, overtime is represented as a positive value, so a negative number could indicate an error or an underreported work time. I'd be happy to help you investigate this further or provide more information on how overtime is calculated if that would be helpful."
+  },
+  {
+    "id": 8,
+    "question": "Show me the daily logs for user1 for the last 7 days.",
+    "status": "PASS",
+    "query": "SELECT [UserID], [UserName], [FullName], [DptName], [PDate], [WorkingShift], \n       [ShiftStart], [ShiftEnd], [ActualInTime], [ActualOutTime], [BreakStart], \n       [BreakEnd], [WorkTime], [WorkTime_HHMM], [BreakTime], [BreakTime_HHMM]\nFROM Mx_VEW_DailyAttendance\nWHERE [UserID] = 1\n  AND [PDate] >= DATEADD(DAY, -7, CAST(GETDATE() AS DATE))",
+    "answer": "For user1, I found 6 daily logs for the last 7 days. Here's a summary:\n\n- User1 worked in the IT department with a general shift from 09:00 AM to 06:00 PM.\n- Most days, they worked for 7 hours and 30 minutes, with a 1 hour and 30 minutes break.\n- On April 29 and 30, they worked for 8 hours with a 1 hour break.\n- Their actual in and out times varied, but they generally started work around 03:30 AM and ended around 12:30 PM.\n- I didn't find any overtime records for user1 during this period.\n\nLet me know if you'd like more details or specific information about a particular day."
+  },
+  {
+    "id": 9,
+    "question": "Which department has the best 'on-time' arrival record this month?",
+    "status": "PASS",
+    "query": "SELECT TOP 1 DptName, AVG(CASE WHEN CAST(ActualInTime AS TIME) <= CAST(ShiftStart AS TIME) THEN 1.0 ELSE 0 END) as OnTimeArrivalRate\nFROM Mx_VEW_DailyAttendance\nWHERE MONTH(PDate) = MONTH(GETDATE()) AND YEAR(PDate) = YEAR(GETDATE())\nGROUP BY DptName\nORDER BY OnTimeArrivalRate DESC",
+    "answer": "The HR department has the best 'on-time' arrival record this month, with a perfect on-time arrival rate of 1. This means that everyone in the HR department has been arriving on time."
+  },
+  {
+    "id": 10,
+    "question": "List all employees who haven't punched out yet today.",
+    "status": "PASS",
+    "query": "SELECT UserID, FullName, DptName, ActualInTime\nFROM Mx_VEW_DailyAttendance\nWHERE ActualOutTime IS NULL AND PDate = CAST(GETDATE() AS DATE)",
+    "answer": "I couldn't find any records matching your request."
+  },
+  {
+    "id": 11,
+    "question": "Which department employees take more breaks?",
+    "status": "PASS",
+    "query": "SELECT DptName, AVG(BreakTime) as AverageBreakTime\nFROM Mx_VEW_DailyAttendance\nGROUP BY DptName\nORDER BY AverageBreakTime DESC",
+    "answer": "Based on our records, the HR department takes the most breaks, with an average break time of 83 minutes. The IT department follows with an average break time of 64 minutes, while the Admin department has the shortest average break time at 47 minutes. This information is based on data from 3 departments."
+  },
+  {
+    "id": 12,
+    "question": "Who had the longest break time yesterday?",
+    "status": "PASS",
+    "query": "SELECT TOP 1 FullName, BreakTime \nFROM Mx_VEW_DailyAttendance \nWHERE PDate = DATEADD(DAY, -1, CAST(GETDATE() AS DATE)) \nORDER BY BreakTime DESC",
+    "answer": "Yesterday, Employee 1 had the longest break time, which was 60 minutes."
+  },
+  {
+    "id": 13,
+    "question": "Show me the break start and end times for Employee 2 for the last week.",
+    "status": "PASS",
+    "query": "SELECT CAST(BreakStart AS TIME) AS BreakStartTime, CAST(BreakEnd AS TIME) AS BreakEndTime\nFROM Mx_VEW_DailyAttendance\nWHERE UserID = 2\nAND PDate >= DATEADD(DAY, -7, CAST(GETDATE() AS DATE))",
+    "answer": "For Employee 2, there were 6 breaks recorded in the last week. All breaks started at 07:30 and ended at either 08:15 (4 times) or 08:30 (2 times)."
+  },
+  {
+    "id": 14,
+    "question": "Give me a list of employees who took a break longer than 90 minutes today.",
+    "status": "PASS",
+    "query": "SELECT [UserID], [FullName], [DptName], [BreakTime] \nFROM Mx_VEW_DailyAttendance \nWHERE [BreakTime] > 90 \n  AND [PDate] = CAST(GETDATE() AS DATE)",
+    "answer": "I couldn't find any records matching your request."
+  },
+  {
+    "id": 15,
+    "question": "What is the average break duration for the HR department this month?",
+    "status": "PASS",
+    "query": "SELECT AVG(BreakTime) as AverageBreakDuration\nFROM Mx_VEW_DailyAttendance\nWHERE DptName = 'HR' AND MONTH(PDate) = MONTH(GETDATE()) AND YEAR(PDate) = YEAR(GETDATE())",
+    "answer": "The average break duration for the HR department this month is 81 minutes."
+  },
+  {
+    "id": 16,
+    "question": "Who is in MD Cabin right now?",
+    "status": "PASS",
+    "query": "SELECT FullName, DptName, CurrentRoom, LastSeen \nFROM Mx_VEW_LiveRoomStatus \nWHERE CurrentRoom = 'MD Cabin'",
+    "answer": "There are 3 employees currently in the MD Cabin: Employee 1 from IT, Employee 2 from HR, and Employee 3 from Admin. They were all last seen at 05:30."
+  },
+  {
+    "id": 17,
+    "question": "Which employees are currently in the Server Room?",
+    "status": "PASS",
+    "query": "SELECT [UserID], [FullName], [DptName] \nFROM Mx_VEW_LiveRoomStatus \nWHERE [CurrentRoom] = 'Server Room'",
+    "answer": "There are 2 employees currently in the Server Room: Employee 4 from the HR department and Employee 5 from the Admin department."
+  },
+  {
+    "id": 18,
+    "question": "List everyone currently located in the R&D Lab.",
+    "status": "PASS",
+    "query": "SELECT [UserID], [FullName], [DptName], [CurrentRoom], [LastSeen] \nFROM Mx_VEW_LiveRoomStatus \nWHERE [CurrentRoom] = 'R&D Lab'",
+    "answer": "I couldn't find any records matching your request."
+  },
+  {
+    "id": 19,
+    "question": "How many people are in the Finance Office today?",
+    "status": "PASS",
+    "query": "SELECT COUNT(DISTINCT UserID) \nFROM Mx_VEW_LiveRoomStatus \nWHERE CurrentRoom = 'Finance Office'",
+    "answer": "It seems there's no information available about the number of people in the Finance Office today. Let me try to help you find an alternative solution or provide more details if you have any additional questions."
+  },
+  {
+    "id": 20,
+    "question": "What was the last seen location of Employee 5?",
+    "status": "PASS",
+    "query": "SELECT CurrentRoom, LastSeen \nFROM Mx_VEW_LiveRoomStatus \nWHERE UserID = 5",
+    "answer": "The last seen location of Employee 5 was the Server Room at 04:30 AM."
+  },
+  {
+    "id": 21,
+    "question": "How many visitors are expected today?",
+    "status": "PASS",
+    "query": "SELECT COUNT(EntryID) \nFROM Mx_VEW_VistorReport \nWHERE Status = 'Expected' \n  AND CAST(EntryDT AS DATE) = CAST(GETDATE() AS DATE)",
+    "answer": "It seems there's no information available about expected visitors today. Let me try to provide more details or check again for any updates. Unfortunately, the current data doesn't show any visitors expected for today. If you need more assistance or have any other questions, feel free to ask."
+  },
+  {
+    "id": 22,
+    "question": "List all visitors who are currently checked in.",
+    "status": "PASS",
+    "query": "SELECT VistorName, CompanyName, HostName, Purpose, EntryDT, ExitDT, Status\nFROM Mx_VEW_VistorReport\nWHERE Status = 'Checked In'",
+    "answer": "I couldn't find any records matching your request."
+  },
+  {
+    "id": 23,
+    "question": "Who was the host for the visitor 'John Smith' yesterday?",
+    "status": "PASS",
+    "query": "SELECT HostName \nFROM Mx_VEW_VistorReport \nWHERE VistorName = 'John Smith' \n  AND CAST(EntryDT AS DATE) = DATEADD(DAY, -1, CAST(GETDATE() AS DATE))",
+    "answer": "I couldn't find any records matching your request."
+  },
+  {
+    "id": 24,
+    "question": "Show me all visitors from 'Matrix' for this month.",
+    "status": "PASS",
+    "query": "SELECT VistorName, CompanyName, EntryDT, ExitDT, Status\nFROM Mx_VEW_VistorReport\nWHERE CompanyName LIKE '%Matrix%'\n  AND MONTH(EntryDT) = MONTH(GETDATE()) AND YEAR(EntryDT) = YEAR(GETDATE())",
+    "answer": "I couldn't find any records matching your request."
+  },
+  {
+    "id": 25,
+    "question": "Which visitor has stayed the longest in the premises today?",
+    "status": "PASS",
+    "query": "SELECT VistorName, CompanyName, HostName, Purpose, \n       DATEDIFF(MINUTE, EntryDT, ExitDT) as StayDuration\nFROM Mx_VEW_VistorReport\nWHERE CONVERT(date, EntryDT) = CONVERT(date, GETDATE())\nORDER BY StayDuration DESC",
+    "answer": "I couldn't find any records matching your request."
+  },
+  {
+    "id": 26,
+    "question": "What is the total canteen spend for the IT department this month?",
+    "status": "PASS",
+    "query": "SELECT SUM(TotalAmount) as TotalSpend\nFROM Mx_VEW_DailyCnteenEvts\nWHERE MONTH(PDate) = MONTH(GETDATE()) AND YEAR(PDate) = YEAR(GETDATE())\nAND DptName = 'IT'",
+    "answer": "The total canteen spend for the IT department this month is \u20b9300."
+  },
+  {
+    "id": 27,
+    "question": "Which food item was consumed the most yesterday?",
+    "status": "PASS",
+    "query": "SELECT TOP 1 ItemName, SUM(Quantity) as Total \nFROM Mx_VEW_DailyCnteenEvts \nWHERE PDate = DATEADD(DAY, -1, CAST(GETDATE() AS DATE)) \nGROUP BY ItemName \nORDER BY Total DESC",
+    "answer": "Yesterday, the most consumed food item was Lunch, with a total of 7 instances."
+  },
+  {
+    "id": 28,
+    "question": "How many meals were served in the canteen today?",
+    "status": "PASS",
+    "query": "SELECT SUM(Quantity) as TotalMeals \nFROM Mx_VEW_DailyCnteenEvts \nWHERE PDate = CAST(GETDATE() AS DATE)",
+    "answer": "A total of 8 meals were served in the canteen today."
+  },
+  {
+    "id": 29,
+    "question": "Show me the daily canteen transactions for Employee 1 for this month.",
+    "status": "PASS",
+    "query": "SELECT PDate, ItemName, Quantity, TotalAmount\nFROM Mx_VEW_DailyCnteenEvts\nWHERE UserID = 1\n  AND MONTH(PDate) = MONTH(GETDATE())\n  AND YEAR(PDate) = YEAR(GETDATE())",
+    "answer": "For Employee 1, this month, there have been 6 daily canteen transactions. All transactions were for lunch, with a quantity of 1 and a total amount of 50 each. The transactions occurred on April 27, 28, and 29, with multiple transactions on the 28th and 29th, all at 6:30 PM."
+  },
+  {
+    "id": 30,
+    "question": "What is the total revenue from the canteen for the last 30 days?",
+    "status": "PASS",
+    "query": "SELECT SUM(TotalAmount) as TotalRevenue \nFROM Mx_VEW_DailyCnteenEvts \nWHERE PDate >= DATEADD(DAY, -30, CAST(GETDATE() AS DATE))",
+    "answer": "The total revenue from the canteen for the last 30 days is \u20b9900."
+  },
+  {
+    "id": 31,
+    "question": "Which employee took more than 3 breaks in a single day last week?",
+    "status": "PASS",
+    "query": "SELECT UserID, FullName, PDate, BreakTime \nFROM Mx_VEW_DailyAttendance \nWHERE PDate >= DATEADD(DAY, -7, CAST(GETDATE() AS DATE)) \n  AND PDate < CAST(GETDATE() AS DATE)\n  AND BreakTime > 180",
+    "answer": "I couldn't find any records matching your request."
+  },
+  {
+    "id": 32,
+    "question": "Show the trend of break times for the Admin department over the last 30 days.",
+    "status": "PASS",
+    "query": "SELECT \n    CAST(DATEADD(MINUTE, AVG(DATEDIFF(MINUTE, 0, CAST(BreakStart AS TIME))), 0) AS TIME) AS AverageBreakStart,\n    CAST(DATEADD(MINUTE, AVG(DATEDIFF(MINUTE, 0, CAST(BreakEnd AS TIME))), 0) AS TIME) AS AverageBreakEnd,\n    AVG(BreakTime) AS AverageBreakTime\nFROM \n    Mx_VEW_DailyAttendance\nWHERE \n    DptName = 'Admin'\n    AND PDate >= DATEADD(DAY, -30, CAST(GETDATE() AS DATE))",
+    "answer": "For the Admin department over the last 30 days, the average break time trend is as follows: breaks typically start at 07:30 AM and end at 08:18 AM, with an average break duration of 48 minutes."
+  },
+  {
+    "id": 33,
+    "question": "Who had the shortest break yesterday?",
+    "status": "PASS",
+    "query": "SELECT TOP 1 FullName, BreakTime \nFROM Mx_VEW_DailyAttendance \nWHERE PDate = DATEADD(DAY, -1, CAST(GETDATE() AS DATE)) \n  AND BreakTime > 0 \nORDER BY BreakTime ASC",
+    "answer": "Yesterday, Employee 1 had the shortest break, which lasted 60 minutes."
+  },
+  {
+    "id": 34,
+    "question": "List employees who went on break before 12:30 PM today.",
+    "status": "PASS",
+    "query": "SELECT [UserID], [FullName], [DptName], [BreakStart] \nFROM Mx_VEW_DailyAttendance \nWHERE CAST([BreakStart] AS TIME) < '12:30:00' \n  AND [PDate] = CAST(GETDATE() AS DATE)",
+    "answer": "I couldn't find any records matching your request."
+  },
+  {
+    "id": 35,
+    "question": "Compare the total break time of IT vs HR for this month.",
+    "status": "PASS",
+    "query": "SELECT \n    DptName, \n    SUM(BreakTime) as TotalBreakTime\nFROM \n    Mx_VEW_DailyAttendance\nWHERE \n    MONTH(PDate) = MONTH(GETDATE()) \n    AND YEAR(PDate) = YEAR(GETDATE())\n    AND DptName IN ('IT', 'HR')\nGROUP BY \n    DptName",
+    "answer": "For this month, the total break time for the HR department is 12540 minutes, while the IT department has a total break time of 8520 minutes. This means HR has taken about 4000 minutes more in break time compared to IT."
+  },
+  {
+    "id": 36,
+    "question": "Who entered the Server Room after 6:00 PM yesterday?",
+    "status": "FAIL",
+    "error": "The data types date and varchar are incompatible in the add operator."
+  },
+  {
+    "id": 37,
+    "question": "Which room is currently the most occupied?",
+    "status": "PASS",
+    "query": "SELECT CurrentRoom, COUNT(UserID) as OccupancyCount\nFROM Mx_VEW_LiveRoomStatus\nGROUP BY CurrentRoom\nORDER BY OccupancyCount DESC",
+    "answer": "The most occupied room currently is the Main Gate with 15 people. There are also 3 people in the MD Cabin and 2 in the Server Room."
+  },
+  {
+    "id": 38,
+    "question": "List all access granted events for the Main Gate today.",
+    "status": "PASS",
+    "query": "SELECT [User ID], [Full Name], [Event], [Event Source Details], [Event Date Time] \nFROM Mx_VEW_RBACSEvents \nWHERE [Event] = 'Granted' AND [Event Source Details] LIKE '%Main Gate%' \n  AND CAST([Event Date Time] AS DATE) = CAST(GETDATE() AS DATE)",
+    "answer": "I couldn't find any records matching your request."
+  },
+  {
+    "id": 39,
+    "question": "Who is currently in the HR Department room?",
+    "status": "PASS",
+    "query": "SELECT FullName, DptName, CurrentRoom, LastSeen \nFROM Mx_VEW_LiveRoomStatus \nWHERE CurrentRoom = 'HR Department'",
+    "answer": "I couldn't find any records matching your request."
+  },
+  {
+    "id": 40,
+    "question": "Show me the movement history of Employee 1 between different rooms today.",
+    "status": "PASS",
+    "query": "SELECT [UserID], [FullName], [DptName], [CurrentRoom], [LastSeen] \nFROM Mx_VEW_LiveRoomStatus \nWHERE [UserID] = 1 AND CAST([LastSeen] AS DATE) = CAST(GETDATE() AS DATE)\nORDER BY [LastSeen] ASC",
+    "answer": "Employee 1, from the IT department, was last seen in the MD Cabin at 5:30 AM today. Unfortunately, there is no detailed movement history available for them between different rooms today. If you need more information, please let me know and I'll be happy to help."
+  },
+  {
+    "id": 41,
+    "question": "List all 'Access Denied' events for visitors this week.",
+    "status": "PASS",
+    "query": "SELECT [User ID], [Full Name], [Event], [Event Source Details], [Event Date Time]\nFROM Mx_VEW_RBACSEvents\nWHERE [Event] = 'Access Denied' AND DATEPART(WEEK, [Event Date Time]) = DATEPART(WEEK, GETDATE())",
+    "answer": "I couldn't find any records matching your request."
+  },
+  {
+    "id": 42,
+    "question": "What was the purpose of visit for the visitor at the Finance Office today?",
+    "status": "PASS",
+    "query": "SELECT Purpose \nFROM Mx_VEW_VistorReport \nWHERE HostName LIKE '%Finance Office%' \n  AND CAST(EntryDT AS DATE) = CAST(GETDATE() AS DATE)",
+    "answer": "I couldn't find any records matching your request."
+  },
+  {
+    "id": 43,
+    "question": "Show me the check-in trend for visitors for the last 3 months.",
+    "status": "PASS",
+    "query": "SELECT DATEPART(MONTH, EntryDT) AS Month, COUNT(EntryID) AS TotalVisitors\nFROM Mx_VEW_VistorReport\nWHERE EntryDT >= DATEADD(MONTH, -3, GETDATE())\nGROUP BY DATEPART(MONTH, EntryDT)\nORDER BY Month",
+    "answer": "For the last 3 months, the check-in trend for visitors shows a total of 28 visitors. The breakdown is as follows: 10 visitors in February, 8 visitors in March, and 10 visitors in April. This suggests a relatively stable check-in trend, with a slight dip in March."
+  },
+  {
+    "id": 44,
+    "question": "How many visitor passes were issued yesterday?",
+    "status": "FAIL",
+    "error": "Invalid column name 'PassDate'."
+  },
+  {
+    "id": 45,
+    "question": "List visitors who haven't checked out yet.",
+    "status": "PASS",
+    "query": "SELECT EntryID, VistorName, CompanyName, HostName, Purpose, EntryDT, Status \nFROM Mx_VEW_VistorReport \nWHERE Status IN ('Checked In', 'Expected')",
+    "answer": "I couldn't find any records matching your request."
+  },
+  {
+    "id": 46,
+    "question": "Which department has the highest canteen usage?",
+    "status": "PASS",
+    "query": "SELECT TOP 1 DptName, SUM(Quantity) as TotalUsage \nFROM Mx_VEW_DailyCnteenEvts \nGROUP BY DptName \nORDER BY TotalUsage DESC",
+    "answer": "The HR department has the highest canteen usage, with a total of 9 instances."
+  },
+  {
+    "id": 47,
+    "question": "List all employees who consumed 'Lunch' today.",
+    "status": "PASS",
+    "query": "SELECT [UserID], [UserName], [FullName], [DptName], [PDate], [ItemName], [Quantity], [TotalAmount] \nFROM Mx_VEW_DailyCnteenEvts \nWHERE [ItemName] = 'Lunch' AND [PDate] = CAST(GETDATE() AS DATE)",
+    "answer": "Today, a total of 6 lunch consumptions were recorded. The employees who consumed lunch are: \n\n- Employee 1 from the IT department, who had lunch twice at 6:30 PM.\n- Employee 2 from the HR department, who also had lunch twice at 6:30 PM.\n- Employee 3 from the Admin department, who had lunch twice at 6:30 PM.\n\nAll of these employees had 1 quantity of lunch, with a total amount of 50 each time."
+  },
+  {
+    "id": 48,
+    "question": "What is the top spending employee in canteen this month?",
+    "status": "PASS",
+    "query": "SELECT TOP 1 FullName, SUM(TotalAmount) as TotalSpend\nFROM Mx_VEW_DailyCnteenEvts\nWHERE MONTH(PDate) = MONTH(GETDATE()) AND YEAR(PDate) = YEAR(GETDATE())\nGROUP BY FullName\nORDER BY TotalSpend DESC",
+    "answer": "The top spending employee in the canteen this month is Employee 1, with a total spend of 300."
+  },
+  {
+    "id": 49,
+    "question": "What is the average cost per meal this month?",
+    "status": "PASS",
+    "query": "SELECT AVG(TotalAmount) / AVG(Quantity) as AverageCostPerMeal \nFROM Mx_VEW_DailyCnteenEvts \nWHERE MONTH(PDate) = MONTH(GETDATE()) AND YEAR(PDate) = YEAR(GETDATE())",
+    "answer": "The average cost per meal this month is 45."
+  },
+  {
+    "id": 50,
+    "question": "Show me the trend of canteen consumption for the last 6 months.",
+    "status": "PASS",
+    "query": "SELECT \n    MONTH(PDate) AS Month, \n    SUM(Quantity) AS TotalQuantity, \n    SUM(TotalAmount) AS TotalAmount\nFROM \n    Mx_VEW_DailyCnteenEvts\nWHERE \n    PDate >= DATEADD(MONTH, -6, GETDATE())\nGROUP BY \n    MONTH(PDate)\nORDER BY \n    Month",
+    "answer": "For the last 6 months, we have data for only 1 month, which is April. In April, the total quantity consumed in the canteen was 20 units, with a total amount of 900. If you'd like to see more detailed information or trends for other months, please let me know and I'll be happy to help."
+  },
+  {
+    "id": 51,
+    "question": "List any employees who have canteen punches on days they were marked 'Absent'.",
+    "status": "PASS",
+    "query": "SELECT DISTINCT DA.FullName, DA.UserID\nFROM Mx_VEW_DailyAttendance DA\nJOIN Mx_VEW_DailyCnteenEvts CE\nON DA.UserID = CE.UserID AND DA.PDate = CE.PDate\nWHERE DA.WorkTime = 0",
+    "answer": "I couldn't find any records matching your request."
+  },
+  {
+    "id": 52,
+    "question": "Find 'Ghost Visitors': Visitors who checked in but have no corresponding room movement records.",
+    "status": "PASS",
+    "query": "SELECT V.[EntryID], V.[VistorName], V.[CompanyName], V.[HostName], V.[Purpose], V.[EntryDT], V.[ExitDT], V.[Status]\nFROM Mx_VEW_VistorReport V\nLEFT JOIN Mx_VEW_LiveRoomStatus R ON V.HostName = R.FullName\nWHERE V.Status = 'Checked In' AND R.FullName IS NULL",
+    "answer": "I couldn't find any records matching your request."
+  },
+  {
+    "id": 53,
+    "question": "Which employees have multiple 'Access Denied' events followed by a successful 'Access Granted' in another room?",
+    "status": "PASS",
+    "query": "WITH DeniedAccess AS (\n  SELECT [User ID], [Full Name], [Event Source Details] AS DoorName, [Event Date Time] AS DeniedTime\n  FROM Mx_VEW_RBACSEvents\n  WHERE [Event] = 'Denied'\n),\nGrantedAccess AS (\n  SELECT [User ID], [Full Name], [Event Source Details] AS DoorName, [Event Date Time] AS GrantedTime\n  FROM Mx_VEW_RBACSEvents\n  WHERE [Event] = 'Granted'\n)\nSELECT DISTINCT da1.[User ID], da1.[Full Name]\nFROM DeniedAccess da1\nJOIN DeniedAccess da2 ON da1.[User ID] = da2.[User ID] AND da1.DoorName = da2.DoorName AND da1.DeniedTime < da2.DeniedTime\nJOIN GrantedAccess ga ON da2.[User ID] = ga.[User ID] AND ga.GrantedTime > da2.DeniedTime\nWHERE da1.DeniedTime > DATEADD(HOUR, -1, GETDATE())",
+    "answer": "I couldn't find any records matching your request."
+  },
+  {
+    "id": 54,
+    "question": "Identify any room that had more than 10 entries within a 5-minute window today.",
+    "status": "PASS",
+    "query": "SELECT [CurrentRoom], COUNT(*) as EntryCount\nFROM Mx_VEW_LiveRoomStatus\nWHERE CAST([LastSeen] AS DATE) = CAST(GETDATE() AS DATE)\nGROUP BY [CurrentRoom]\nHAVING COUNT(*) > 10",
+    "answer": "There is 1 room that had more than 10 entries within a 5-minute window today. The Main Gate room had 15 entries."
+  },
+  {
+    "id": 55,
+    "question": "List employees who checked out early (before 4 PM) but stayed in a room for more than 7 hours.",
+    "status": "PASS",
+    "query": "SELECT DA.FullName, DA.DptName, DA.ActualOutTime, LRS.CurrentRoom, \n       DATEDIFF(HOUR, DA.ActualInTime, DA.ActualOutTime) as StayHours\nFROM Mx_VEW_DailyAttendance DA\nJOIN Mx_VEW_LiveRoomStatus LRS ON DA.UserID = LRS.UserID\nWHERE CAST(DA.ActualOutTime AS TIME) < '16:00:00' \n  AND DATEDIFF(HOUR, DA.ActualInTime, DA.ActualOutTime) > 7",
+    "answer": "I couldn't find any records matching your request."
+  },
+  {
+    "id": 56,
+    "question": "Rank departments by 'Overtime vs Canteen Usage' ratio for this month.",
+    "status": "FAIL",
+    "error": "Ambiguous column name 'DptName'."
+  },
+  {
+    "id": 57,
+    "question": "What is the total building occupancy (Employees + Visitors) for every hour of the day today?",
+    "status": "PASS",
+    "query": "WITH EmployeeOccupancy AS (\n  SELECT DATEPART(HOUR, ActualInTime) AS HourOfDay, COUNT(DISTINCT UserID) AS EmployeeCount\n  FROM Mx_VEW_DailyAttendance\n  WHERE PDate = CAST(GETDATE() AS DATE)\n  GROUP BY DATEPART(HOUR, ActualInTime)\n),\nVisitorOccupancy AS (\n  SELECT DATEPART(HOUR, EntryDT) AS HourOfDay, COUNT(DISTINCT EntryID) AS VisitorCount\n  FROM Mx_VEW_VistorReport\n  WHERE CAST(EntryDT AS DATE) = CAST(GETDATE() AS DATE)\n  GROUP BY DATEPART(HOUR, EntryDT)\n)\nSELECT COALESCE(e.HourOfDay, v.HourOfDay) AS HourOfDay, \n       COALESCE(e.EmployeeCount, 0) AS EmployeeCount, \n       COALESCE(v.VisitorCount, 0) AS VisitorCount, \n       COALESCE(e.EmployeeCount, 0) + COALESCE(v.VisitorCount, 0) AS TotalOccupancy\nFROM EmployeeOccupancy e\nFULL OUTER JOIN VisitorOccupancy v\nON e.HourOfDay = v.HourOfDay\nORDER BY HourOfDay",
+    "answer": "For today, the total building occupancy for every hour of the day is available for 1 hour. At 9:00 AM, there are 20 employees and 0 visitors, making the total occupancy 20."
+  },
+  {
+    "id": 58,
+    "question": "Compare the average 'Late Arrival' time of the Finance department vs the HR department.",
+    "status": "FAIL",
+    "error": "Operand data type datetime is invalid for avg operator."
+  },
+  {
+    "id": 59,
+    "question": "Which host handles the most visitors while having more than 8 hours of work time daily?",
+    "status": "PASS",
+    "query": "SELECT TOP 1 Mx_VEW_VistorReport.HostName, COUNT(Mx_VEW_VistorReport.EntryID) as TotalVisitors\nFROM Mx_VEW_VistorReport\nJOIN Mx_VEW_DailyAttendance\nON Mx_VEW_VistorReport.HostName = Mx_VEW_DailyAttendance.FullName\nWHERE CAST(Mx_VEW_DailyAttendance.WorkTime AS INT) > 480\nGROUP BY Mx_VEW_VistorReport.HostName\nORDER BY TotalVisitors DESC",
+    "answer": "I couldn't find any records matching your request."
+  },
+  {
+    "id": 60,
+    "question": "Show the total number of unique employees who entered the 'Server Room' vs 'MD Cabin' this week.",
+    "status": "PASS",
+    "query": "SELECT \n    SUM(CASE WHEN CurrentRoom = 'Server Room' THEN 1 ELSE 0 END) AS ServerRoomCount,\n    SUM(CASE WHEN CurrentRoom = 'MD Cabin' THEN 1 ELSE 0 END) AS MDCabinCount\nFROM \n    (SELECT DISTINCT UserID, CurrentRoom\n     FROM Mx_VEW_LiveRoomStatus\n     WHERE DATEPART(WEEK, LastSeen) = DATEPART(WEEK, GETDATE())) AS RoomEntries",
+    "answer": "This week, 2 unique employees entered the Server Room, while 3 unique employees entered the MD Cabin."
+  },
+  {
+    "id": 61,
+    "question": "Which employee has the highest ratio of break time to work time this month?",
+    "status": "PASS",
+    "query": "SELECT TOP 1 FullName, \n       CAST(BreakTime AS FLOAT) / WorkTime AS BreakToWorkRatio\nFROM Mx_VEW_DailyAttendance\nWHERE MONTH(PDate) = MONTH(GETDATE()) AND YEAR(PDate) = YEAR(GETDATE())\nAND WorkTime > 0\nORDER BY BreakToWorkRatio DESC",
+    "answer": "This month, Employee 1 has the highest ratio of break time to work time, with a break to work ratio of 0.2."
+  },
+  {
+    "id": 62,
+    "question": "Find employees who arrived late more than 3 times this week but still completed their total required work hours.",
+    "status": "PASS",
+    "query": "WITH LateArrivals AS (\n  SELECT UserID, COUNT(*) as LateCount\n  FROM Mx_VEW_DailyAttendance\n  WHERE CAST(ActualInTime AS TIME) > CAST(ShiftStart AS TIME)\n    AND DATEPART(WEEK, PDate) = DATEPART(WEEK, GETDATE())\n    AND DATEPART(YEAR, PDate) = DATEPART(YEAR, GETDATE())\n  GROUP BY UserID\n  HAVING COUNT(*) > 3\n),\nCompletedWorkHours AS (\n  SELECT UserID, SUM(WorkTime) as TotalWorkTime\n  FROM Mx_VEW_DailyAttendance\n  WHERE DATEPART(WEEK, PDate) = DATEPART(WEEK, GETDATE())\n    AND DATEPART(YEAR, PDate) = DATEPART(YEAR, GETDATE())\n  GROUP BY UserID\n  HAVING SUM(WorkTime) >= 7 * 540  -- assuming 8 hours a day, 5 days a week, in minutes\n)\nSELECT LA.UserID, UD.FullName, LA.LateCount\nFROM LateArrivals LA\nJOIN Mx_VEW_UserDetails UD ON LA.UserID = UD.UserID\nWHERE LA.UserID IN (SELECT UserID FROM CompletedWorkHours)",
+    "answer": "I couldn't find any records matching your request."
+  },
+  {
+    "id": 63,
+    "question": "List the departments where the average canteen spend is greater than the company average.",
+    "status": "PASS",
+    "query": "WITH CompanyAverage AS (\n  SELECT AVG(TotalAmount) as AvgSpend\n  FROM Mx_VEW_DailyCnteenEvts\n),\nDepartmentAverages AS (\n  SELECT DptName, AVG(TotalAmount) as DeptAvgSpend\n  FROM Mx_VEW_DailyCnteenEvts\n  GROUP BY DptName\n)\nSELECT DptName\nFROM DepartmentAverages\nWHERE DeptAvgSpend > (SELECT AvgSpend FROM CompanyAverage)",
+    "answer": "The departments where the average canteen spend is greater than the company average are Admin and IT. There are 2 such departments in total."
+  },
+  {
+    "id": 64,
+    "question": "Who are the top 3 hosts with the longest average visitor stay duration?",
+    "status": "PASS",
+    "query": "SELECT TOP 3 HostName, AVG(DATEDIFF(MINUTE, EntryDT, ExitDT)) as AverageStayDuration\nFROM Mx_VEW_VistorReport\nWHERE Status = 'Checked Out'\nGROUP BY HostName\nORDER BY AverageStayDuration DESC",
+    "answer": "I couldn't find any records matching your request."
+  },
+  {
+    "id": 65,
+    "question": "Identify any employee who was present for less than 4 hours but consumed more than 2 canteen items.",
+    "status": "PASS",
+    "query": "SELECT DA.FullName, DA.WorkTime, CTE.TotalItems\nFROM Mx_VEW_DailyAttendance DA\nJOIN (\n  SELECT UserID, SUM(Quantity) as TotalItems\n  FROM Mx_VEW_DailyCnteenEvts\n  GROUP BY UserID\n  HAVING SUM(Quantity) > 2\n) CTE ON DA.UserID = CTE.UserID\nWHERE DA.WorkTime < 240",
+    "answer": "I couldn't find any records matching your request."
+  },
+  {
+    "id": 66,
+    "question": "Show me the correlation between late arrivals and canteen usage for the IT department this month.",
+    "status": "PASS",
+    "query": "SELECT \n    DA.FullName, \n    DA.DptName, \n    CAST(DA.ActualInTime AS TIME) AS ArrivalTime, \n    CE.ItemName, \n    CE.Quantity, \n    CE.TotalAmount\nFROM \n    Mx_VEW_DailyAttendance DA\nINNER JOIN \n    Mx_VEW_DailyCnteenEvts CE ON DA.UserID = CE.UserID\nWHERE \n    DA.DptName = 'IT' \n    AND MONTH(DA.PDate) = MONTH(GETDATE()) \n    AND YEAR(DA.PDate) = YEAR(GETDATE())\n    AND CAST(DA.ActualInTime AS TIME) > CAST(DA.ShiftStart AS TIME)\nORDER BY \n    DA.FullName, \n    DA.PDate",
+    "answer": "I couldn't find any records matching your request."
+  },
+  {
+    "id": 67,
+    "question": "Which room has the highest number of unique visitors (not employees) today?",
+    "status": "PASS",
+    "query": "SELECT TOP 1 CurrentRoom, COUNT(DISTINCT UserID) as UniqueVisitors\nFROM Mx_VEW_LiveRoomStatus\nWHERE CAST(GETDATE() AS DATE) = CAST(GETDATE() AS DATE)\nGROUP BY CurrentRoom\nORDER BY UniqueVisitors DESC",
+    "answer": "The room with the highest number of unique visitors today is the Main Gate, with 15 visitors."
+  },
+  {
+    "id": 68,
+    "question": "List employees who have 'Access Denied' events at the Server Room but have never been in the IT department.",
+    "status": "PASS",
+    "query": "SELECT DISTINCT u.FullName \nFROM Mx_VEW_RBACSEvents e\nJOIN Mx_VEW_UserDetails u ON e.[User ID] = u.UserID\nWHERE e.[Event Source Details] LIKE '%Server Room%' \n  AND e.Event = 'Denied'\n  AND u.DptName NOT LIKE '%IT%'",
+    "answer": "I couldn't find any records matching your request."
+  },
+  {
+    "id": 69,
+    "question": "What is the most frequent purpose of visit for guests staying longer than 2 hours?",
+    "status": "PASS",
+    "query": "SELECT TOP 1 Purpose, COUNT(*) as Frequency\nFROM Mx_VEW_VistorReport\nWHERE DATEDIFF(MINUTE, EntryDT, ExitDT) > 120\nGROUP BY Purpose\nORDER BY Frequency DESC",
+    "answer": "I couldn't find any records matching your request."
+  },
+  {
+    "id": 70,
+    "question": "Find the employee who has the most inconsistent arrival times (highest variance) this month.",
+    "status": "FAIL",
+    "error": "'VARIANCE' is not a recognized built-in function name."
+  },
+  {
+    "id": 71,
+    "question": "Which department has the most employees leaving early (before ShiftEnd) on Fridays?",
+    "status": "FAIL",
+    "error": "{\"status\":429}"
+  },
+  {
+    "id": 72,
+    "question": "Show the total canteen revenue generated by employees who worked overtime yesterday.",
+    "status": "FAIL",
+    "error": "{\"status\":429}"
+  },
+  {
+    "id": 73,
+    "question": "Identify any 'Access Denied' events that occurred within 10 minutes of a visitor checking in to the same host.",
+    "status": "PASS",
+    "query": "SELECT V.[EntryID], V.[VistorName], V.[HostName], V.[EntryDT], A.[Event Date Time], A.[Event]\nFROM Mx_VEW_VistorReport V\nJOIN Mx_VEW_RBACSEvents A ON V.[HostName] = A.[Full Name]\nWHERE A.[Event] = 'Access Denied'\nAND A.[Event Date Time] BETWEEN DATEADD(MINUTE, -10, V.[EntryDT]) AND DATEADD(MINUTE, 10, V.[EntryDT])",
+    "answer": "I couldn't find any records matching your request."
+  },
+  {
+    "id": 74,
+    "question": "Which shift has the highest average break time?",
+    "status": "FAIL",
+    "error": "{\"status\":429}"
+  },
+  {
+    "id": 75,
+    "question": "List employees who have never used the canteen but have over 200 hours of work time this month.",
+    "status": "FAIL",
+    "error": "{\"status\":429}"
+  },
+  {
+    "id": 76,
+    "question": "What is the average number of room transitions per employee in the Marketing department today?",
+    "status": "PASS",
+    "query": "SELECT AVG(RoomTransitions) as AverageTransitions\nFROM (\n  SELECT UserID, COUNT(DISTINCT CurrentRoom) as RoomTransitions\n  FROM Mx_VEW_LiveRoomStatus\n  WHERE DptName = 'Marketing'\n  GROUP BY UserID\n) as Transitions",
+    "answer": "It seems we don't have enough information to provide an average number of room transitions per employee in the Marketing department today. The data we have doesn't include any transition information, so we can't calculate an average. If you'd like to explore this further or check on a different department, I'm here to help."
+  },
+  {
+    "id": 77,
+    "question": "Find visitors who checked out after their host had already left for the day.",
+    "status": "FAIL",
+    "error": "{\"status\":429}"
+  },
+  {
+    "id": 78,
+    "question": "Which day of the week has the highest average building occupancy?",
+    "status": "FAIL",
+    "error": "{\"status\":429}"
+  },
+  {
+    "id": 79,
+    "question": "Compare the total break time of employees who arrived on time vs those who arrived late.",
+    "status": "FAIL",
+    "error": "{\"status\":429}"
+  },
+  {
+    "id": 80,
+    "question": "Identify employees who visited the 'R&D Lab' and then immediately visited the 'Server Room'.",
+    "status": "FAIL",
+    "error": "{\"status\":429}"
+  },
+  {
+    "id": 81,
+    "question": "What is the average time between an employee's ActualInTime and their first canteen punch?",
+    "status": "FAIL",
+    "error": "{\"status\":429}"
+  },
+  {
+    "id": 82,
+    "question": "List the top 5 most frequently visited rooms by employees who have 'Manager' in their designation.",
+    "status": "FAIL",
+    "error": "{\"status\":429}"
+  },
+  {
+    "id": 83,
+    "question": "Which host had visitors from the most unique companies this month?",
+    "status": "FAIL",
+    "error": "{\"status\":429}"
+  },
+  {
+    "id": 84,
+    "question": "Show the average work time for employees based on the number of canteen items they consume.",
+    "status": "FAIL",
+    "error": "{\"status\":429}"
+  },
+  {
+    "id": 85,
+    "question": "Identify employees who have an 'Access Granted' event but no ActualInTime punch for the day.",
+    "status": "FAIL",
+    "error": "{\"status\":429}"
+  },
+  {
+    "id": 86,
+    "question": "What percentage of total canteen revenue comes from the top 10% of spenders?",
+    "status": "FAIL",
+    "error": "{\"status\":429}"
+  },
+  {
+    "id": 87,
+    "question": "List employees who took breaks totaling exactly their allowed break time.",
+    "status": "FAIL",
+    "error": "{\"status\":429}"
+  },
+  {
+    "id": 88,
+    "question": "Which department has the highest ratio of visitors to employees today?",
+    "status": "FAIL",
+    "error": "{\"status\":429}"
+  },
+  {
+    "id": 89,
+    "question": "Find the longest continuous time an employee spent in a single room other than their assigned department.",
+    "status": "FAIL",
+    "error": "{\"status\":429}"
+  },
+  {
+    "id": 90,
+    "question": "Compare the average canteen spend on days with overtime vs days without overtime.",
+    "status": "FAIL",
+    "error": "{\"status\":429}"
+  }
+]

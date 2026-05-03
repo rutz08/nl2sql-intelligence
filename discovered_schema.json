@@ -1,0 +1,948 @@
+{
+  "Mx_ACSEventTrn": [
+    {
+      "column": "UserID",
+      "type": "int"
+    },
+    {
+      "column": "EventDT",
+      "type": "datetime"
+    },
+    {
+      "column": "MID",
+      "type": "int"
+    },
+    {
+      "column": "EventID",
+      "type": "int"
+    },
+    {
+      "column": "EventDesc",
+      "type": "varchar"
+    }
+  ],
+  "Mx_BranchMst": [
+    {
+      "column": "BRCID",
+      "type": "int"
+    },
+    {
+      "column": "Name",
+      "type": "varchar"
+    }
+  ],
+  "Mx_BrcMst": [
+    {
+      "column": "BrcID",
+      "type": "int"
+    },
+    {
+      "column": "BrcName",
+      "type": "varchar"
+    }
+  ],
+  "Mx_CategoryMst": [
+    {
+      "column": "CTGID",
+      "type": "int"
+    },
+    {
+      "column": "CtgCode",
+      "type": "varchar"
+    },
+    {
+      "column": "Name",
+      "type": "varchar"
+    }
+  ],
+  "Mx_CnteenPunchTrn": [
+    {
+      "column": "UserID",
+      "type": "int"
+    },
+    {
+      "column": "PunchDate",
+      "type": "datetime"
+    },
+    {
+      "column": "Quantity",
+      "type": "int"
+    },
+    {
+      "column": "ItemName",
+      "type": "varchar"
+    }
+  ],
+  "Mx_ControllerMst": [
+    {
+      "column": "MID",
+      "type": "int"
+    },
+    {
+      "column": "Name",
+      "type": "varchar"
+    }
+  ],
+  "Mx_CustomGroup1Mst": [
+    {
+      "column": "CG1ID",
+      "type": "int"
+    },
+    {
+      "column": "CG1CODE",
+      "type": "varchar"
+    },
+    {
+      "column": "Name",
+      "type": "varchar"
+    }
+  ],
+  "Mx_CustomGroup2Mst": [
+    {
+      "column": "CG2ID",
+      "type": "int"
+    },
+    {
+      "column": "CG2CODE",
+      "type": "varchar"
+    },
+    {
+      "column": "Name",
+      "type": "varchar"
+    }
+  ],
+  "Mx_CustomGroup3Mst": [
+    {
+      "column": "CG3ID",
+      "type": "int"
+    },
+    {
+      "column": "CG3CODE",
+      "type": "varchar"
+    },
+    {
+      "column": "Name",
+      "type": "varchar"
+    }
+  ],
+  "Mx_DailyAttendance": [
+    {
+      "column": "UserID",
+      "type": "int"
+    },
+    {
+      "column": "PDate",
+      "type": "date"
+    },
+    {
+      "column": "Punch1",
+      "type": "datetime"
+    },
+    {
+      "column": "Punch2",
+      "type": "datetime"
+    },
+    {
+      "column": "Punch3",
+      "type": "datetime"
+    },
+    {
+      "column": "Punch4",
+      "type": "datetime"
+    },
+    {
+      "column": "WorkTime",
+      "type": "int"
+    },
+    {
+      "column": "BreakTime",
+      "type": "int"
+    }
+  ],
+  "Mx_DepartmentMst": [
+    {
+      "column": "DPTID",
+      "type": "int"
+    },
+    {
+      "column": "Name",
+      "type": "varchar"
+    }
+  ],
+  "Mx_DesignationMst": [
+    {
+      "column": "DSGID",
+      "type": "int"
+    },
+    {
+      "column": "Name",
+      "type": "varchar"
+    }
+  ],
+  "Mx_DptMst": [
+    {
+      "column": "DptID",
+      "type": "int"
+    },
+    {
+      "column": "DptName",
+      "type": "varchar"
+    }
+  ],
+  "Mx_DsgMst": [
+    {
+      "column": "DsgID",
+      "type": "int"
+    },
+    {
+      "column": "DsgName",
+      "type": "varchar"
+    }
+  ],
+  "Mx_GradeMst": [
+    {
+      "column": "GRDID",
+      "type": "int"
+    },
+    {
+      "column": "GrdCode",
+      "type": "varchar"
+    },
+    {
+      "column": "Name",
+      "type": "varchar"
+    }
+  ],
+  "Mx_LeaveBal": [
+    {
+      "column": "UserID",
+      "type": "int"
+    },
+    {
+      "column": "LeaveID",
+      "type": "varchar"
+    },
+    {
+      "column": "PYear",
+      "type": "int"
+    },
+    {
+      "column": "PMonth",
+      "type": "int"
+    },
+    {
+      "column": "OPBal",
+      "type": "float"
+    },
+    {
+      "column": "CRLeave",
+      "type": "float"
+    },
+    {
+      "column": "DBLeave",
+      "type": "float"
+    },
+    {
+      "column": "CLBal",
+      "type": "float"
+    }
+  ],
+  "Mx_LeaveMst": [
+    {
+      "column": "LeaveID",
+      "type": "varchar"
+    },
+    {
+      "column": "Name",
+      "type": "varchar"
+    }
+  ],
+  "Mx_LeaveTrn": [
+    {
+      "column": "UserID",
+      "type": "int"
+    },
+    {
+      "column": "LeaveID",
+      "type": "varchar"
+    },
+    {
+      "column": "FromDate",
+      "type": "date"
+    },
+    {
+      "column": "ToDate",
+      "type": "date"
+    },
+    {
+      "column": "APPLDays",
+      "type": "float"
+    },
+    {
+      "column": "SNCNFlg",
+      "type": "int"
+    }
+  ],
+  "Mx_MasterControllerBasicCfg": [
+    {
+      "column": "MID",
+      "type": "int"
+    },
+    {
+      "column": "NAME",
+      "type": "varchar"
+    },
+    {
+      "column": "CURRENTSTATUS",
+      "type": "int"
+    }
+  ],
+  "Mx_MasterControllerNwkCfg": [
+    {
+      "column": "MID",
+      "type": "int"
+    },
+    {
+      "column": "IPAddress",
+      "type": "varchar"
+    }
+  ],
+  "Mx_OrganizationMst": [
+    {
+      "column": "ORGID",
+      "type": "int"
+    },
+    {
+      "column": "Name",
+      "type": "varchar"
+    }
+  ],
+  "Mx_RepoGroupMst": [
+    {
+      "column": "RGID",
+      "type": "int"
+    },
+    {
+      "column": "Name",
+      "type": "varchar"
+    }
+  ],
+  "Mx_SectionMst": [
+    {
+      "column": "SECID",
+      "type": "int"
+    },
+    {
+      "column": "SecCode",
+      "type": "varchar"
+    },
+    {
+      "column": "Name",
+      "type": "varchar"
+    }
+  ],
+  "Mx_ShiftMst": [
+    {
+      "column": "SFTID",
+      "type": "int"
+    },
+    {
+      "column": "SFTName",
+      "type": "varchar"
+    },
+    {
+      "column": "SFTSTTime",
+      "type": "time"
+    },
+    {
+      "column": "SFTEDTime",
+      "type": "time"
+    }
+  ],
+  "Mx_UserDetails": [
+    {
+      "column": "UserID",
+      "type": "int"
+    },
+    {
+      "column": "UserName",
+      "type": "varchar"
+    },
+    {
+      "column": "FullName",
+      "type": "varchar"
+    },
+    {
+      "column": "DptName",
+      "type": "varchar"
+    },
+    {
+      "column": "BrcName",
+      "type": "varchar"
+    },
+    {
+      "column": "DsgName",
+      "type": "varchar"
+    }
+  ],
+  "Mx_UserLve": [
+    {
+      "column": "UserID",
+      "type": "int"
+    },
+    {
+      "column": "LeaveID",
+      "type": "varchar"
+    },
+    {
+      "column": "FromDate",
+      "type": "date"
+    },
+    {
+      "column": "ToDate",
+      "type": "date"
+    },
+    {
+      "column": "APPLDays",
+      "type": "float"
+    },
+    {
+      "column": "SNCNFlg",
+      "type": "int"
+    },
+    {
+      "column": "LeaveReason",
+      "type": "varchar"
+    }
+  ],
+  "Mx_UserMst": [
+    {
+      "column": "UserID",
+      "type": "int"
+    },
+    {
+      "column": "Name",
+      "type": "varchar"
+    },
+    {
+      "column": "FullName",
+      "type": "varchar"
+    },
+    {
+      "column": "ORGID",
+      "type": "int"
+    },
+    {
+      "column": "BRCID",
+      "type": "int"
+    },
+    {
+      "column": "DPTID",
+      "type": "int"
+    },
+    {
+      "column": "DSGID",
+      "type": "int"
+    }
+  ],
+  "Mx_VEW_ControllerList": [
+    {
+      "column": "DeviceID",
+      "type": "int"
+    },
+    {
+      "column": "DeviceName",
+      "type": "varchar"
+    },
+    {
+      "column": "IPADDRESS",
+      "type": "varchar"
+    },
+    {
+      "column": "CURRENTSTATUS",
+      "type": "int"
+    },
+    {
+      "column": "Status",
+      "type": "varchar"
+    }
+  ],
+  "Mx_VEW_DailyAttendance": [
+    {
+      "column": "UserID",
+      "type": "int"
+    },
+    {
+      "column": "UserName",
+      "type": "varchar"
+    },
+    {
+      "column": "FullName",
+      "type": "varchar"
+    },
+    {
+      "column": "DptName",
+      "type": "varchar"
+    },
+    {
+      "column": "PDate",
+      "type": "date"
+    },
+    {
+      "column": "WorkingShift",
+      "type": "varchar"
+    },
+    {
+      "column": "ShiftStart",
+      "type": "varchar"
+    },
+    {
+      "column": "ShiftEnd",
+      "type": "varchar"
+    },
+    {
+      "column": "ActualInTime",
+      "type": "datetime"
+    },
+    {
+      "column": "ActualOutTime",
+      "type": "datetime"
+    },
+    {
+      "column": "BreakStart",
+      "type": "datetime"
+    },
+    {
+      "column": "BreakEnd",
+      "type": "datetime"
+    },
+    {
+      "column": "WorkTime",
+      "type": "int"
+    },
+    {
+      "column": "BreakTime",
+      "type": "int"
+    },
+    {
+      "column": "WorkTime_HHMM",
+      "type": "nvarchar"
+    },
+    {
+      "column": "BreakTime_HHMM",
+      "type": "nvarchar"
+    }
+  ],
+  "Mx_VEW_DailyCnteenEvts": [
+    {
+      "column": "UserID",
+      "type": "int"
+    },
+    {
+      "column": "UserName",
+      "type": "varchar"
+    },
+    {
+      "column": "FullName",
+      "type": "varchar"
+    },
+    {
+      "column": "DptName",
+      "type": "varchar"
+    },
+    {
+      "column": "BrcName",
+      "type": "varchar"
+    },
+    {
+      "column": "PDate",
+      "type": "date"
+    },
+    {
+      "column": "ItemName",
+      "type": "varchar"
+    },
+    {
+      "column": "Quantity",
+      "type": "int"
+    },
+    {
+      "column": "TotalAmount",
+      "type": "int"
+    }
+  ],
+  "Mx_VEW_LiveRoomStatus": [
+    {
+      "column": "UserID",
+      "type": "int"
+    },
+    {
+      "column": "FullName",
+      "type": "varchar"
+    },
+    {
+      "column": "DptName",
+      "type": "varchar"
+    },
+    {
+      "column": "CurrentRoom",
+      "type": "varchar"
+    },
+    {
+      "column": "LastSeen",
+      "type": "datetime"
+    }
+  ],
+  "Mx_VEW_MnthlyCnteenEvts": [
+    {
+      "column": "UserID",
+      "type": "int"
+    },
+    {
+      "column": "UserName",
+      "type": "varchar"
+    },
+    {
+      "column": "FullName",
+      "type": "varchar"
+    },
+    {
+      "column": "DptName",
+      "type": "varchar"
+    },
+    {
+      "column": "TotalItems",
+      "type": "int"
+    },
+    {
+      "column": "TotalAmount",
+      "type": "int"
+    },
+    {
+      "column": "Month",
+      "type": "int"
+    },
+    {
+      "column": "Year",
+      "type": "int"
+    }
+  ],
+  "Mx_VEW_RBACSEvents": [
+    {
+      "column": "User ID",
+      "type": "int"
+    },
+    {
+      "column": "Full Name",
+      "type": "varchar"
+    },
+    {
+      "column": "Event",
+      "type": "varchar"
+    },
+    {
+      "column": "Event Source Details",
+      "type": "varchar"
+    },
+    {
+      "column": "Event Date Time",
+      "type": "datetime"
+    },
+    {
+      "column": "Department Name",
+      "type": "varchar"
+    }
+  ],
+  "Mx_VEW_RBAttendance": [
+    {
+      "column": "UserID",
+      "type": "int"
+    },
+    {
+      "column": "PDate",
+      "type": "date"
+    },
+    {
+      "column": "Punch1",
+      "type": "datetime"
+    },
+    {
+      "column": "Punch2",
+      "type": "datetime"
+    },
+    {
+      "column": "SFTID",
+      "type": "varchar"
+    },
+    {
+      "column": "FullName",
+      "type": "varchar"
+    },
+    {
+      "column": "UserName",
+      "type": "varchar"
+    },
+    {
+      "column": "DeptName",
+      "type": "varchar"
+    }
+  ],
+  "Mx_VEW_RBMonthlyATDSummary": [
+    {
+      "column": "UserID",
+      "type": "int"
+    },
+    {
+      "column": "UserName",
+      "type": "varchar"
+    },
+    {
+      "column": "FullName",
+      "type": "varchar"
+    },
+    {
+      "column": "DptName",
+      "type": "varchar"
+    },
+    {
+      "column": "Month",
+      "type": "int"
+    },
+    {
+      "column": "Year",
+      "type": "int"
+    },
+    {
+      "column": "Presents",
+      "type": "int"
+    },
+    {
+      "column": "Absents",
+      "type": "int"
+    },
+    {
+      "column": "Leaves",
+      "type": "int"
+    },
+    {
+      "column": "PaidDays",
+      "type": "int"
+    },
+    {
+      "column": "OverTime",
+      "type": "int"
+    }
+  ],
+  "Mx_VEW_UserDetails": [
+    {
+      "column": "UserID",
+      "type": "int"
+    },
+    {
+      "column": "UserName",
+      "type": "varchar"
+    },
+    {
+      "column": "FullName",
+      "type": "varchar"
+    },
+    {
+      "column": "DptName",
+      "type": "varchar"
+    },
+    {
+      "column": "BrcName",
+      "type": "varchar"
+    },
+    {
+      "column": "DsgName",
+      "type": "varchar"
+    }
+  ],
+  "Mx_VEW_VistorEntry": [
+    {
+      "column": "EntryID",
+      "type": "int"
+    },
+    {
+      "column": "VstrName",
+      "type": "varchar"
+    },
+    {
+      "column": "Company",
+      "type": "varchar"
+    },
+    {
+      "column": "HostName",
+      "type": "varchar"
+    },
+    {
+      "column": "Purpose",
+      "type": "varchar"
+    },
+    {
+      "column": "VisitDate",
+      "type": "date"
+    },
+    {
+      "column": "CheckInTime",
+      "type": "datetime"
+    },
+    {
+      "column": "CheckOutTime",
+      "type": "datetime"
+    },
+    {
+      "column": "Status",
+      "type": "varchar"
+    }
+  ],
+  "Mx_VEW_VistorReport": [
+    {
+      "column": "PassNo",
+      "type": "int"
+    },
+    {
+      "column": "VistorName",
+      "type": "varchar"
+    },
+    {
+      "column": "Organization",
+      "type": "varchar"
+    },
+    {
+      "column": "MobileNo",
+      "type": "varchar"
+    },
+    {
+      "column": "VPassDate",
+      "type": "date"
+    },
+    {
+      "column": "PassFromDate",
+      "type": "datetime"
+    },
+    {
+      "column": "PassToDate",
+      "type": "datetime"
+    },
+    {
+      "column": "Status",
+      "type": "varchar"
+    }
+  ],
+  "Mx_VistorCardMst": [
+    {
+      "column": "CardID",
+      "type": "int"
+    },
+    {
+      "column": "CardNo",
+      "type": "varchar"
+    },
+    {
+      "column": "CardStatus",
+      "type": "varchar"
+    }
+  ],
+  "Mx_VistorEntry": [
+    {
+      "column": "EntryID",
+      "type": "int"
+    },
+    {
+      "column": "VistorID",
+      "type": "int"
+    },
+    {
+      "column": "UserID",
+      "type": "int"
+    },
+    {
+      "column": "Purpose",
+      "type": "varchar"
+    },
+    {
+      "column": "EntryDT",
+      "type": "datetime"
+    },
+    {
+      "column": "ExitDT",
+      "type": "datetime"
+    },
+    {
+      "column": "CardID",
+      "type": "int"
+    },
+    {
+      "column": "Status",
+      "type": "varchar"
+    }
+  ],
+  "Mx_VistorMst": [
+    {
+      "column": "VistorID",
+      "type": "int"
+    },
+    {
+      "column": "FullName",
+      "type": "varchar"
+    },
+    {
+      "column": "CompanyName",
+      "type": "varchar"
+    },
+    {
+      "column": "MobileNo",
+      "type": "varchar"
+    }
+  ],
+  "Mx_VSTRMst": [
+    {
+      "column": "VSTRID",
+      "type": "int"
+    },
+    {
+      "column": "VstrName",
+      "type": "varchar"
+    },
+    {
+      "column": "Organization",
+      "type": "varchar"
+    },
+    {
+      "column": "MobileNo",
+      "type": "varchar"
+    },
+    {
+      "column": "IDProofNo",
+      "type": "varchar"
+    }
+  ],
+  "Mx_VSTRPassTrn": [
+    {
+      "column": "PassNo",
+      "type": "int"
+    },
+    {
+      "column": "VSTRID",
+      "type": "int"
+    },
+    {
+      "column": "VPassDate",
+      "type": "datetime"
+    },
+    {
+      "column": "PassFromDate",
+      "type": "datetime"
+    },
+    {
+      "column": "PassToDate",
+      "type": "datetime"
+    },
+    {
+      "column": "Status",
+      "type": "int"
+    }
+  ]
+}

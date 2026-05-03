@@ -1,0 +1,48 @@
+{\rtf1\ansi\deff0
+{\fonttbl{\f0 Arial;}{\f1 Times New Roman;}}
+{\colortbl;\red0\green0\blue0;\red0\green120\blue215;\red128\green128\blue128;}
+\paperw11906\paperh16838\margl1440\margr1440\margt1440\margb1440
+\viewkind4\uc1
+\pard\qc\b\f0\fs48 SAHAY AI AGENT\par
+\fs32 ARCHITECTURAL SYSTEM SPECIFICATION (v4.0)\b0\par
+\pard\par
+\pard\b\fs28 1. ARCHITECTURAL OVERVIEW\b0\fs24\par
+The SAHAY AI Agent is built on a modular, 4-tier micro-intelligence architecture designed for high-concurrency natural language processing and secure database orchestration. The system decouples user intent from database execution through a specialized "Reasoning Middleware" layer.\par
+\par
+\pard\b\fs28 2. LAYERED SYSTEM TOPOLOGY\b0\fs24\par
+\par
+\b 2.1 Experience Layer (Frontend/Portal)\b0\par
+A pixel-perfect, reactive interface mirroring the Matrix COSEC ecosystem. It manages real-time socket communication and asynchronous response rendering, ensuring a seamless conversational flow for the end-user.\par
+\par
+\b 2.2 Intelligence Layer (Node.js Middleware)\b0\par
+The central orchestrator of the ecosystem. Key responsibilities include:\par
+\bullet \b Context Management\b0 : Injecting live database schema metadata and business rules into the AI prompt.\par
+\bullet \b Fail-Safe Post-Processing\b0 : Normalizing AI-generated SQL to ensure strict adherence to Matrix-specific column naming conventions (e.g., DptName, WorkTime).\par
+\bullet \b IST Native Integration\b0 : Locking all temporal data processing to Indian Standard Time (UTC+5:30).\par
+\par
+\b 2.3 Reasoning Layer (Distributed Model Pool)\b0\par
+The "Brain" of the system, utilizing a highly available failover pool of Large Language Models:\par
+\bullet \b Tier 1\b0 : Llama 3.3 70B (Primary reasoning and complex SQL construction).\par
+\bullet \b Tier 2\b0 : Llama 4 Scout (Contextual nuance and conversational summary generation).\par
+\bullet \b Tier 3\b0 : Qwen 3 32B (High-speed tertiary fallback).\par
+\par
+\b 2.4 Persistence Layer (MS SQL Server)\b0\par
+Targeting the 'COSEC_DEMO' environment, this layer utilizes optimized views (Mx_VEW_DailyAttendance) and a non-blocking connection pool to handle enterprise-scale datasets.\par
+\par
+\pard\b\fs28 3. SECURITY FRAMEWORK\b0\fs24\par
+\par
+\b 3.1 SQL Security Gatekeeper\b0\par
+A non-bypassable validation module that strictly enforces:\par
+\bullet \b Read-Only Execution\b0 : Rejects any query containing destructive verbs (DROP, DELETE, UPDATE, etc.).\par
+\bullet \b Atomic Statement Isolation\b0 : Prevents SQL injection by blocking multi-statement execution (;).\par
+\par
+\pard\b\fs28 4. CORE INTELLIGENCE FEATURES\b0\fs24\par
+\par
+\b 4.1 Numerical ID Intelligence\b0\par
+Advanced pattern recognition for employee identifiers, capable of translating conversational lists (e.g., "1.2.3.4") into highly optimized SQL 'IN' clauses.\par
+\par
+\b 4.2 Temporal Synchronization\b0\par
+System-wide IST native processing, ensuring 100% synchronization between attendance punches, shift timings, and reporting outputs without manual timezone math.\par
+\par
+\pard\qc\fs20 --- DOCUMENT CLASSIFICATION: TECHNICAL SPECIFICATION ---\par
+}

@@ -1,0 +1,62 @@
+[
+  {
+    "id": 1,
+    "question": "List any employees who have canteen punches on days they were marked 'Absent'.",
+    "status": "PASS",
+    "query": "SELECT DISTINCT DA.UserID, DA.UserName, DA.FullName\nFROM Mx_VEW_DailyAttendance DA\nINNER JOIN Mx_VEW_DailyCnteenEvts CE ON DA.UserID = CE.UserID AND DA.PDate = CE.PDate\nWHERE DA.WorkTime = 0"
+  },
+  {
+    "id": 2,
+    "question": "Find 'Ghost Visitors': Visitors who checked in but have no corresponding room movement records.",
+    "status": "PASS",
+    "query": "SELECT V.[VistorName], V.[EntryDT], V.[Status]\nFROM Mx_VEW_VistorReport V\nLEFT JOIN Mx_VEW_LiveRoomStatus L ON V.[VistorName] = L.[FullName]\nWHERE V.[Status] IN ('Checked In', 'Checked Out')\n  AND L.[UserID] IS NULL"
+  },
+  {
+    "id": 3,
+    "question": "Which employees have multiple 'Access Denied' events followed by a successful 'Access Granted' in another room?",
+    "status": "FAIL",
+    "error": "Invalid column name 'EventSourceDetails'."
+  },
+  {
+    "id": 4,
+    "question": "Identify any room that had more than 10 entries within a 5-minute window today.",
+    "status": "PASS",
+    "query": "SELECT [CurrentRoom], COUNT(*) as EntryCount\nFROM Mx_VEW_LiveRoomStatus\nWHERE CAST([LastSeen] AS DATE) = CAST(GETDATE() AS DATE)\nGROUP BY [CurrentRoom]\nHAVING COUNT(*) > 10"
+  },
+  {
+    "id": 5,
+    "question": "List employees who checked out early (before 4 PM) but stayed in a room for more than 7 hours.",
+    "status": "PASS",
+    "query": "SELECT DA.FullName, DA.ActualOutTime, LRS.CurrentRoom, \n       DATEDIFF(HOUR, LRS.LastSeen, DA.ActualOutTime) as RoomStayHours\nFROM Mx_VEW_DailyAttendance DA\nJOIN Mx_VEW_LiveRoomStatus LRS ON DA.UserID = LRS.UserID\nWHERE CAST(DA.ActualOutTime AS TIME) < '16:00:00'\n  AND DATEDIFF(HOUR, LRS.LastSeen, DA.ActualOutTime) > 7"
+  },
+  {
+    "id": 6,
+    "question": "Rank departments by 'Overtime vs Canteen Usage' ratio for this month.",
+    "status": "PASS",
+    "query": "WITH OvertimeCTE AS (\n  SELECT DptName, \n         SUM(CASE WHEN WorkTime > 540 THEN WorkTime - 540 ELSE 0 END) / 60.0 as TotalOvertimeHours\n  FROM Mx_VEW_DailyAttendance\n  WHERE YEAR(PDate) = YEAR(GETDATE()) AND MONTH(PDate) = MONTH(GETDATE())\n  GROUP BY DptName\n),\nCanteenCTE AS (\n  SELECT DptName, \n         SUM(Quantity) as TotalItemsConsumed\n  FROM Mx_VEW_DailyCnteenEvts\n  WHERE YEAR(PDate) = YEAR(GETDATE()) AND MONTH(PDate) = MONTH(GETDATE())\n  GROUP BY DptName\n)\nSELECT COALESCE(O.DptName, C.DptName) as DptName,\n       COALESCE(O.TotalOvertimeHours, 0) as TotalOvertimeHours,\n       COALESCE(C.TotalItemsConsumed, 0) as TotalItemsConsumed,\n       CASE \n         WHEN COALESCE(C.TotalItemsConsumed, 0) = 0 THEN NULL \n         ELSE COALESCE(O.TotalOvertimeHours, 0) / COALESCE(C.TotalItemsConsumed, 0) \n       END as OvertimeToCanteenRatio\nFROM OvertimeCTE O\nFULL OUTER JOIN CanteenCTE C ON O.DptName = C.DptName\nORDER BY OvertimeToCanteenRatio DESC;"
+  },
+  {
+    "id": 7,
+    "question": "What is the total building occupancy (Employees + Visitors) for every hour of the day today?",
+    "status": "FAIL",
+    "error": "Security Violation: Multiple statements are not allowed."
+  },
+  {
+    "id": 8,
+    "question": "Compare the average 'Late Arrival' time of the Finance department vs the HR department.",
+    "status": "FAIL",
+    "error": "The data types datetime and time are incompatible in the greater than operator."
+  },
+  {
+    "id": 9,
+    "question": "Which host handles the most visitors while having more than 8 hours of work time daily?",
+    "status": "PASS",
+    "query": "SELECT TOP 1 H.FullName, COUNT(V.EntryID) as TotalVisitors\nFROM Mx_VEW_VistorReport V\nJOIN Mx_VEW_UserDetails H ON V.HostName = H.FullName\nJOIN Mx_VEW_DailyAttendance A ON H.UserID = A.UserID\nWHERE A.WorkTime > 480\nGROUP BY H.FullName\nORDER BY TotalVisitors DESC"
+  },
+  {
+    "id": 10,
+    "question": "Show the total number of unique employees who entered the 'Server Room' vs 'MD Cabin' this week.",
+    "status": "PASS",
+    "query": "SELECT \n    [CurrentRoom], \n    COUNT(DISTINCT [UserID]) as UniqueEmployees\nFROM \n    Mx_VEW_LiveRoomStatus\nWHERE \n    [CurrentRoom] IN ('Server Room', 'MD Cabin')\n    AND DATEPART(WEEK, [LastSeen]) = DATEPART(WEEK, GETDATE())\nGROUP BY \n    [CurrentRoom]"
+  }
+]

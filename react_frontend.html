@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COSEC Intelligence</title>
+    <link rel="icon" type="image/jpeg" href="WhatsApp Image 2026-04-30 at 9.17.35 PM.jpeg">
+    <!-- React & ReactDOM -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <!-- Babel for JSX -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!-- TailwindCSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- PDF & Excel Export Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
+    <style>
+        body { font-family: 'Outfit', sans-serif; }
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #e2e8f0;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="bg-[#f8fafc] h-screen flex items-center justify-center p-4 md:p-8">
+    <div id="root" class="w-full max-w-6xl h-full max-h-[900px]"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect, useRef } = React;
+
+        function App() {
+            const [prompt, setPrompt] = useState('');
+            const [loading, setLoading] = useState(false);
+            const [history, setHistory] = useState([]);
+            const [isOnline, setIsOnline] = useState(true);
+            const scrollRef = useRef(null);
+
+            const [isListening, setIsListening] = useState(false);
+
+            useEffect(() => {
+                if (scrollRef.current) {
+                    scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
+                }
+            }, [history, loading]);
+
+            const startListening = () => {
+                const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+                if (!SpeechRecognition) {
+                    alert("Speech recognition not supported in this browser.");
+                    return;
+                }
+
+                const recognition = new SpeechRecognition();
+                recognition.lang = 'en-IN';
+                recognition.interimResults = false;
+                recognition.maxAlternatives = 1;
+
+                recognition.onstart = () => setIsListening(true);
+                recognition.onend = () => setIsListening(false);
+                recognition.onresult = (event) => {
+                    const transcript = event.results[0][0].transcript;
+                    setPrompt(transcript);
+                };
+                recognition.onerror = (event) => {
+                    console.error("Speech Error:", event.error);
+                    setIsListening(false);
+                };
+
+                recognition.start();
+            };
+
+            useEffect(() => {
+                const checkHealth = async () => {
+                    try {
+                        const res = await fetch('http://localhost:3000/api/health');
+                        setIsOnline(res.ok);
+                    } catch (err) {
+                        setIsOnline(false);
+                    }
+                };
+                checkHealth();
+                const interval = setInterval(checkHealth, 5000);
+                return () => clearInterval(interval);
+            }, []);
+
+            const handleAsk = async (e) => {
+                e.preventDefault();
+                if (!prompt.trim()) return;
+
+                const currentPrompt = prompt;
+                setPrompt('');
+                setLoading(true);
+
+                setHistory(prev => [...prev, { role: 'user', content: currentPrompt }]);
+
+                try {
+                    const res = await fetch('http://localhost:3000/api/nl2sql', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ prompt: currentPrompt })
+                    });
+                    
+                    const data = await res.json();
+                    
+                    if (!res.ok) {
+                        setHistory(prev => [...prev, { 
+                            role: 'antigravity', 
+                            error: data.error || "An error occurred.",
+                            sql: data.attemptedSql 
+                        }]);
+                    } else {
+                        setHistory(prev => [...prev, { 
+                            role: 'antigravity', 
+                            sql: data.queryExecuted,
+                            data: data.data,
+                            humanAnswer: data.humanAnswer,
+                            modelUsed: data.modelUsed
+                        }]);
+                    }
+                } catch (error) {
+                    setHistory(prev => [...prev, { 
+                        role: 'antigravity', 
+                        error: "Network connection lost. Ensure the Antigravity Engine (Node.js) is running on port 3000." 
+                    }]);
+                } finally {
+                    setLoading(false);
+                }
+            };
+
+            const downloadCSV = (data, filename = 'cosec_report.csv') => {
+                if (!data || !data.length) return;
+                const headers = Object.keys(data[0]);
+                const csvContent = [
+                    headers.join(','),
+                    ...data.map(row => headers.map(h => `"${row[h] || ''}"`).join(','))
+                ].join('\n');
+
+                const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+                const link = document.createElement('a');
+                link.href = URL.createObjectURL(blob);
+                link.setAttribute('download', filename);
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            };
+
+            const downloadPDF = (data, filename = 'cosec_report.pdf') => {
+                const { jsPDF } = window.jspdf;
+                const doc = new jsPDF('l', 'pt');
+                
+                const headers = Object.keys(data[0]);
+                const rows = data.map(row => Object.values(row));
+
+                doc.text("COSEC Intelligence Report", 40, 30);
+                doc.autoTable({
+                    head: [headers],
+                    body: rows,
+                    startY: 50,
+                    styles: { fontSize: 8 },
+                    headStyles: { fillStyle: 'darkblue' }
+                });
+                doc.save(filename);
+            };
+
+            const printTable = (tableId) => {
+                const content = document.getElementById(tableId).innerHTML;
+                const printWindow = window.open('', '', 'height=600,width=800');
+                printWindow.document.write('<html><head><title>Print Report</title>');
+                printWindow.document.write('<style>table { width: 100%; border-collapse: collapse; } th, td { border: 1px solid #ddd; padding: 8px; text-align: left; font-family: sans-serif; font-size: 12px; }</style>');
+                printWindow.document.write('</head><body>');
+                printWindow.document.write('<h2>COSEC Intelligence Report</h2>');
+                printWindow.document.write(content);
+                printWindow.document.write('</body></html>');
+                printWindow.document.close();
+                printWindow.print();
+            };
+
+            return (
+                <div className="flex flex-col h-full glass-effect shadow-2xl rounded-3xl overflow-hidden border border-slate-200">
+                    {/* Header */}
+                    <header className="px-8 py-4 bg-white/80 backdrop-blur-md border-b border-slate-100 flex items-center justify-between sticky top-0 z-50">
+                        <div className="flex items-center space-x-4">
+                            <img src="WhatsApp Image 2026-04-30 at 9.17.35 PM.jpeg" alt="COSEC Logo" className="w-20 h-20 rounded-2xl object-contain shadow-sm" />
+                            <div>
+                                <h1 className="text-xl font-bold text-slate-800 tracking-tight">COSEC Intelligence</h1>
+                                <p className="text-[10px] text-slate-400 font-medium uppercase tracking-widest">Enterprise Assistant</p>
+                            </div>
+                        </div>
+                        <div className="flex items-center space-x-2">
+                            <span className={`flex w-2 h-2 ${isOnline ? 'bg-green-500' : 'bg-red-500 animate-pulse'} rounded-full`}></span>
+                            <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">
+                                {isOnline ? 'System Online' : 'Connection Lost'}
+                            </span>
+                        </div>
+                    </header>
+                    
+                    {/* Chat Area */}
+                    <div ref={scrollRef} className="flex-1 overflow-y-auto p-8 space-y-6 custom-scrollbar bg-[#fdfdfd] flex flex-col">
+                        {history.length === 0 && (
+                            <div className="flex-1 flex items-center justify-center">
+                                <div className="bg-white/40 backdrop-blur-md rounded-2xl border border-white/40 p-8 text-center max-w-lg mx-auto shadow-xl">
+                                    <img src="WhatsApp Image 2026-04-30 at 9.17.35 PM.jpeg" alt="COSEC Logo" className="w-48 h-48 mx-auto mb-6 rounded-[2rem] object-contain" />
+                                    <h2 className="text-3xl font-bold text-slate-800 mb-3 tracking-tight">COSEC Intelligence</h2>
+                                    <p className="text-slate-500 text-sm leading-relaxed mb-2">Your intelligent assistant for Matrix COSEC analytics.</p>
+                                    <p className="text-slate-400 text-xs leading-relaxed">Ask anything about attendance, leaves, or canteen logs.</p>
+                                </div>
+                            </div>
+                        )}
+                        
+                        {history.map((msg, idx) => (
+                            <div key={idx} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'} animate-in slide-in-from-bottom-2 duration-300`}>
+                                <div className={`max-w-[90%] md:max-w-[80%] rounded-2xl p-4 ${msg.role === 'user' ? 'bg-slate-800 text-white' : 'bg-slate-100 text-slate-800'}`}>
+                                    {msg.role === 'user' ? (
+                                        <div className="flex items-start space-x-3">
+                                            <p className="text-sm md:text-base leading-relaxed">{msg.content}</p>
+                                        </div>
+                                    ) : (
+                                        <div className="space-y-4">
+                                            {msg.error ? (
+                                                <div className="flex items-center space-x-2 text-red-500">
+                                                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" /></svg>
+                                                    <span className="font-semibold text-sm">{msg.error}</span>
+                                                </div>
+                                            ) : (
+                                                <div className="space-y-4">
+                                                    {/* SQL Toggle / View */}
+                                                    <details className="group">
+                                                        <summary className="text-[10px] font-bold text-slate-400 uppercase tracking-widest cursor-pointer hover:text-blue-500 transition-colors flex items-center space-x-1">
+                                                            <span>Generated SQL Logic</span>
+                                                            <svg className="w-3 h-3 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
+                                                        </summary>
+                                                        <pre className="mt-2 bg-slate-900 text-blue-300 p-4 rounded-xl text-[11px] overflow-x-auto font-mono leading-relaxed">
+                                                            {msg.sql}
+                                                        </pre>
+                                                    </details>
+
+                                                    {/* Data Table */}
+                                                    <div className="space-y-4">
+                                                        {msg.humanAnswer && (
+                                                            <div className="text-slate-800 text-base leading-relaxed bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
+                                                                <div className="flex items-center space-x-2 mb-2">
+                                                                    <img src="WhatsApp Image 2026-04-30 at 9.17.35 PM.jpeg" alt="Logo" className="w-5 h-5 object-contain" />
+                                                                    <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">COSEC AI</span>
+                                                                </div>
+                                                                <span>{msg.humanAnswer}</span>
+                                                            </div>
+                                                        )}
+
+                                                        <div className="space-y-3">
+                                                            <div className="flex items-center justify-between px-2">
+                                                                 <h3 className="text-[10px] font-bold text-slate-400 uppercase tracking-widest flex items-center space-x-2">
+                                                                    <span className="w-1.5 h-1.5 bg-slate-400 rounded-full"></span>
+                                                                    <span>Data Preview</span>
+                                                                    {msg.modelUsed && <span className="ml-2 px-2 py-0.5 bg-slate-100 text-slate-400 rounded text-[9px] font-mono">{msg.modelUsed}</span>}
+                                                                </h3>
+                                                                <div className="flex items-center space-x-2">
+                                                                    <button onClick={() => downloadCSV(msg.data)} className="p-1.5 hover:bg-white rounded-md text-slate-400 hover:text-green-600 transition-colors title='Download CSV'">
+                                                                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
+                                                                    </button>
+                                                                    <button onClick={() => downloadPDF(msg.data)} className="p-1.5 hover:bg-white rounded-md text-slate-400 hover:text-red-600 transition-colors title='Download PDF'">
+                                                                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" /></svg>
+                                                                    </button>
+                                                                    <button onClick={() => printTable(`table-${idx}`)} className="p-1.5 hover:bg-white rounded-md text-slate-400 hover:text-blue-600 transition-colors title='Print'">
+                                                                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" /></svg>
+                                                                    </button>
+                                                                    <span className="text-[10px] font-bold text-slate-500 bg-slate-100 px-2 py-0.5 rounded">{msg.data?.length || 0} rows</span>
+                                                                </div>
+                                                            </div>
+                                                            
+                                                            {msg.data && msg.data.length > 0 ? (
+                                                                <div className="relative group/table" id={`table-${idx}`}>
+                                                                    <div className="overflow-x-auto rounded-2xl border border-slate-200 bg-white shadow-xl shadow-slate-200/50 custom-scrollbar max-h-[400px]">
+                                                                        <table className="min-w-full border-separate border-spacing-0">
+                                                                            <thead className="sticky top-0 z-10 bg-slate-50/95 backdrop-blur-sm shadow-sm">
+                                                                                <tr>
+                                                                                    {Object.keys(msg.data[0]).map((key, i) => (
+                                                                                        <th key={key} className={`px-5 py-4 text-left text-[11px] font-black text-slate-500 uppercase tracking-widest border-b border-slate-200 ${i === 0 ? 'rounded-tl-2xl' : ''} ${i === Object.keys(msg.data[0]).length - 1 ? 'rounded-tr-2xl' : ''}`}>
+                                                                                            {key.replace(/([A-Z])/g, ' $1').trim()}
+                                                                                        </th>
+                                                                                    ))}
+                                                                                </tr>
+                                                                            </thead>
+                                                                            <tbody className="divide-y divide-slate-100">
+                                                                                {msg.data.map((row, rIdx) => (
+                                                                                    <tr key={rIdx} className="hover:bg-slate-50/80 transition-all duration-200 group/row">
+                                                                                        {Object.values(row).map((val, vIdx) => (
+                                                                                            <td key={vIdx} className="px-5 py-4 text-[13px] text-slate-600 font-medium group-hover/row:text-slate-900">
+                                                                                                {val !== null ? (
+                                                                                                    typeof val === 'number' ? (
+                                                                                                        <span className="font-mono text-blue-600 bg-blue-50/50 px-2 py-0.5 rounded-md">{val}</span>
+                                                                                                    ) : val instanceof Date || (typeof val === 'string' && val.includes('T') && !isNaN(Date.parse(val))) ? (
+                                                                                                        <span className="text-slate-500">{new Date(val).toLocaleString('en-IN', {day:'2-digit', month:'short', year:'numeric', hour: '2-digit', minute: '2-digit', hour12: true})}</span>
+                                                                                                    ) : val.toString()
+                                                                                                ) : (
+                                                                                                    <span className="text-slate-300 italic text-[11px]">N/A</span>
+                                                                                                )}
+                                                                                            </td>
+                                                                                        ))}
+                                                                                    </tr>
+                                                                                ))}
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </div>
+                                                                    <div className="absolute inset-0 rounded-2xl border-2 border-transparent group-hover/table:border-blue-500/10 pointer-events-none transition-all duration-500"></div>
+                                                                </div>
+                                                            ) : (
+                                                                <div className="p-12 text-center bg-white rounded-2xl border-2 border-dashed border-slate-100 shadow-sm">
+                                                                    <div className="w-16 h-16 bg-slate-50 rounded-full flex items-center justify-center mx-auto mb-4">
+                                                                        <svg className="w-8 h-8 text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M9.172 9.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                                                        </svg>
+                                                                    </div>
+                                                                    <p className="text-slate-400 text-sm font-medium">No results found for this query.</p>
+                                                                    <p className="text-slate-300 text-[11px] mt-1 italic uppercase tracking-wider">Empty Result Set</p>
+                                                                </div>
+                                                            )}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            )}
+                                        </div>
+                                    )}
+                                </div>
+                            </div>
+                        ))}
+                        
+                        {loading && (
+                            <div className="flex justify-start animate-pulse">
+                                <div className="bg-white border border-slate-100 rounded-2xl p-4 flex items-center space-x-3 shadow-sm">
+                                    <div className="flex space-x-1">
+                                        <div className="w-1.5 h-1.5 bg-slate-400 rounded-full animate-bounce"></div>
+                                        <div className="w-1.5 h-1.5 bg-slate-500 rounded-full animate-bounce [animation-delay:0.2s]"></div>
+                                        <div className="w-1.5 h-1.5 bg-slate-600 rounded-full animate-bounce [animation-delay:0.4s]"></div>
+                                    </div>
+                                    <span className="text-xs font-medium text-slate-400">COSEC Intelligence is thinking...</span>
+                                </div>
+                            </div>
+                        )}
+                    </div>
+
+                    {/* Input Area */}
+                    <div className="px-8 py-6 bg-white border-t border-slate-100">
+                        <form onSubmit={handleAsk} className="relative group flex items-center space-x-2">
+                            <div className="relative flex-1">
+                                <input 
+                                    type="text" 
+                                    className="w-full bg-slate-100 border-none rounded-2xl px-6 py-4 pr-12 focus:outline-none focus:ring-2 focus:ring-slate-300 transition-all text-slate-700 placeholder:text-slate-400"
+                                    placeholder={isListening ? "Listening..." : "Message COSEC Intelligence..."}
+                                    value={prompt}
+                                    onChange={(e) => setPrompt(e.target.value)}
+                                    disabled={loading}
+                                />
+                                <button
+                                    type="button"
+                                    onClick={startListening}
+                                    disabled={loading}
+                                    className={`absolute right-3 top-1/2 -translate-y-1/2 p-2 rounded-full transition-all ${isListening ? 'bg-red-100 text-red-500 animate-pulse' : 'text-slate-400 hover:text-slate-600'}`}
+                                >
+                                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" /></svg>
+                                </button>
+                            </div>
+                            <button 
+                                type="submit" 
+                                disabled={loading || !prompt.trim()}
+                                className="bg-slate-800 hover:bg-slate-900 disabled:bg-slate-200 text-white font-bold px-6 py-4 rounded-2xl transition-all flex items-center space-x-2"
+                            >
+                                <span className="text-xs">Send</span>
+                                <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
+                            </button>
+                        </form>
+                        <p className="mt-3 text-[10px] text-slate-400 text-center font-medium uppercase tracking-widest">@2026 | Team SAHAY</p>
+                    </div>
+                </div>
+            );
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>

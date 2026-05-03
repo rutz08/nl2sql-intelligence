@@ -1,0 +1,3652 @@
+{
+    "Mx_VEW_DailyAttendance": [
+        {
+            "name": "UserID",
+            "type": "nvarchar"
+        },
+        {
+            "name": "PDate",
+            "type": "datetime"
+        },
+        {
+            "name": "UserName",
+            "type": "nvarchar"
+        },
+        {
+            "name": "INTEGRATION_REFERENCE",
+            "type": "nvarchar"
+        },
+        {
+            "name": "ORGID",
+            "type": "numeric"
+        },
+        {
+            "name": "ORGCODE",
+            "type": "nvarchar"
+        },
+        {
+            "name": "OrgName",
+            "type": "nvarchar"
+        },
+        {
+            "name": "BRCID",
+            "type": "numeric"
+        },
+        {
+            "name": "BRCCODE",
+            "type": "nvarchar"
+        },
+        {
+            "name": "BrcName",
+            "type": "nvarchar"
+        },
+        {
+            "name": "DPTID",
+            "type": "numeric"
+        },
+        {
+            "name": "DPTCODE",
+            "type": "nvarchar"
+        },
+        {
+            "name": "DptName",
+            "type": "nvarchar"
+        },
+        {
+            "name": "SECID",
+            "type": "numeric"
+        },
+        {
+            "name": "SECCODE",
+            "type": "nvarchar"
+        },
+        {
+            "name": "SecName",
+            "type": "nvarchar"
+        },
+        {
+            "name": "CTGID",
+            "type": "numeric"
+        },
+        {
+            "name": "CTGCODE",
+            "type": "nvarchar"
+        },
+        {
+            "name": "CtgName",
+            "type": "nvarchar"
+        },
+        {
+            "name": "GRDID",
+            "type": "numeric"
+        },
+        {
+            "name": "GRDCODE",
+            "type": "nvarchar"
+        },
+        {
+            "name": "GrdName",
+            "type": "nvarchar"
+        },
+        {
+            "name": "DSGID",
+            "type": "numeric"
+        },
+        {
+            "name": "DSGCODE",
+            "type": "nvarchar"
+        },
+        {
+            "name": "DsgName",
+            "type": "nvarchar"
+        },
+        {
+            "name": "CustomGroup1ID",
+            "type": "numeric"
+        },
+        {
+            "name": "CustomGroup1_Code",
+            "type": "nvarchar"
+        },
+        {
+            "name": "CustomGroup1_Name",
+            "type": "nvarchar"
+        },
+        {
+            "name": "CustomGroup2ID",
+            "type": "numeric"
+        },
+        {
+            "name": "CustomGroup2_Code",
+            "type": "nvarchar"
+        },
+        {
+            "name": "CustomGroup2_Name",
+            "type": "nvarchar"
+        },
+        {
+            "name": "CustomGroup3ID",
+            "type": "numeric"
+        },
+        {
+            "name": "CustomGroup3_Code",
+            "type": "nvarchar"
+        },
+        {
+            "name": "CustomGroup3_Name",
+            "type": "nvarchar"
+        },
+        {
+            "name": "AdlUserID",
+            "type": "numeric"
+        },
+        {
+            "name": "Gender",
+            "type": "nvarchar"
+        },
+        {
+            "name": "MRTLSTAT",
+            "type": "nvarchar"
+        },
+        {
+            "name": "BirthDT",
+            "type": "nvarchar"
+        },
+        {
+            "name": "JoinDT",
+            "type": "nvarchar"
+        },
+        {
+            "name": "LeaveDT",
+            "type": "nvarchar"
+        },
+        {
+            "name": "ProcessDate",
+            "type": "nvarchar"
+        },
+        {
+            "name": "PROCESSDATE_U",
+            "type": "nvarchar"
+        },
+        {
+            "name": "PDate_U",
+            "type": "datetime"
+        },
+        {
+            "name": "Punch1",
+            "type": "datetime"
+        },
+        {
+            "name": "Punch1_Date",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Punch1_Time",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Punch2",
+            "type": "datetime"
+        },
+        {
+            "name": "Punch2_Date",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Punch2_Time",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Punch3",
+            "type": "datetime"
+        },
+        {
+            "name": "Punch3_Date",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Punch3_Time",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Punch4",
+            "type": "datetime"
+        },
+        {
+            "name": "Punch4_Date",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Punch4_Time",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Punch5",
+            "type": "datetime"
+        },
+        {
+            "name": "Punch5_Date",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Punch5_Time",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Punch6",
+            "type": "datetime"
+        },
+        {
+            "name": "Punch6_Date",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Punch6_Time",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Punch7",
+            "type": "datetime"
+        },
+        {
+            "name": "Punch7_Date",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Punch7_Time",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Punch8",
+            "type": "datetime"
+        },
+        {
+            "name": "Punch8_Date",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Punch8_Time",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Punch9",
+            "type": "datetime"
+        },
+        {
+            "name": "Punch9_Date",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Punch9_Time",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Punch10",
+            "type": "datetime"
+        },
+        {
+            "name": "Punch10_Date",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Punch10_Time",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Punch11",
+            "type": "datetime"
+        },
+        {
+            "name": "Punch11_Date",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Punch11_Time",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Punch12",
+            "type": "datetime"
+        },
+        {
+            "name": "Punch12_Date",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Punch12_Time",
+            "type": "nvarchar"
+        },
+        {
+            "name": "SPFID1",
+            "type": "numeric"
+        },
+        {
+            "name": "SPFID2",
+            "type": "numeric"
+        },
+        {
+            "name": "SPFID3",
+            "type": "numeric"
+        },
+        {
+            "name": "SPFID4",
+            "type": "numeric"
+        },
+        {
+            "name": "SPFID5",
+            "type": "numeric"
+        },
+        {
+            "name": "SPFID6",
+            "type": "numeric"
+        },
+        {
+            "name": "SPFID7",
+            "type": "numeric"
+        },
+        {
+            "name": "SPFID8",
+            "type": "numeric"
+        },
+        {
+            "name": "SPFID9",
+            "type": "numeric"
+        },
+        {
+            "name": "SPFID10",
+            "type": "numeric"
+        },
+        {
+            "name": "SPFID11",
+            "type": "numeric"
+        },
+        {
+            "name": "SPFID12",
+            "type": "numeric"
+        },
+        {
+            "name": "ScheduleShift",
+            "type": "nvarchar"
+        },
+        {
+            "name": "WorkingShift",
+            "type": "nvarchar"
+        },
+        {
+            "name": "EarlyIn",
+            "type": "numeric"
+        },
+        {
+            "name": "EarlyIn_HHMM",
+            "type": "varchar"
+        },
+        {
+            "name": "LateIn",
+            "type": "numeric"
+        },
+        {
+            "name": "LateIn_HHMM",
+            "type": "varchar"
+        },
+        {
+            "name": "EarlyOut",
+            "type": "numeric"
+        },
+        {
+            "name": "EarlyOut_HHMM",
+            "type": "varchar"
+        },
+        {
+            "name": "Overstay",
+            "type": "numeric"
+        },
+        {
+            "name": "Overstay_HHMM",
+            "type": "varchar"
+        },
+        {
+            "name": "Overtime",
+            "type": "numeric"
+        },
+        {
+            "name": "Overtime_HHMM",
+            "type": "varchar"
+        },
+        {
+            "name": "WorkTime",
+            "type": "numeric"
+        },
+        {
+            "name": "WorkTime_HHMM",
+            "type": "varchar"
+        },
+        {
+            "name": "FirstHalf",
+            "type": "nvarchar"
+        },
+        {
+            "name": "SecondHalf",
+            "type": "nvarchar"
+        },
+        {
+            "name": "ManualOvertime",
+            "type": "numeric"
+        },
+        {
+            "name": "ManualOvertime_HHMM",
+            "type": "varchar"
+        },
+        {
+            "name": "AuthorizedOvertime",
+            "type": "numeric"
+        },
+        {
+            "name": "AuthorizedOvertime_HHMM",
+            "type": "varchar"
+        },
+        {
+            "name": "OvertimeAuthorizationDate",
+            "type": "datetime"
+        },
+        {
+            "name": "OvertimeReason",
+            "type": "numeric"
+        },
+        {
+            "name": "ManualCOFF",
+            "type": "numeric"
+        },
+        {
+            "name": "ManualCOFF_HHMM",
+            "type": "varchar"
+        },
+        {
+            "name": "AuthorizedCOFF",
+            "type": "numeric"
+        },
+        {
+            "name": "AuthorizedCOFF_HHMM",
+            "type": "varchar"
+        },
+        {
+            "name": "AuthorizedCOFFDate",
+            "type": "datetime"
+        },
+        {
+            "name": "AvailedCOFF",
+            "type": "numeric"
+        },
+        {
+            "name": "AvailedCOFF_HHMM",
+            "type": "varchar"
+        },
+        {
+            "name": "EncashedCOFF",
+            "type": "numeric"
+        },
+        {
+            "name": "EncashedCOFF_HHMM",
+            "type": "varchar"
+        },
+        {
+            "name": "LunchDuration",
+            "type": "numeric"
+        },
+        {
+            "name": "LunchDuration_HHMM",
+            "type": "varchar"
+        },
+        {
+            "name": "LateInLunch",
+            "type": "numeric"
+        },
+        {
+            "name": "LateInLunch_HHMM",
+            "type": "varchar"
+        },
+        {
+            "name": "EarlyOutLunch",
+            "type": "numeric"
+        },
+        {
+            "name": "EarlyOutLunch_HHMM",
+            "type": "varchar"
+        },
+        {
+            "name": "WeekOFFANDHoliday",
+            "type": "numeric"
+        },
+        {
+            "name": "OfficialDuration",
+            "type": "numeric"
+        },
+        {
+            "name": "PersonalDuration",
+            "type": "numeric"
+        },
+        {
+            "name": "ShiftStart",
+            "type": "nvarchar"
+        },
+        {
+            "name": "ShiftEnd",
+            "type": "nvarchar"
+        },
+        {
+            "name": "LunchStart",
+            "type": "datetime"
+        },
+        {
+            "name": "LunchEnd",
+            "type": "datetime"
+        },
+        {
+            "name": "OutPunch",
+            "type": "datetime"
+        },
+        {
+            "name": "OutPunch_Date",
+            "type": "nvarchar"
+        },
+        {
+            "name": "OutPunch_Time",
+            "type": "nvarchar"
+        },
+        {
+            "name": "OutSPFID",
+            "type": "numeric"
+        },
+        {
+            "name": "SiteID",
+            "type": "numeric"
+        },
+        {
+            "name": "MinWrkHrsFDay",
+            "type": "int"
+        },
+        {
+            "name": "MinWrkHrsFDay_HHMM",
+            "type": "nvarchar"
+        },
+        {
+            "name": "MinWrkHrsHDay",
+            "type": "int"
+        },
+        {
+            "name": "MinWrkHrsHDay_HHMM",
+            "type": "nvarchar"
+        },
+        {
+            "name": "ShiftType",
+            "type": "numeric"
+        },
+        {
+            "name": "NetWorkTime",
+            "type": "numeric"
+        },
+        {
+            "name": "OVERTIME1",
+            "type": "numeric"
+        },
+        {
+            "name": "OVERTIME2",
+            "type": "numeric"
+        },
+        {
+            "name": "OVERTIME3",
+            "type": "numeric"
+        },
+        {
+            "name": "OVERTIME4",
+            "type": "numeric"
+        },
+        {
+            "name": "OVERTIME5",
+            "type": "numeric"
+        },
+        {
+            "name": "AUTHOT1",
+            "type": "numeric"
+        },
+        {
+            "name": "AUTHOT2",
+            "type": "numeric"
+        },
+        {
+            "name": "AUTHOT3",
+            "type": "numeric"
+        },
+        {
+            "name": "AUTHOT4",
+            "type": "numeric"
+        },
+        {
+            "name": "AUTHOT5",
+            "type": "numeric"
+        },
+        {
+            "name": "Adjusted_Work_Hours",
+            "type": "numeric"
+        },
+        {
+            "name": "Field1",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Field2",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Field3",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Field4",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Field5",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Field6",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Field7",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Field8",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Field9",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Field10",
+            "type": "nvarchar"
+        },
+        {
+            "name": "ActiveFlag",
+            "type": "numeric"
+        },
+        {
+            "name": "UserType",
+            "type": "nvarchar"
+        },
+        {
+            "name": "FullName",
+            "type": "nvarchar"
+        },
+        {
+            "name": "AVAILEDPLHours",
+            "type": "varchar"
+        },
+        {
+            "name": "AVAILEDULHours",
+            "type": "varchar"
+        },
+        {
+            "name": "DTYPE1",
+            "type": "numeric"
+        },
+        {
+            "name": "DTYPE2",
+            "type": "numeric"
+        },
+        {
+            "name": "DTYPE3",
+            "type": "numeric"
+        },
+        {
+            "name": "DTYPE4",
+            "type": "numeric"
+        },
+        {
+            "name": "DTYPE5",
+            "type": "numeric"
+        },
+        {
+            "name": "DTYPE6",
+            "type": "numeric"
+        },
+        {
+            "name": "DTYPE7",
+            "type": "numeric"
+        },
+        {
+            "name": "DTYPE8",
+            "type": "numeric"
+        },
+        {
+            "name": "DTYPE9",
+            "type": "numeric"
+        },
+        {
+            "name": "DTYPE10",
+            "type": "numeric"
+        },
+        {
+            "name": "DTYPE11",
+            "type": "numeric"
+        },
+        {
+            "name": "DTYPE12",
+            "type": "numeric"
+        },
+        {
+            "name": "MID1",
+            "type": "numeric"
+        },
+        {
+            "name": "MID2",
+            "type": "numeric"
+        },
+        {
+            "name": "MID3",
+            "type": "numeric"
+        },
+        {
+            "name": "MID4",
+            "type": "numeric"
+        },
+        {
+            "name": "MID5",
+            "type": "numeric"
+        },
+        {
+            "name": "MID6",
+            "type": "numeric"
+        },
+        {
+            "name": "MID7",
+            "type": "numeric"
+        },
+        {
+            "name": "MID8",
+            "type": "numeric"
+        },
+        {
+            "name": "MID9",
+            "type": "numeric"
+        },
+        {
+            "name": "MID10",
+            "type": "numeric"
+        },
+        {
+            "name": "MID11",
+            "type": "numeric"
+        },
+        {
+            "name": "MID12",
+            "type": "numeric"
+        },
+        {
+            "name": "DID1",
+            "type": "numeric"
+        },
+        {
+            "name": "DID2",
+            "type": "numeric"
+        },
+        {
+            "name": "DID3",
+            "type": "numeric"
+        },
+        {
+            "name": "DID4",
+            "type": "numeric"
+        },
+        {
+            "name": "DID5",
+            "type": "numeric"
+        },
+        {
+            "name": "DID6",
+            "type": "numeric"
+        },
+        {
+            "name": "DID7",
+            "type": "numeric"
+        },
+        {
+            "name": "DID8",
+            "type": "numeric"
+        },
+        {
+            "name": "DID9",
+            "type": "numeric"
+        },
+        {
+            "name": "DID10",
+            "type": "numeric"
+        },
+        {
+            "name": "DID11",
+            "type": "numeric"
+        },
+        {
+            "name": "DID12",
+            "type": "numeric"
+        },
+        {
+            "name": "RGID",
+            "type": "numeric"
+        },
+        {
+            "name": "RGNAME",
+            "type": "nvarchar"
+        },
+        {
+            "name": "LessWrkHrs",
+            "type": "numeric"
+        },
+        {
+            "name": "LessWrkHrs_HHMM",
+            "type": "varchar"
+        },
+        {
+            "name": "OutTime",
+            "type": "numeric"
+        },
+        {
+            "name": "OutTime_HHMM",
+            "type": "varchar"
+        },
+        {
+            "name": "WrkHrsWithinSft",
+            "type": "numeric"
+        },
+        {
+            "name": "WrkHrsWithinSft_HHMM",
+            "type": "varchar"
+        }
+    ],
+    "Mx_VEW_MonthlyAtdSumry": [
+        {
+            "name": "UserID",
+            "type": "nvarchar"
+        },
+        {
+            "name": "UserName",
+            "type": "nvarchar"
+        },
+        {
+            "name": "INTEGRATION_REFERENCE",
+            "type": "nvarchar"
+        },
+        {
+            "name": "ORGID",
+            "type": "numeric"
+        },
+        {
+            "name": "ORGCODE",
+            "type": "nvarchar"
+        },
+        {
+            "name": "OrgName",
+            "type": "nvarchar"
+        },
+        {
+            "name": "BRCID",
+            "type": "numeric"
+        },
+        {
+            "name": "BRCCODE",
+            "type": "nvarchar"
+        },
+        {
+            "name": "BrcName",
+            "type": "nvarchar"
+        },
+        {
+            "name": "DPTID",
+            "type": "numeric"
+        },
+        {
+            "name": "DPTCODE",
+            "type": "nvarchar"
+        },
+        {
+            "name": "DptName",
+            "type": "nvarchar"
+        },
+        {
+            "name": "SECID",
+            "type": "numeric"
+        },
+        {
+            "name": "SECCODE",
+            "type": "nvarchar"
+        },
+        {
+            "name": "SecName",
+            "type": "nvarchar"
+        },
+        {
+            "name": "CTGID",
+            "type": "numeric"
+        },
+        {
+            "name": "CTGCODE",
+            "type": "nvarchar"
+        },
+        {
+            "name": "CtgName",
+            "type": "nvarchar"
+        },
+        {
+            "name": "GRDID",
+            "type": "numeric"
+        },
+        {
+            "name": "GRDCODE",
+            "type": "nvarchar"
+        },
+        {
+            "name": "GrdName",
+            "type": "nvarchar"
+        },
+        {
+            "name": "DSGID",
+            "type": "numeric"
+        },
+        {
+            "name": "DSGCODE",
+            "type": "nvarchar"
+        },
+        {
+            "name": "DsgName",
+            "type": "nvarchar"
+        },
+        {
+            "name": "CustomGroup1ID",
+            "type": "numeric"
+        },
+        {
+            "name": "CustomGroup1_Code",
+            "type": "nvarchar"
+        },
+        {
+            "name": "CustomGroup1_Name",
+            "type": "nvarchar"
+        },
+        {
+            "name": "CustomGroup2ID",
+            "type": "numeric"
+        },
+        {
+            "name": "CustomGroup2_Code",
+            "type": "nvarchar"
+        },
+        {
+            "name": "CustomGroup2_Name",
+            "type": "nvarchar"
+        },
+        {
+            "name": "CustomGroup3ID",
+            "type": "numeric"
+        },
+        {
+            "name": "CustomGroup3_Code",
+            "type": "nvarchar"
+        },
+        {
+            "name": "CustomGroup3_Name",
+            "type": "nvarchar"
+        },
+        {
+            "name": "AdlUserID",
+            "type": "numeric"
+        },
+        {
+            "name": "Gender",
+            "type": "nvarchar"
+        },
+        {
+            "name": "MRTLSTAT",
+            "type": "nvarchar"
+        },
+        {
+            "name": "BirthDT",
+            "type": "nvarchar"
+        },
+        {
+            "name": "JoinDT",
+            "type": "nvarchar"
+        },
+        {
+            "name": "LeaveDT",
+            "type": "nvarchar"
+        },
+        {
+            "name": "PYear",
+            "type": "numeric"
+        },
+        {
+            "name": "PMonth",
+            "type": "numeric"
+        },
+        {
+            "name": "PRDays",
+            "type": "numeric"
+        },
+        {
+            "name": "ABDays",
+            "type": "numeric"
+        },
+        {
+            "name": "WODays",
+            "type": "numeric"
+        },
+        {
+            "name": "PHDays",
+            "type": "numeric"
+        },
+        {
+            "name": "PLDays",
+            "type": "numeric"
+        },
+        {
+            "name": "TRDays",
+            "type": "numeric"
+        },
+        {
+            "name": "ULDays",
+            "type": "numeric"
+        },
+        {
+            "name": "LODays",
+            "type": "numeric"
+        },
+        {
+            "name": "EarlyIn",
+            "type": "numeric"
+        },
+        {
+            "name": "EarlyIn_HHMM",
+            "type": "varchar"
+        },
+        {
+            "name": "LateIn",
+            "type": "numeric"
+        },
+        {
+            "name": "LateIn_HHMM",
+            "type": "varchar"
+        },
+        {
+            "name": "EarlyOut",
+            "type": "numeric"
+        },
+        {
+            "name": "EarlyOut_HHMM",
+            "type": "varchar"
+        },
+        {
+            "name": "Overstay",
+            "type": "numeric"
+        },
+        {
+            "name": "Overstay_HHMM",
+            "type": "varchar"
+        },
+        {
+            "name": "Overtime",
+            "type": "numeric"
+        },
+        {
+            "name": "Overtime_HHMM",
+            "type": "varchar"
+        },
+        {
+            "name": "WorkTime",
+            "type": "numeric"
+        },
+        {
+            "name": "WorkTime_HHMM",
+            "type": "varchar"
+        },
+        {
+            "name": "MANOTCR",
+            "type": "numeric"
+        },
+        {
+            "name": "MANOTCR_HHMM",
+            "type": "varchar"
+        },
+        {
+            "name": "MANOTDB",
+            "type": "numeric"
+        },
+        {
+            "name": "MANOTDB_HHMM",
+            "type": "varchar"
+        },
+        {
+            "name": "AUTHOT",
+            "type": "numeric"
+        },
+        {
+            "name": "AUTHOT_HHMM",
+            "type": "varchar"
+        },
+        {
+            "name": "MANCOFFCR",
+            "type": "numeric"
+        },
+        {
+            "name": "MANCOFFCR_HHMM",
+            "type": "varchar"
+        },
+        {
+            "name": "MANCOFFDB",
+            "type": "numeric"
+        },
+        {
+            "name": "MANCOFFDB_HHMM",
+            "type": "varchar"
+        },
+        {
+            "name": "AUTHCOFF",
+            "type": "numeric"
+        },
+        {
+            "name": "AUTHCOFF_HHMM",
+            "type": "varchar"
+        },
+        {
+            "name": "AVLCOFF",
+            "type": "numeric"
+        },
+        {
+            "name": "AVLCOFF_HHMM",
+            "type": "varchar"
+        },
+        {
+            "name": "ENCCOFF",
+            "type": "numeric"
+        },
+        {
+            "name": "ENCCOFF_HHMM",
+            "type": "varchar"
+        },
+        {
+            "name": "SFTALW",
+            "type": "numeric"
+        },
+        {
+            "name": "LunchBreak",
+            "type": "numeric"
+        },
+        {
+            "name": "LunchBreak_HHMM",
+            "type": "varchar"
+        },
+        {
+            "name": "LunchLate",
+            "type": "numeric"
+        },
+        {
+            "name": "LunchLate_HHMM",
+            "type": "varchar"
+        },
+        {
+            "name": "LunchEarly",
+            "type": "numeric"
+        },
+        {
+            "name": "LunchEarly_HHMM",
+            "type": "varchar"
+        },
+        {
+            "name": "OTW1",
+            "type": "numeric"
+        },
+        {
+            "name": "OTW1_HHMM",
+            "type": "varchar"
+        },
+        {
+            "name": "OTW2",
+            "type": "numeric"
+        },
+        {
+            "name": "OTW2_HHMM",
+            "type": "varchar"
+        },
+        {
+            "name": "OTW3",
+            "type": "numeric"
+        },
+        {
+            "name": "OTW3_HHMM",
+            "type": "varchar"
+        },
+        {
+            "name": "OTW4",
+            "type": "numeric"
+        },
+        {
+            "name": "OTW4_HHMM",
+            "type": "varchar"
+        },
+        {
+            "name": "OTW5",
+            "type": "numeric"
+        },
+        {
+            "name": "OTW5_HHMM",
+            "type": "varchar"
+        },
+        {
+            "name": "WRKTimeW1",
+            "type": "numeric"
+        },
+        {
+            "name": "WRKTimeW1_HHMM",
+            "type": "varchar"
+        },
+        {
+            "name": "WRKTimeW2",
+            "type": "numeric"
+        },
+        {
+            "name": "WRKTimeW2_HHMM",
+            "type": "varchar"
+        },
+        {
+            "name": "WRKTimeW3",
+            "type": "numeric"
+        },
+        {
+            "name": "WRKTimeW3_HHMM",
+            "type": "varchar"
+        },
+        {
+            "name": "WRKTimeW4",
+            "type": "numeric"
+        },
+        {
+            "name": "WRKTimeW4_HHMM",
+            "type": "varchar"
+        },
+        {
+            "name": "WRKTimeW5",
+            "type": "numeric"
+        },
+        {
+            "name": "WRKTimeW5_HHMM",
+            "type": "varchar"
+        },
+        {
+            "name": "PREVDays",
+            "type": "numeric"
+        },
+        {
+            "name": "PREVOT",
+            "type": "numeric"
+        },
+        {
+            "name": "PREVOT_HHMM",
+            "type": "varchar"
+        },
+        {
+            "name": "PREVWRKTime",
+            "type": "numeric"
+        },
+        {
+            "name": "PREVWRKTime_HHMM",
+            "type": "varchar"
+        },
+        {
+            "name": "PREVSFTALW",
+            "type": "numeric"
+        },
+        {
+            "name": "LateInCnt",
+            "type": "numeric"
+        },
+        {
+            "name": "EarlyOutCnt",
+            "type": "numeric"
+        },
+        {
+            "name": "RGID",
+            "type": "numeric"
+        },
+        {
+            "name": "RGNAME",
+            "type": "nvarchar"
+        },
+        {
+            "name": "REPORTINGINCHARGE",
+            "type": "nvarchar"
+        },
+        {
+            "name": "FBDays",
+            "type": "numeric"
+        },
+        {
+            "name": "RDDays",
+            "type": "numeric"
+        },
+        {
+            "name": "NetWorkTime",
+            "type": "numeric"
+        },
+        {
+            "name": "NetWorkTime_HHMM",
+            "type": "varchar"
+        },
+        {
+            "name": "Total_OT1",
+            "type": "numeric"
+        },
+        {
+            "name": "Total_OT1_HHMM",
+            "type": "varchar"
+        },
+        {
+            "name": "Total_OT2",
+            "type": "numeric"
+        },
+        {
+            "name": "Total_OT2_HHMM",
+            "type": "varchar"
+        },
+        {
+            "name": "Total_OT3",
+            "type": "numeric"
+        },
+        {
+            "name": "Total_OT3_HHMM",
+            "type": "varchar"
+        },
+        {
+            "name": "Total_OT4",
+            "type": "numeric"
+        },
+        {
+            "name": "Total_OT4_HHMM",
+            "type": "varchar"
+        },
+        {
+            "name": "Total_OT5",
+            "type": "numeric"
+        },
+        {
+            "name": "Total_OT5_HHMM",
+            "type": "varchar"
+        },
+        {
+            "name": "Total_Auth_OT1",
+            "type": "numeric"
+        },
+        {
+            "name": "Total_Auth_OT1_HHMM",
+            "type": "varchar"
+        },
+        {
+            "name": "Total_Auth_OT2",
+            "type": "numeric"
+        },
+        {
+            "name": "Total_Auth_OT2_HHMM",
+            "type": "varchar"
+        },
+        {
+            "name": "Total_Auth_OT3",
+            "type": "numeric"
+        },
+        {
+            "name": "Total_Auth_OT3_HHMM",
+            "type": "varchar"
+        },
+        {
+            "name": "Total_Auth_OT4",
+            "type": "numeric"
+        },
+        {
+            "name": "Total_Auth_OT4_HHMM",
+            "type": "varchar"
+        },
+        {
+            "name": "Total_Auth_OT5",
+            "type": "numeric"
+        },
+        {
+            "name": "Total_Auth_OT5_HHMM",
+            "type": "varchar"
+        },
+        {
+            "name": "Field1",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Field2",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Field3",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Field4",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Field5",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Field6",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Field7",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Field8",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Field9",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Field10",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Late_In_Count",
+            "type": "numeric"
+        },
+        {
+            "name": "Max_Late_In_Count",
+            "type": "numeric"
+        },
+        {
+            "name": "Late_In_Dur",
+            "type": "numeric"
+        },
+        {
+            "name": "Late_In_Dur_HHMM",
+            "type": "varchar"
+        },
+        {
+            "name": "Max_Late_In_Dur",
+            "type": "numeric"
+        },
+        {
+            "name": "Max_Late_In_Dur_HHMM",
+            "type": "varchar"
+        },
+        {
+            "name": "Early_Out_Count",
+            "type": "numeric"
+        },
+        {
+            "name": "Max_Early_Out_Count",
+            "type": "numeric"
+        },
+        {
+            "name": "Early_Out_Dur",
+            "type": "numeric"
+        },
+        {
+            "name": "Early_Out_Dur_HHMM",
+            "type": "varchar"
+        },
+        {
+            "name": "Max_Early_Out_Dur",
+            "type": "numeric"
+        },
+        {
+            "name": "Max_Early_Out_Dur_HHMM",
+            "type": "varchar"
+        },
+        {
+            "name": "Late_In_Early_Out_Count",
+            "type": "numeric"
+        },
+        {
+            "name": "Max_Late_In_Early_Out_Count",
+            "type": "numeric"
+        },
+        {
+            "name": "Late_In_Early_Out_Dur",
+            "type": "numeric"
+        },
+        {
+            "name": "Late_In_Early_Out_Dur_HHMM",
+            "type": "varchar"
+        },
+        {
+            "name": "Max_Late_In_Early_Out_Dur",
+            "type": "numeric"
+        },
+        {
+            "name": "Max_Late_In_Early_Out_Dur_HHMM",
+            "type": "varchar"
+        },
+        {
+            "name": "Less_Work_Hours_Dur",
+            "type": "numeric"
+        },
+        {
+            "name": "Less_Work_Hours_Dur_HHMM",
+            "type": "varchar"
+        },
+        {
+            "name": "Max_Less_Work_Hours_Dur",
+            "type": "numeric"
+        },
+        {
+            "name": "Max_Less_Work_Hours_Dur_HHMM",
+            "type": "varchar"
+        },
+        {
+            "name": "ActiveFlag",
+            "type": "numeric"
+        },
+        {
+            "name": "UserType",
+            "type": "nvarchar"
+        },
+        {
+            "name": "FullName",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Job_Allowance",
+            "type": "numeric"
+        },
+        {
+            "name": "Award_Duration",
+            "type": "numeric"
+        },
+        {
+            "name": "Award_Duration_HHMM",
+            "type": "varchar"
+        },
+        {
+            "name": "Penalty_Duration",
+            "type": "numeric"
+        },
+        {
+            "name": "Penalty_Duration_HHMM",
+            "type": "varchar"
+        },
+        {
+            "name": "AVAILEDPLHours",
+            "type": "varchar"
+        },
+        {
+            "name": "AVAILEDULHours",
+            "type": "varchar"
+        }
+    ],
+    "Mx_VEW_RBACSEvents": [
+        {
+            "name": "Aadhar No.",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Biometric Group No.",
+            "type": "numeric"
+        },
+        {
+            "name": "Birth Date",
+            "type": "nvarchar"
+        },
+        {
+            "name": "BLE Code",
+            "type": "numeric"
+        },
+        {
+            "name": "Blood Group",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Branch Code",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Branch ID",
+            "type": "numeric"
+        },
+        {
+            "name": "Branch Name",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Category Code",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Category ID",
+            "type": "numeric"
+        },
+        {
+            "name": "Category Name",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Comment",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Confirmation Date",
+            "type": "datetime"
+        },
+        {
+            "name": "Custom Group 1 Code",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Custom Group 1 ID",
+            "type": "numeric"
+        },
+        {
+            "name": "Custom Group 1 Name",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Custom Group 2 Code",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Custom Group 2 ID",
+            "type": "numeric"
+        },
+        {
+            "name": "Custom Group 2 Name",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Custom Group 3 Code",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Custom Group 3 ID",
+            "type": "numeric"
+        },
+        {
+            "name": "Custom Group 3 Name",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Department Code",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Department ID",
+            "type": "numeric"
+        },
+        {
+            "name": "Department Name",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Designation Code",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Designation ID",
+            "type": "numeric"
+        },
+        {
+            "name": "Designation Name",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Device IP Address",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Device MAC Address",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Device Name",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Device Type",
+            "type": "numeric"
+        },
+        {
+            "name": "Door ID",
+            "type": "numeric"
+        },
+        {
+            "name": "Driving License",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Driving License Expiry",
+            "type": "nvarchar"
+        },
+        {
+            "name": "ESI No.",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Event",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Event Credentials",
+            "type": "varchar"
+        },
+        {
+            "name": "Event Credentials ID",
+            "type": "numeric"
+        },
+        {
+            "name": "Event Date Time",
+            "type": "datetime"
+        },
+        {
+            "name": "Event Delay-Mins",
+            "type": "int"
+        },
+        {
+            "name": "Event ID",
+            "type": "numeric"
+        },
+        {
+            "name": "Event Source",
+            "type": "varchar"
+        },
+        {
+            "name": "Event Source Details",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Event Source ID",
+            "type": "numeric"
+        },
+        {
+            "name": "Experience",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Father/Spouse Name",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Field1",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Field2",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Field3",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Field4",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Field5",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Field6",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Field7",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Field8",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Field9",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Field10",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Full Name",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Gender",
+            "type": "nvarchar"
+        },
+        {
+            "name": "GPS Latitude",
+            "type": "nvarchar"
+        },
+        {
+            "name": "GPS Longitude",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Grade Code",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Grade ID",
+            "type": "numeric"
+        },
+        {
+            "name": "Grade Name",
+            "type": "nvarchar"
+        },
+        {
+            "name": "GSM Latitude",
+            "type": "nvarchar"
+        },
+        {
+            "name": "GSM Longitude",
+            "type": "nvarchar"
+        },
+        {
+            "name": "IMEI Registration No.",
+            "type": "nvarchar"
+        },
+        {
+            "name": "In/Out Event",
+            "type": "numeric"
+        },
+        {
+            "name": "Index No",
+            "type": "numeric"
+        },
+        {
+            "name": "Insertion Date Time",
+            "type": "datetime"
+        },
+        {
+            "name": "Job Code",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Job ID",
+            "type": "numeric"
+        },
+        {
+            "name": "Job Name",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Joining Date",
+            "type": "datetime"
+        },
+        {
+            "name": "Leaving Date",
+            "type": "datetime"
+        },
+        {
+            "name": "Local Address 1",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Local Address 2",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Local Address 3",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Local City",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Local Country",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Local State",
+            "type": "nvarchar"
+        },
+        {
+            "name": "MAC Address",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Marital Status",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Master Controller ID",
+            "type": "numeric"
+        },
+        {
+            "name": "Medical History",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Nationality",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Office Extension No.",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Official Email ID",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Official Mobile No.",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Official Phone No.",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Organization Code",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Organization ID",
+            "type": "numeric"
+        },
+        {
+            "name": "Organization Name",
+            "type": "nvarchar"
+        },
+        {
+            "name": "PAN No.",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Passport Expiry",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Passport No.",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Permanent Address 1",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Permanent Address 2",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Permanent Address 3",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Permanent City",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Permanent Country",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Permanent State",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Personal Email ID",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Personal Mobile No.",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Personal Phone No.",
+            "type": "nvarchar"
+        },
+        {
+            "name": "PF No.",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Phase Code",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Phase Name",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Project Code",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Project Name",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Qualification",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Reason",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Reference ID",
+            "type": "numeric"
+        },
+        {
+            "name": "Reporting Group ID",
+            "type": "numeric"
+        },
+        {
+            "name": "Reporting Group Incharge-1",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Reporting Group Incharge-2",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Reporting Group Name",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Section Code",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Section ID",
+            "type": "numeric"
+        },
+        {
+            "name": "Section Name",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Site ID",
+            "type": "numeric"
+        },
+        {
+            "name": "Site Name",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Spcl Fn",
+            "type": "varchar"
+        },
+        {
+            "name": "Spcl Fn ID",
+            "type": "numeric"
+        },
+        {
+            "name": "Timezone for Punch Marking",
+            "type": "varchar"
+        },
+        {
+            "name": "UAN",
+            "type": "nvarchar"
+        },
+        {
+            "name": "User Active/Inactive",
+            "type": "numeric"
+        },
+        {
+            "name": "User ID",
+            "type": "nvarchar"
+        },
+        {
+            "name": "User Name",
+            "type": "nvarchar"
+        },
+        {
+            "name": "User Photo",
+            "type": "image"
+        },
+        {
+            "name": "Vehicle Registration No.",
+            "type": "nvarchar"
+        },
+        {
+            "name": "VISA",
+            "type": "nvarchar"
+        },
+        {
+            "name": "VISA Expiry Date",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Voter ID",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Formatted Address",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Route",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Administrative Area Level 1",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Administrative Area Level 2",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Country Postal Code",
+            "type": "nvarchar"
+        }
+    ],
+    "Mx_VEW_RBATDEvents": [
+        {
+            "name": "Aadhar No.",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Biometric Group No.",
+            "type": "numeric"
+        },
+        {
+            "name": "Birth Date",
+            "type": "nvarchar"
+        },
+        {
+            "name": "BLE Code",
+            "type": "numeric"
+        },
+        {
+            "name": "Blood Group",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Branch Code",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Branch ID",
+            "type": "numeric"
+        },
+        {
+            "name": "Branch Name",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Category Code",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Category ID",
+            "type": "numeric"
+        },
+        {
+            "name": "Category Name",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Comment",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Confirmation Date",
+            "type": "datetime"
+        },
+        {
+            "name": "Custom Group 1 Code",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Custom Group 1 ID",
+            "type": "numeric"
+        },
+        {
+            "name": "Custom Group 1 Name",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Custom Group 2 Code",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Custom Group 2 ID",
+            "type": "numeric"
+        },
+        {
+            "name": "Custom Group 2 Name",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Custom Group 3 Code",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Custom Group 3 ID",
+            "type": "numeric"
+        },
+        {
+            "name": "Custom Group 3 Name",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Department Code",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Department ID",
+            "type": "numeric"
+        },
+        {
+            "name": "Department Name",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Designation Code",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Designation ID",
+            "type": "numeric"
+        },
+        {
+            "name": "Designation Name",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Device IP Address",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Device MAC Address",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Device Name",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Device Type",
+            "type": "numeric"
+        },
+        {
+            "name": "Door ID",
+            "type": "numeric"
+        },
+        {
+            "name": "Driving License",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Driving License Expiry",
+            "type": "nvarchar"
+        },
+        {
+            "name": "ESI No.",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Event",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Event Credentials",
+            "type": "varchar"
+        },
+        {
+            "name": "Event Credentials ID",
+            "type": "numeric"
+        },
+        {
+            "name": "Event Date Time",
+            "type": "datetime"
+        },
+        {
+            "name": "Event Delay-Mins",
+            "type": "int"
+        },
+        {
+            "name": "Event ID",
+            "type": "numeric"
+        },
+        {
+            "name": "Event Source",
+            "type": "varchar"
+        },
+        {
+            "name": "Event Source Details",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Event Source ID",
+            "type": "numeric"
+        },
+        {
+            "name": "Experience",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Father/Spouse Name",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Field1",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Field2",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Field3",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Field4",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Field5",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Field6",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Field7",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Field8",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Field9",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Field10",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Full Name",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Gender",
+            "type": "nvarchar"
+        },
+        {
+            "name": "GPS Latitude",
+            "type": "nvarchar"
+        },
+        {
+            "name": "GPS Longitude",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Grade Code",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Grade ID",
+            "type": "numeric"
+        },
+        {
+            "name": "Grade Name",
+            "type": "nvarchar"
+        },
+        {
+            "name": "GSM Latitude",
+            "type": "nvarchar"
+        },
+        {
+            "name": "GSM Longitude",
+            "type": "nvarchar"
+        },
+        {
+            "name": "IMEI Registration No.",
+            "type": "nvarchar"
+        },
+        {
+            "name": "In/Out Event",
+            "type": "numeric"
+        },
+        {
+            "name": "Index No",
+            "type": "numeric"
+        },
+        {
+            "name": "Insertion Date Time",
+            "type": "datetime"
+        },
+        {
+            "name": "Job Code",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Job ID",
+            "type": "numeric"
+        },
+        {
+            "name": "Job Name",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Joining Date",
+            "type": "datetime"
+        },
+        {
+            "name": "Leaving Date",
+            "type": "datetime"
+        },
+        {
+            "name": "Local Address 1",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Local Address 2",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Local Address 3",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Local City",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Local Country",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Local State",
+            "type": "nvarchar"
+        },
+        {
+            "name": "MAC Address",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Marital Status",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Master Controller ID",
+            "type": "numeric"
+        },
+        {
+            "name": "Medical History",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Nationality",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Office Extension No.",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Official Email ID",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Official Mobile No.",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Official Phone No.",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Organization Code",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Organization ID",
+            "type": "numeric"
+        },
+        {
+            "name": "Organization Name",
+            "type": "nvarchar"
+        },
+        {
+            "name": "PAN No.",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Passport Expiry",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Passport No.",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Permanent Address 1",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Permanent Address 2",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Permanent Address 3",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Permanent City",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Permanent Country",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Permanent State",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Personal Email ID",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Personal Mobile No.",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Personal Phone No.",
+            "type": "nvarchar"
+        },
+        {
+            "name": "PF No.",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Phase Code",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Phase Name",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Project Code",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Project Name",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Qualification",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Reason",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Reference ID",
+            "type": "numeric"
+        },
+        {
+            "name": "Reporting Group ID",
+            "type": "numeric"
+        },
+        {
+            "name": "Reporting Group Incharge-1",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Reporting Group Incharge-2",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Reporting Group Name",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Section Code",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Section ID",
+            "type": "numeric"
+        },
+        {
+            "name": "Section Name",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Site ID",
+            "type": "numeric"
+        },
+        {
+            "name": "Site Name",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Spcl Fn",
+            "type": "varchar"
+        },
+        {
+            "name": "Spcl Fn ID",
+            "type": "numeric"
+        },
+        {
+            "name": "Timezone for Punch Marking",
+            "type": "varchar"
+        },
+        {
+            "name": "UAN",
+            "type": "nvarchar"
+        },
+        {
+            "name": "User Active/Inactive",
+            "type": "numeric"
+        },
+        {
+            "name": "User ID",
+            "type": "nvarchar"
+        },
+        {
+            "name": "User Name",
+            "type": "nvarchar"
+        },
+        {
+            "name": "User Photo",
+            "type": "image"
+        },
+        {
+            "name": "Vehicle Registration No.",
+            "type": "nvarchar"
+        },
+        {
+            "name": "VISA",
+            "type": "nvarchar"
+        },
+        {
+            "name": "VISA Expiry Date",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Voter ID",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Formatted Address",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Route",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Administrative Area Level 1",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Administrative Area Level 2",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Country Postal Code",
+            "type": "nvarchar"
+        }
+    ],
+    "Mx_VEW_DailyCnteenEvts": [
+        {
+            "name": "Transaction_date",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Transaction_time",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Item_code",
+            "type": "numeric"
+        },
+        {
+            "name": "Item_name",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Item_quantity",
+            "type": "numeric"
+        },
+        {
+            "name": "Item_cost",
+            "type": "numeric"
+        },
+        {
+            "name": "UserID",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Username",
+            "type": "nvarchar"
+        },
+        {
+            "name": "ORGID",
+            "type": "numeric"
+        },
+        {
+            "name": "ORGCODE",
+            "type": "nvarchar"
+        },
+        {
+            "name": "OrgName",
+            "type": "nvarchar"
+        },
+        {
+            "name": "BRCID",
+            "type": "numeric"
+        },
+        {
+            "name": "BRCCODE",
+            "type": "nvarchar"
+        },
+        {
+            "name": "BrcName",
+            "type": "nvarchar"
+        },
+        {
+            "name": "DPTID",
+            "type": "numeric"
+        },
+        {
+            "name": "DPTCODE",
+            "type": "nvarchar"
+        },
+        {
+            "name": "DptName",
+            "type": "nvarchar"
+        },
+        {
+            "name": "SECID",
+            "type": "numeric"
+        },
+        {
+            "name": "SECCODE",
+            "type": "nvarchar"
+        },
+        {
+            "name": "SecName",
+            "type": "nvarchar"
+        },
+        {
+            "name": "CTGID",
+            "type": "numeric"
+        },
+        {
+            "name": "CTGCODE",
+            "type": "nvarchar"
+        },
+        {
+            "name": "CtgName",
+            "type": "nvarchar"
+        },
+        {
+            "name": "GRDID",
+            "type": "numeric"
+        },
+        {
+            "name": "GRDCODE",
+            "type": "nvarchar"
+        },
+        {
+            "name": "GRDName",
+            "type": "nvarchar"
+        },
+        {
+            "name": "DSGID",
+            "type": "numeric"
+        },
+        {
+            "name": "DSGCODE",
+            "type": "nvarchar"
+        },
+        {
+            "name": "DSGName",
+            "type": "nvarchar"
+        },
+        {
+            "name": "CustomGroup1ID",
+            "type": "numeric"
+        },
+        {
+            "name": "CustomGroup1_Code",
+            "type": "nvarchar"
+        },
+        {
+            "name": "CustomGroup1_Name",
+            "type": "nvarchar"
+        },
+        {
+            "name": "CustomGroup2ID",
+            "type": "numeric"
+        },
+        {
+            "name": "CustomGroup2_Code",
+            "type": "nvarchar"
+        },
+        {
+            "name": "CustomGroup2_Name",
+            "type": "nvarchar"
+        },
+        {
+            "name": "CustomGroup3ID",
+            "type": "numeric"
+        },
+        {
+            "name": "CustomGroup3_Code",
+            "type": "nvarchar"
+        },
+        {
+            "name": "CustomGroup3_Name",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Integration_reference",
+            "type": "nvarchar"
+        },
+        {
+            "name": "User_discount_level",
+            "type": "numeric"
+        },
+        {
+            "name": "Item_discount_value",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Item_final_cost_value",
+            "type": "numeric"
+        },
+        {
+            "name": "Canteen_door_id",
+            "type": "numeric"
+        },
+        {
+            "name": "Canteen_door_name",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Menu_location",
+            "type": "numeric"
+        },
+        {
+            "name": "EventDateTime",
+            "type": "datetime"
+        },
+        {
+            "name": "ActiveFlag",
+            "type": "numeric"
+        },
+        {
+            "name": "UserType",
+            "type": "nvarchar"
+        },
+        {
+            "name": "FullName",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Panel_Door_Type",
+            "type": "numeric"
+        },
+        {
+            "name": "RGID",
+            "type": "numeric"
+        },
+        {
+            "name": "RGNAME",
+            "type": "nvarchar"
+        }
+    ],
+    "Mx_VEW_MnthlyCnteenEvts": [
+        {
+            "name": "Month",
+            "type": "numeric"
+        },
+        {
+            "name": "Year",
+            "type": "numeric"
+        },
+        {
+            "name": "userid",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Username",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Integration_reference",
+            "type": "nvarchar"
+        },
+        {
+            "name": "ORGID",
+            "type": "numeric"
+        },
+        {
+            "name": "ORGCODE",
+            "type": "nvarchar"
+        },
+        {
+            "name": "OrgName",
+            "type": "nvarchar"
+        },
+        {
+            "name": "BRCID",
+            "type": "numeric"
+        },
+        {
+            "name": "BRCCODE",
+            "type": "nvarchar"
+        },
+        {
+            "name": "BrcName",
+            "type": "nvarchar"
+        },
+        {
+            "name": "DPTID",
+            "type": "numeric"
+        },
+        {
+            "name": "DPTCODE",
+            "type": "nvarchar"
+        },
+        {
+            "name": "DPTName",
+            "type": "nvarchar"
+        },
+        {
+            "name": "SECID",
+            "type": "numeric"
+        },
+        {
+            "name": "SECCODE",
+            "type": "nvarchar"
+        },
+        {
+            "name": "SecName",
+            "type": "nvarchar"
+        },
+        {
+            "name": "CTGID",
+            "type": "numeric"
+        },
+        {
+            "name": "CTGCODE",
+            "type": "nvarchar"
+        },
+        {
+            "name": "CTGName",
+            "type": "nvarchar"
+        },
+        {
+            "name": "GRDID",
+            "type": "numeric"
+        },
+        {
+            "name": "GRDCODE",
+            "type": "nvarchar"
+        },
+        {
+            "name": "GrdName",
+            "type": "nvarchar"
+        },
+        {
+            "name": "DSGID",
+            "type": "numeric"
+        },
+        {
+            "name": "DSGCODE",
+            "type": "nvarchar"
+        },
+        {
+            "name": "DSGName",
+            "type": "nvarchar"
+        },
+        {
+            "name": "CustomGroup1ID",
+            "type": "numeric"
+        },
+        {
+            "name": "CustomGroup1_Code",
+            "type": "nvarchar"
+        },
+        {
+            "name": "CustomGroup1_Name",
+            "type": "nvarchar"
+        },
+        {
+            "name": "CustomGroup2ID",
+            "type": "numeric"
+        },
+        {
+            "name": "CustomGroup2_Code",
+            "type": "nvarchar"
+        },
+        {
+            "name": "CustomGroup2_Name",
+            "type": "nvarchar"
+        },
+        {
+            "name": "CustomGroup3ID",
+            "type": "numeric"
+        },
+        {
+            "name": "CustomGroup3_Code",
+            "type": "nvarchar"
+        },
+        {
+            "name": "CustomGroup3_Name",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Opening_balance",
+            "type": "numeric"
+        },
+        {
+            "name": "Credit_Amount",
+            "type": "numeric"
+        },
+        {
+            "name": "Debit_Amount",
+            "type": "numeric"
+        },
+        {
+            "name": "Closing_Balance",
+            "type": "numeric"
+        },
+        {
+            "name": "Reset_Amount",
+            "type": "numeric"
+        },
+        {
+            "name": "Refund_Amount",
+            "type": "numeric"
+        },
+        {
+            "name": "Usertype",
+            "type": "nvarchar"
+        },
+        {
+            "name": "ActiveFlag",
+            "type": "numeric"
+        },
+        {
+            "name": "FullName",
+            "type": "nvarchar"
+        },
+        {
+            "name": "RGID",
+            "type": "numeric"
+        },
+        {
+            "name": "RGNAME",
+            "type": "nvarchar"
+        }
+    ],
+    "Mx_VEW_UserDetails": [
+        {
+            "name": "UserID",
+            "type": "nvarchar"
+        },
+        {
+            "name": "UserName",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Integration_Ref",
+            "type": "nvarchar"
+        },
+        {
+            "name": "ReferenceID",
+            "type": "numeric"
+        },
+        {
+            "name": "OrgID",
+            "type": "numeric"
+        },
+        {
+            "name": "OrgCode",
+            "type": "nvarchar"
+        },
+        {
+            "name": "OrgName",
+            "type": "nvarchar"
+        },
+        {
+            "name": "BrcID",
+            "type": "numeric"
+        },
+        {
+            "name": "BrcCode",
+            "type": "nvarchar"
+        },
+        {
+            "name": "BrcName",
+            "type": "nvarchar"
+        },
+        {
+            "name": "DptID",
+            "type": "numeric"
+        },
+        {
+            "name": "DptCode",
+            "type": "nvarchar"
+        },
+        {
+            "name": "DeptName",
+            "type": "nvarchar"
+        },
+        {
+            "name": "SecID",
+            "type": "numeric"
+        },
+        {
+            "name": "SecCode",
+            "type": "nvarchar"
+        },
+        {
+            "name": "SecName",
+            "type": "nvarchar"
+        },
+        {
+            "name": "CtgID",
+            "type": "numeric"
+        },
+        {
+            "name": "CtgCode",
+            "type": "nvarchar"
+        },
+        {
+            "name": "CtgName",
+            "type": "nvarchar"
+        },
+        {
+            "name": "GrdID",
+            "type": "numeric"
+        },
+        {
+            "name": "GrdCode",
+            "type": "nvarchar"
+        },
+        {
+            "name": "GrdName",
+            "type": "nvarchar"
+        },
+        {
+            "name": "DsgID",
+            "type": "numeric"
+        },
+        {
+            "name": "DsgCode",
+            "type": "nvarchar"
+        },
+        {
+            "name": "DsgName",
+            "type": "nvarchar"
+        },
+        {
+            "name": "CustomGroup1ID",
+            "type": "numeric"
+        },
+        {
+            "name": "CustomGroup1_Code",
+            "type": "nvarchar"
+        },
+        {
+            "name": "CustomGroup1_Name",
+            "type": "nvarchar"
+        },
+        {
+            "name": "CustomGroup2ID",
+            "type": "numeric"
+        },
+        {
+            "name": "CustomGroup2_Code",
+            "type": "nvarchar"
+        },
+        {
+            "name": "CustomGroup2_Name",
+            "type": "nvarchar"
+        },
+        {
+            "name": "CustomGroup3ID",
+            "type": "numeric"
+        },
+        {
+            "name": "CustomGroup3_Code",
+            "type": "nvarchar"
+        },
+        {
+            "name": "CustomGroup3_Name",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Card1",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Card2",
+            "type": "nvarchar"
+        },
+        {
+            "name": "UserPin",
+            "type": "nvarchar"
+        },
+        {
+            "name": "UserType",
+            "type": "nvarchar"
+        },
+        {
+            "name": "ActiveFlag",
+            "type": "numeric"
+        },
+        {
+            "name": "Gender",
+            "type": "nvarchar"
+        },
+        {
+            "name": "BldGrp",
+            "type": "nvarchar"
+        },
+        {
+            "name": "MaritalStatus",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Height",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Weight",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Qualification",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Experience",
+            "type": "nvarchar"
+        },
+        {
+            "name": "LocalAdd1",
+            "type": "nvarchar"
+        },
+        {
+            "name": "LocalAdd2",
+            "type": "nvarchar"
+        },
+        {
+            "name": "LocalAddStreet",
+            "type": "nvarchar"
+        },
+        {
+            "name": "LocalAddCity",
+            "type": "nvarchar"
+        },
+        {
+            "name": "LocalAddPIN",
+            "type": "nvarchar"
+        },
+        {
+            "name": "LocalAddState",
+            "type": "nvarchar"
+        },
+        {
+            "name": "LocalAddCountry",
+            "type": "nvarchar"
+        },
+        {
+            "name": "PermAdd1",
+            "type": "nvarchar"
+        },
+        {
+            "name": "PermAdd2",
+            "type": "nvarchar"
+        },
+        {
+            "name": "PermAddStreet",
+            "type": "nvarchar"
+        },
+        {
+            "name": "PermAddCity",
+            "type": "nvarchar"
+        },
+        {
+            "name": "PermAddPIN",
+            "type": "nvarchar"
+        },
+        {
+            "name": "PermAddState",
+            "type": "nvarchar"
+        },
+        {
+            "name": "PermAddCountry",
+            "type": "nvarchar"
+        },
+        {
+            "name": "PersPhone",
+            "type": "nvarchar"
+        },
+        {
+            "name": "PersMobile",
+            "type": "nvarchar"
+        },
+        {
+            "name": "PersEmail",
+            "type": "nvarchar"
+        },
+        {
+            "name": "OfficePhone",
+            "type": "nvarchar"
+        },
+        {
+            "name": "OfficeMobile",
+            "type": "nvarchar"
+        },
+        {
+            "name": "OfficeEmail",
+            "type": "nvarchar"
+        },
+        {
+            "name": "OfficeExtn",
+            "type": "nvarchar"
+        },
+        {
+            "name": "Nationality",
+            "type": "nvarchar"
+        },
+        {
+            "name": "FatherSpouse",
+            "type": "nvarchar"
+        },
+        {
+            "name": "MedicalHistory",
+            "type": "nvarchar"
+        },
+        {
+            "name": "PFNO",
+            "type": "nvarchar"
+        },
+        {
+            "name": "ESINO",
+            "type": "nvarchar"
+        },
+        {
+            "name": "PAN",
+            "type": "nvarchar"
+        },
+        {
+            "name": "DrivingLicense",
+            "type": "nvarchar"
+        },
+        {
+            "name": "PassportNo",
+            "type": "nvarchar"
+        },
+        {
+            "name": "BirthDate",
+            "type": "nvarchar"
+        },
+        {
+            "name": "JoiningDate",
+            "type": "nvarchar"
+        },
+        {
+            "name": "ConfirmDate",
+            "type": "nvarchar"
+        },
+        {
+            "name": "LeavingDate",
+            "type": "nvarchar"
+        },
+        {
+            "name": "LeaveReason",
+            "type": "nvarchar"
+        },
+        {
+            "name": "UserPhoto",
+            "type": "image"
+        },
+        {
+            "name": "VisaNo",
+            "type": "nvarchar"
+        },
+        {
+            "name": "VisaExpirtyDate",
+            "type": "nvarchar"
+        },
+        {
+            "name": "IMEINo",
+            "type": "nvarchar"
+        },
+        {
+            "name": "CWMFlg",
+            "type": "numeric"
+        },
+        {
+            "name": "JCMFlag",
+            "type": "numeric"
+        },
+        {
+            "name": "UFieldValue1",
+            "type": "nvarchar"
+        },
+        {
+            "name": "UFieldValue2",
+            "type": "nvarchar"
+        },
+        {
+            "name": "UFieldValue3",
+            "type": "nvarchar"
+        },
+        {
+            "name": "UFieldValue4",
+            "type": "nvarchar"
+        },
+        {
+            "name": "UFieldValue5",
+            "type": "nvarchar"
+        },
+        {
+            "name": "UFieldValue6",
+            "type": "nvarchar"
+        },
+        {
+            "name": "UFieldValue7",
+            "type": "nvarchar"
+        },
+        {
+            "name": "UFieldValue8",
+            "type": "nvarchar"
+        },
+        {
+            "name": "UFieldValue9",
+            "type": "nvarchar"
+        },
+        {
+            "name": "UFieldValue10",
+            "type": "nvarchar"
+        },
+        {
+            "name": "AadharNo",
+            "type": "nvarchar"
+        },
+        {
+            "name": "UAN",
+            "type": "nvarchar"
+        },
+        {
+            "name": "VoterID",
+            "type": "nvarchar"
+        },
+        {
+            "name": "AccessValidity",
+            "type": "nvarchar"
+        },
+        {
+            "name": "BlacklistFlag",
+            "type": "numeric"
+        },
+        {
+            "name": "LastModified",
+            "type": "datetime"
+        },
+        {
+            "name": "FullName",
+            "type": "nvarchar"
+        },
+        {
+            "name": "TMPFLG",
+            "type": "numeric"
+        },
+        {
+            "name": "RGID",
+            "type": "numeric"
+        },
+        {
+            "name": "RGNAME",
+            "type": "nvarchar"
+        },
+        {
+            "name": "ElFloorGroupId",
+            "type": "numeric"
+        },
+        {
+            "name": "AccessLevel",
+            "type": "numeric"
+        },
+        {
+            "name": "SmartElevatorFloorGroup",
+            "type": "numeric"
+        }
+    ],
+    "Mx_VEW_DoorDetail": [
+        {
+            "name": "DType",
+            "type": "numeric"
+        },
+        {
+            "name": "DSeqNo",
+            "type": "numeric"
+        },
+        {
+            "name": "MID",
+            "type": "numeric"
+        },
+        {
+            "name": "NodeName",
+            "type": "nvarchar"
+        },
+        {
+            "name": "midenbl",
+            "type": "numeric"
+        },
+        {
+            "name": "DID",
+            "type": "numeric"
+        },
+        {
+            "name": "DoorName",
+            "type": "nvarchar"
+        },
+        {
+            "name": "didenbl",
+            "type": "numeric"
+        },
+        {
+            "name": "DLTDFlg",
+            "type": "numeric"
+        },
+        {
+            "name": "AttendanceFlg",
+            "type": "numeric"
+        },
+        {
+            "name": "CnfgdFlg",
+            "type": "numeric"
+        },
+        {
+            "name": "MACAddress",
+            "type": "nvarchar"
+        },
+        {
+            "name": "IPAddress",
+            "type": "nvarchar"
+        },
+        {
+            "name": "PanelDoorType",
+            "type": "numeric"
+        },
+        {
+            "name": "EnrollmentVia",
+            "type": "numeric"
+        },
+        {
+            "name": "ArcMode",
+            "type": "numeric"
+        },
+        {
+            "name": "ConsecutiveDID",
+            "type": "numeric"
+        },
+        {
+            "name": "UniversalTZMinutes",
+            "type": "nvarchar"
+        },
+        {
+            "name": "ArcRdrMode",
+            "type": "numeric"
+        }
+    ],
+    "Mx_VEW_ControllerList": [
+        {
+            "name": "Type",
+            "type": "numeric"
+        },
+        {
+            "name": "MID",
+            "type": "numeric"
+        },
+        {
+            "name": "NAME",
+            "type": "nvarchar"
+        },
+        {
+            "name": "IPADDRESS",
+            "type": "nvarchar"
+        },
+        {
+            "name": "CURRENTSTATUS",
+            "type": "numeric"
+        },
+        {
+            "name": "MIDENBL",
+            "type": "numeric"
+        },
+        {
+            "name": "PORTNO",
+            "type": "numeric"
+        }
+    ]
+}

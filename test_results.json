@@ -1,0 +1,242 @@
+[
+  {
+    "id": 1,
+    "question": "Who arrived after 9:30 AM today?",
+    "status": "PASS",
+    "query": "SELECT FullName, ActualInTime, DptName \nFROM Mx_VEW_DailyAttendance \nWHERE CAST(ActualInTime AS TIME) > '09:30:00' \n  AND PDate = CAST(GETDATE() AS DATE)",
+    "answer": "I couldn't find any records matching your request.",
+    "error": ""
+  },
+  {
+    "id": 2,
+    "question": "List the employees who worked less than 5 hours yesterday.",
+    "status": "FAIL",
+    "query": "N/A",
+    "answer": "N/A",
+    "error": "Groq API Error: {\"error\":{\"message\":\"Rate limit reached for model `llama-3.1-8b-instant` in organization `org_01kfyrtjdmf3k81g2yd2rdaf00` service tier `on_demand` on tokens per minute (TPM): Limit 6000, Used 3316, Requested 3531. Please try again in 8.469999999s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing\",\"type\":\"tokens\",\"code\":\"rate_limit_exceeded\"}}"
+  },
+  {
+    "id": 3,
+    "question": "Show me the attendance trend for Employee 1 for this month.",
+    "status": "FAIL",
+    "query": "N/A",
+    "answer": "N/A",
+    "error": "Groq API Error: {\"error\":{\"message\":\"Rate limit reached for model `llama-3.1-8b-instant` in organization `org_01kfyrtjdmf3k81g2yd2rdaf00` service tier `on_demand` on tokens per minute (TPM): Limit 6000, Used 3211, Requested 3487. Please try again in 6.98s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing\",\"type\":\"tokens\",\"code\":\"rate_limit_exceeded\"}}"
+  },
+  {
+    "id": 4,
+    "question": "Who has the highest total work time this week?",
+    "status": "FAIL",
+    "query": "N/A",
+    "answer": "N/A",
+    "error": "Groq API Error: {\"error\":{\"message\":\"Rate limit reached for model `llama-3.1-8b-instant` in organization `org_01kfyrtjdmf3k81g2yd2rdaf00` service tier `on_demand` on tokens per minute (TPM): Limit 6000, Used 3107, Requested 3654. Please try again in 7.609999999s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing\",\"type\":\"tokens\",\"code\":\"rate_limit_exceeded\"}}"
+  },
+  {
+    "id": 5,
+    "question": "List all employees who were absent yesterday.",
+    "status": "FAIL",
+    "query": "N/A",
+    "answer": "N/A",
+    "error": "Groq API Error: {\"error\":{\"message\":\"Rate limit reached for model `llama-3.1-8b-instant` in organization `org_01kfyrtjdmf3k81g2yd2rdaf00` service tier `on_demand` on tokens per minute (TPM): Limit 6000, Used 3003, Requested 3527. Please try again in 5.3s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing\",\"type\":\"tokens\",\"code\":\"rate_limit_exceeded\"}}"
+  },
+  {
+    "id": 6,
+    "question": "What was the average arrival time for the IT department last week?",
+    "status": "FAIL",
+    "query": "N/A",
+    "answer": "N/A",
+    "error": "Groq API Error: {\"error\":{\"message\":\"Rate limit reached for model `llama-3.1-8b-instant` in organization `org_01kfyrtjdmf3k81g2yd2rdaf00` service tier `on_demand` on tokens per minute (TPM): Limit 6000, Used 2899, Requested 3532. Please try again in 4.31s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing\",\"type\":\"tokens\",\"code\":\"rate_limit_exceeded\"}}"
+  },
+  {
+    "id": 7,
+    "question": "Who are the top 5 employees with the most overtime this month?",
+    "status": "FAIL",
+    "query": "N/A",
+    "answer": "N/A",
+    "error": "Groq API Error: {\"error\":{\"message\":\"Rate limit reached for model `llama-3.1-8b-instant` in organization `org_01kfyrtjdmf3k81g2yd2rdaf00` service tier `on_demand` on tokens per minute (TPM): Limit 6000, Used 2793, Requested 3658. Please try again in 4.51s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing\",\"type\":\"tokens\",\"code\":\"rate_limit_exceeded\"}}"
+  },
+  {
+    "id": 8,
+    "question": "Show me the daily logs for user1 for the last 7 days.",
+    "status": "FAIL",
+    "query": "N/A",
+    "answer": "N/A",
+    "error": "Groq API Error: {\"error\":{\"message\":\"Rate limit reached for model `llama-3.1-8b-instant` in organization `org_01kfyrtjdmf3k81g2yd2rdaf00` service tier `on_demand` on tokens per minute (TPM): Limit 6000, Used 2689, Requested 3489. Please try again in 1.78s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing\",\"type\":\"tokens\",\"code\":\"rate_limit_exceeded\"}}"
+  },
+  {
+    "id": 9,
+    "question": "Which department has the best 'on-time' arrival record this month?",
+    "status": "FAIL",
+    "query": "N/A",
+    "answer": "N/A",
+    "error": "Groq API Error: {\"error\":{\"message\":\"Rate limit reached for model `llama-3.1-8b-instant` in organization `org_01kfyrtjdmf3k81g2yd2rdaf00` service tier `on_demand` on tokens per minute (TPM): Limit 6000, Used 2585, Requested 3488. Please try again in 730ms. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing\",\"type\":\"tokens\",\"code\":\"rate_limit_exceeded\"}}"
+  },
+  {
+    "id": 10,
+    "question": "List all employees who haven't punched out yet today.",
+    "status": "FAIL",
+    "query": "N/A",
+    "answer": "N/A",
+    "error": "Groq API Error: {\"error\":{\"message\":\"Rate limit reached for model `llama-3.1-8b-instant` in organization `org_01kfyrtjdmf3k81g2yd2rdaf00` service tier `on_demand` on tokens per minute (TPM): Limit 6000, Used 2482, Requested 3655. Please try again in 1.37s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing\",\"type\":\"tokens\",\"code\":\"rate_limit_exceeded\"}}"
+  },
+  {
+    "id": 11,
+    "question": "Which department employees take more breaks?",
+    "status": "PASS",
+    "query": "SELECT DptName, SUM(BreakTime) as TotalBreakTime \nFROM Mx_VEW_DailyAttendance \nGROUP BY DptName \nORDER BY TotalBreakTime DESC",
+    "answer": "Based on the data, it seems that the HR department takes the most breaks with a total break time of 80,640 minutes, followed by IT with 46,080 minutes, and then Admin with 40,320 minutes.",
+    "error": ""
+  },
+  {
+    "id": 12,
+    "question": "Who had the longest break time yesterday?",
+    "status": "FAIL",
+    "query": "N/A",
+    "answer": "N/A",
+    "error": "Groq API Error: {\"error\":{\"message\":\"Rate limit reached for model `llama-3.1-8b-instant` in organization `org_01kfyrtjdmf3k81g2yd2rdaf00` service tier `on_demand` on tokens per minute (TPM): Limit 6000, Used 4825, Requested 3652. Please try again in 24.77s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing\",\"type\":\"tokens\",\"code\":\"rate_limit_exceeded\"}}"
+  },
+  {
+    "id": 13,
+    "question": "Show me the break start and end times for Employee 2 for the last week.",
+    "status": "FAIL",
+    "query": "N/A",
+    "answer": "N/A",
+    "error": "Groq API Error: {\"error\":{\"message\":\"Rate limit reached for model `llama-3.1-8b-instant` in organization `org_01kfyrtjdmf3k81g2yd2rdaf00` service tier `on_demand` on tokens per minute (TPM): Limit 6000, Used 4717, Requested 3536. Please try again in 22.53s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing\",\"type\":\"tokens\",\"code\":\"rate_limit_exceeded\"}}"
+  },
+  {
+    "id": 14,
+    "question": "Give me a list of employees who took a break longer than 90 minutes today.",
+    "status": "FAIL",
+    "query": "N/A",
+    "answer": "N/A",
+    "error": "Groq API Error: {\"error\":{\"message\":\"Rate limit reached for model `llama-3.1-8b-instant` in organization `org_01kfyrtjdmf3k81g2yd2rdaf00` service tier `on_demand` on tokens per minute (TPM): Limit 6000, Used 4599, Requested 3491. Please try again in 20.9s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing\",\"type\":\"tokens\",\"code\":\"rate_limit_exceeded\"}}"
+  },
+  {
+    "id": 15,
+    "question": "What is the average break duration for the HR department this month?",
+    "status": "FAIL",
+    "query": "N/A",
+    "answer": "N/A",
+    "error": "Groq API Error: {\"error\":{\"message\":\"Rate limit reached for model `llama-3.1-8b-instant` in organization `org_01kfyrtjdmf3k81g2yd2rdaf00` service tier `on_demand` on tokens per minute (TPM): Limit 6000, Used 4495, Requested 3532. Please try again in 20.27s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing\",\"type\":\"tokens\",\"code\":\"rate_limit_exceeded\"}}"
+  },
+  {
+    "id": 16,
+    "question": "Who is in MD Cabin right now?",
+    "status": "FAIL",
+    "query": "N/A",
+    "answer": "N/A",
+    "error": "Groq API Error: {\"error\":{\"message\":\"Rate limit reached for model `llama-3.1-8b-instant` in organization `org_01kfyrtjdmf3k81g2yd2rdaf00` service tier `on_demand` on tokens per minute (TPM): Limit 6000, Used 4391, Requested 3527. Please try again in 19.18s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing\",\"type\":\"tokens\",\"code\":\"rate_limit_exceeded\"}}"
+  },
+  {
+    "id": 17,
+    "question": "Which employees are currently in the Server Room?",
+    "status": "FAIL",
+    "query": "N/A",
+    "answer": "N/A",
+    "error": "Groq API Error: {\"error\":{\"message\":\"Rate limit reached for model `llama-3.1-8b-instant` in organization `org_01kfyrtjdmf3k81g2yd2rdaf00` service tier `on_demand` on tokens per minute (TPM): Limit 6000, Used 4287, Requested 3483. Please try again in 17.7s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing\",\"type\":\"tokens\",\"code\":\"rate_limit_exceeded\"}}"
+  },
+  {
+    "id": 18,
+    "question": "List everyone currently located in the R&D Lab.",
+    "status": "FAIL",
+    "query": "N/A",
+    "answer": "N/A",
+    "error": "Groq API Error: {\"error\":{\"message\":\"Rate limit reached for model `llama-3.1-8b-instant` in organization `org_01kfyrtjdmf3k81g2yd2rdaf00` service tier `on_demand` on tokens per minute (TPM): Limit 6000, Used 4183, Requested 3484. Please try again in 16.669999999s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing\",\"type\":\"tokens\",\"code\":\"rate_limit_exceeded\"}}"
+  },
+  {
+    "id": 19,
+    "question": "How many people are in the Finance Office today?",
+    "status": "FAIL",
+    "query": "N/A",
+    "answer": "N/A",
+    "error": "Groq API Error: {\"error\":{\"message\":\"Rate limit reached for model `llama-3.1-8b-instant` in organization `org_01kfyrtjdmf3k81g2yd2rdaf00` service tier `on_demand` on tokens per minute (TPM): Limit 6000, Used 4079, Requested 3484. Please try again in 15.63s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing\",\"type\":\"tokens\",\"code\":\"rate_limit_exceeded\"}}"
+  },
+  {
+    "id": 20,
+    "question": "What was the last seen location of Employee 5?",
+    "status": "FAIL",
+    "query": "N/A",
+    "answer": "N/A",
+    "error": "Groq API Error: {\"error\":{\"message\":\"Rate limit reached for model `llama-3.1-8b-instant` in organization `org_01kfyrtjdmf3k81g2yd2rdaf00` service tier `on_demand` on tokens per minute (TPM): Limit 6000, Used 3975, Requested 3485. Please try again in 14.6s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing\",\"type\":\"tokens\",\"code\":\"rate_limit_exceeded\"}}"
+  },
+  {
+    "id": 21,
+    "question": "How many visitors are expected today?",
+    "status": "FAIL",
+    "query": "N/A",
+    "answer": "N/A",
+    "error": "Groq API Error: {\"error\":{\"message\":\"Rate limit reached for model `llama-3.1-8b-instant` in organization `org_01kfyrtjdmf3k81g2yd2rdaf00` service tier `on_demand` on tokens per minute (TPM): Limit 6000, Used 3870, Requested 3526. Please try again in 13.96s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing\",\"type\":\"tokens\",\"code\":\"rate_limit_exceeded\"}}"
+  },
+  {
+    "id": 22,
+    "question": "List all visitors who are currently checked in.",
+    "status": "FAIL",
+    "query": "N/A",
+    "answer": "N/A",
+    "error": "Groq API Error: {\"error\":{\"message\":\"Rate limit reached for model `llama-3.1-8b-instant` in organization `org_01kfyrtjdmf3k81g2yd2rdaf00` service tier `on_demand` on tokens per minute (TPM): Limit 6000, Used 3767, Requested 3483. Please try again in 12.5s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing\",\"type\":\"tokens\",\"code\":\"rate_limit_exceeded\"}}"
+  },
+  {
+    "id": 23,
+    "question": "Who was the host for the visitor 'John Smith' yesterday?",
+    "status": "FAIL",
+    "query": "N/A",
+    "answer": "N/A",
+    "error": "Groq API Error: {\"error\":{\"message\":\"Rate limit reached for model `llama-3.1-8b-instant` in organization `org_01kfyrtjdmf3k81g2yd2rdaf00` service tier `on_demand` on tokens per minute (TPM): Limit 6000, Used 3663, Requested 3657. Please try again in 13.2s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing\",\"type\":\"tokens\",\"code\":\"rate_limit_exceeded\"}}"
+  },
+  {
+    "id": 24,
+    "question": "Show me all visitors from 'Matrix' for this month.",
+    "status": "FAIL",
+    "query": "N/A",
+    "answer": "N/A",
+    "error": "Groq API Error: {\"error\":{\"message\":\"Rate limit reached for model `llama-3.1-8b-instant` in organization `org_01kfyrtjdmf3k81g2yd2rdaf00` service tier `on_demand` on tokens per minute (TPM): Limit 6000, Used 3559, Requested 3486. Please try again in 10.45s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing\",\"type\":\"tokens\",\"code\":\"rate_limit_exceeded\"}}"
+  },
+  {
+    "id": 25,
+    "question": "Which visitor has stayed the longest in the premises today?",
+    "status": "FAIL",
+    "query": "N/A",
+    "answer": "N/A",
+    "error": "Groq API Error: {\"error\":{\"message\":\"Rate limit reached for model `llama-3.1-8b-instant` in organization `org_01kfyrtjdmf3k81g2yd2rdaf00` service tier `on_demand` on tokens per minute (TPM): Limit 6000, Used 3455, Requested 3530. Please try again in 9.85s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing\",\"type\":\"tokens\",\"code\":\"rate_limit_exceeded\"}}"
+  },
+  {
+    "id": 26,
+    "question": "What is the total canteen spend for the IT department this month?",
+    "status": "FAIL",
+    "query": "N/A",
+    "answer": "N/A",
+    "error": "Groq API Error: {\"error\":{\"message\":\"Rate limit reached for model `llama-3.1-8b-instant` in organization `org_01kfyrtjdmf3k81g2yd2rdaf00` service tier `on_demand` on tokens per minute (TPM): Limit 6000, Used 3351, Requested 3534. Please try again in 8.85s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing\",\"type\":\"tokens\",\"code\":\"rate_limit_exceeded\"}}"
+  },
+  {
+    "id": 27,
+    "question": "Which food item was consumed the most yesterday?",
+    "status": "FAIL",
+    "query": "N/A",
+    "answer": "N/A",
+    "error": "Groq API Error: {\"error\":{\"message\":\"Rate limit reached for model `llama-3.1-8b-instant` in organization `org_01kfyrtjdmf3k81g2yd2rdaf00` service tier `on_demand` on tokens per minute (TPM): Limit 6000, Used 3247, Requested 3653. Please try again in 9s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing\",\"type\":\"tokens\",\"code\":\"rate_limit_exceeded\"}}"
+  },
+  {
+    "id": 28,
+    "question": "How many meals were served in the canteen today?",
+    "status": "FAIL",
+    "query": "N/A",
+    "answer": "N/A",
+    "error": "Groq API Error: {\"error\":{\"message\":\"Rate limit reached for model `llama-3.1-8b-instant` in organization `org_01kfyrtjdmf3k81g2yd2rdaf00` service tier `on_demand` on tokens per minute (TPM): Limit 6000, Used 3143, Requested 3656. Please try again in 7.989999999s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing\",\"type\":\"tokens\",\"code\":\"rate_limit_exceeded\"}}"
+  },
+  {
+    "id": 29,
+    "question": "Show me the daily canteen transactions for Employee 1 for this month.",
+    "status": "FAIL",
+    "query": "N/A",
+    "answer": "N/A",
+    "error": "Groq API Error: {\"error\":{\"message\":\"Rate limit reached for model `llama-3.1-8b-instant` in organization `org_01kfyrtjdmf3k81g2yd2rdaf00` service tier `on_demand` on tokens per minute (TPM): Limit 6000, Used 3039, Requested 3490. Please try again in 5.29s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing\",\"type\":\"tokens\",\"code\":\"rate_limit_exceeded\"}}"
+  },
+  {
+    "id": 30,
+    "question": "What is the total revenue from the canteen for the last 30 days?",
+    "status": "FAIL",
+    "query": "N/A",
+    "answer": "N/A",
+    "error": "Groq API Error: {\"error\":{\"message\":\"Rate limit reached for model `llama-3.1-8b-instant` in organization `org_01kfyrtjdmf3k81g2yd2rdaf00` service tier `on_demand` on tokens per minute (TPM): Limit 6000, Used 2936, Requested 3661. Please try again in 5.97s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing\",\"type\":\"tokens\",\"code\":\"rate_limit_exceeded\"}}"
+  }
+]

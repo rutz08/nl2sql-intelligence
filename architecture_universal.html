@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAHAY Architecture Blueprint</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f4f7f9; color: #333; line-height: 1.6; padding: 40px; }
+        .container { max-width: 1000px; margin: 0 auto; background: white; padding: 40px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+        h1 { color: #1a73e8; border-bottom: 2px solid #eef2f6; padding-bottom: 10px; }
+        .diagram-container { display: flex; flex-direction: column; align-items: center; gap: 20px; margin: 40px 0; }
+        .layer { display: flex; justify-content: center; gap: 20px; width: 100%; }
+        .box { padding: 15px 25px; border-radius: 8px; border: 2px solid #ddd; background: white; font-weight: bold; text-align: center; min-width: 150px; position: relative; }
+        .experience { background: #e8f0fe; border-color: #1a73e8; color: #1a73e8; }
+        .intelligence { background: #fef7e0; border-color: #f9ab00; color: #b06000; }
+        .reasoning { background: #e6fffa; border-color: #38b2ac; color: #234e52; }
+        .persistence { background: #fce8e6; border-color: #d93025; color: #a50e0e; }
+        .arrow { font-size: 24px; color: #999; }
+        .flow-line { height: 30px; width: 2px; background: #ccc; }
+        .description { margin-top: 40px; }
+        .use-case { background: #fafafa; padding: 15px; border-left: 4px solid #1a73e8; margin-bottom: 20px; border-radius: 0 8px 8px 0; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>SAHAY AI: System Architecture Blueprint</h1>
+        
+        <div class="diagram-container">
+            <div class="layer">
+                <div class="box experience">Matrix COSEC Portal</div>
+                <div class="box experience">SAHAY Dashboard</div>
+            </div>
+            <div class="arrow">▼</div>
+            <div class="layer">
+                <div class="box intelligence">Node.js Middleware</div>
+                <div class="box intelligence">SQL Validator</div>
+            </div>
+            <div class="arrow">▼</div>
+            <div class="layer">
+                <div class="box reasoning">Llama 3.3 (Primary)</div>
+                <div class="box reasoning">Llama 4 (Backup)</div>
+                <div class="box reasoning">Qwen 3 (Backup)</div>
+            </div>
+            <div class="arrow">▼</div>
+            <div class="layer">
+                <div class="box persistence">SQL Server Database</div>
+                <div class="box persistence">Attendance Views</div>
+            </div>
+        </div>
+
+        <div class="description">
+            <h2>Architecture Components</h2>
+            <ul>
+                <li><strong>Experience Layer</strong>: The user interface integrated directly into the Matrix Portal.</li>
+                <li><strong>Intelligence Layer</strong>: The Node.js engine that translates English into secure, verified SQL.</li>
+                <li><strong>Reasoning Layer</strong>: The 2026 Cloud Model Pool (Llama 4 / Qwen 3) that provides the "brain" for complex queries.</li>
+                <li><strong>Persistence Layer</strong>: Your local COSEC_DEMO database providing real-time facts.</li>
+            </ul>
+
+            <h2>Operational Use Cases</h2>
+            <div class="use-case">
+                <strong>Attendance Audit</strong>: "Who was late yesterday?" -> Identifies punch gaps using Llama 4 reasoning.
+            </div>
+            <div class="use-case">
+                <strong>Canteen Tracking</strong>: "Total subsidy spent today?" -> Aggregates canteen logs across all terminals.
+            </div>
+        </div>
+    </div>
+</body>
+</html>
