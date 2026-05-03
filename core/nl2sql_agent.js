@@ -16,7 +16,7 @@ const { execSync } = require('child_process');
 const app = express();
 app.use(express.json());
 app.use(cors());
-app.use(express.static(__dirname)); // Serve static files (like react_frontend.html)
+app.use(express.static(path.join(__dirname, '../frontend'))); // Serve all frontend files including assets
 
 // --- Configuration ---
 // 1. Groq API Setup (API Key HA Round-Robin)
