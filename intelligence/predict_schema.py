@@ -22,8 +22,9 @@ class COSECSchemaPredictor(nn.Module):
         return self.sigmoid(out)
 
 def predict(prompt):
-    model_path = 'cosec_router.pth'
-    meta_path = 'model_metadata.pkl'
+    base_path = os.path.dirname(os.path.abspath(__file__))
+    model_path = os.path.join(base_path, 'cosec_router.pth')
+    meta_path = os.path.join(base_path, 'model_metadata.pkl')
     
     if not os.path.exists(model_path) or not os.path.exists(meta_path):
         return []

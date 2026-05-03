@@ -185,7 +185,8 @@ function predictSchema(prompt) {
     try {
         // Sanitize prompt for shell execution
         const sanitizedPrompt = prompt.replace(/"/g, '\\"');
-        const result = execSync(`python predict_schema.py "${sanitizedPrompt}"`, { encoding: 'utf8', timeout: 5000 });
+        const scriptPath = path.join(__dirname, '../intelligence/predict_schema.py');
+        const result = execSync(`python "${scriptPath}" "${sanitizedPrompt}"`, { encoding: 'utf8', timeout: 5000 });
         const predicted = JSON.parse(result);
         console.log(`[LSTM Router]: Predicted Tables -> ${predicted.join(', ') || 'None'}`);
         return predicted;
@@ -216,7 +217,7 @@ async function getPool() {
 }
 
 // Load Schema Skill File
-const skillFilePath = path.join(__dirname, 'nl2sql-skill.md');
+const skillFilePath = path.join(__dirname, '../docs/nl2sql-skill.md');
 let systemPromptContext = "";
 try {
     systemPromptContext = fs.readFileSync(skillFilePath, 'utf8');
@@ -342,7 +343,7 @@ app.post('/api/nl2sql', async (req, res) => {
         // --- NEW: Dynamic Column Injection ---
         let dynamicSchemaDetails = "";
         try {
-            const fullSchema = JSON.parse(fs.readFileSync(path.join(__dirname, 'discovered_schema.json'), 'utf8'));
+            const fullSchema = JSON.parse(fs.readFileSync(path.join(__dirname, '../data/discovered_schema.json'), 'utf8'));
             const maxCols = predictedKeywords.length > 4 ? 10 : 100;
             predictedKeywords.forEach(table => {
                 if (fullSchema[table]) {
@@ -504,11 +505,11 @@ INSTRUCTIONS:
         }
         
         // Step 5: Return Results to Frontend
-        console.log(`[Response]: Sending 200 OK (${lastModelUsed}) with ${records.length} rows.`);
+        console.log(`[Response]: Sending 200 OK (${lastModelUsed}) with ${records.length} records.`);
         
         // Persistent Post-Analysis Logging
         const successLog = `\n--- [${new Date().toISOString()}] SUCCESS ---\nPROMPT: ${userPrompt}\nMODEL: ${lastModelUsed}\nSQL: ${generatedSql.replace(/\n/g, " ")}\nRECORDS: ${records.length}\n`;
-        try { fs.appendFileSync(path.join(__dirname, 'query_analysis.log'), successLog, 'utf8'); } catch(e){}
+        try { fs.appendFileSync(path.join(__dirname, '../data/query_analysis.log'), successLog, 'utf8'); } catch(e){}
 
         res.json({
             success: true,
@@ -523,7 +524,7 @@ INSTRUCTIONS:
         
         // Persistent Post-Analysis Logging
         const errLog = `\n--- [${new Date().toISOString()}] ERROR ---\nPROMPT: ${userPrompt}\nSQL: ${typeof generatedSql !== 'undefined' ? generatedSql : 'N/A'}\nERROR: ${error.message || error}\n`;
-        try { fs.appendFileSync(path.join(__dirname, 'query_analysis.log'), errLog, 'utf8'); } catch(e){}
+        try { fs.appendFileSync(path.join(__dirname, '../data/query_analysis.log'), errLog, 'utf8'); } catch(e){}
 
         let errorMsg = "An error occurred during query generation or execution.";
         let details = error?.originalError?.info?.message || error?.originalError?.message || error?.message || (typeof error === 'object' ? JSON.stringify(error, Object.getOwnPropertyNames(error)) : String(error));
@@ -539,7 +540,7 @@ app.use(express.static(__dirname));
 
 // Serve the frontend dashboard
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'react_frontend.html'));
+    res.sendFile(path.join(__dirname, '../frontend/react_frontend.html'));
 });
 
 // Start server
