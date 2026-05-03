@@ -117,7 +117,8 @@ def train_model():
             print(f"Epoch [{epoch+1}/{epochs}], Loss: {loss.item():.4f}")
 
     # 6. Save Model and Metadata
-    torch.save(model.state_dict(), 'cosec_router.pth')
+    base_path = os.path.dirname(os.path.abspath(__file__))
+    torch.save(model.state_dict(), os.path.join(base_path, 'cosec_router.pth'))
     metadata = {
         "word_to_idx": word_to_idx,
         "idx_to_label": idx_to_label,
@@ -128,7 +129,7 @@ def train_model():
         "hidden_dim": 128,
         "output_dim": len(label_list)
     }
-    with open('model_metadata.pkl', 'wb') as f:
+    with open(os.path.join(base_path, 'model_metadata.pkl'), 'wb') as f:
         pickle.dump(metadata, f)
     
     print("Model and metadata saved.")

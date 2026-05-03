@@ -536,8 +536,6 @@ INSTRUCTIONS:
     }
 });
 
-app.use(express.static(__dirname));
-
 // Serve the frontend dashboard
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '../frontend/react_frontend.html'));

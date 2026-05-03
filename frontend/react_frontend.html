@@ -86,7 +86,7 @@
             useEffect(() => {
                 const checkHealth = async () => {
                     try {
-                        const res = await fetch('http://localhost:3000/api/health');
+                        const res = await fetch('/api/health');
                         setIsOnline(res.ok);
                     } catch (err) {
                         setIsOnline(false);
@@ -108,7 +108,7 @@
                 setHistory(prev => [...prev, { role: 'user', content: currentPrompt }]);
 
                 try {
-                    const res = await fetch('http://localhost:3000/api/nl2sql', {
+                    const res = await fetch('/api/nl2sql', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({ prompt: currentPrompt })

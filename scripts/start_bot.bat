@@ -23,13 +23,12 @@ timeout /t 2 /nobreak > nul
 
 :: Open the Frontend
 echo Opening Master Intelligence Dashboard...
-start "" "frontend/react_frontend.html"
+start "" "http://localhost:3000/"
 
 echo.
 echo ======================================================
 echo Antigravity Bot is now RUNNING!
-echo Backend: http://localhost:3000
-echo Frontend: react_frontend.html (Opened in browser)
+echo Access the Dashboard at: http://localhost:3000
 echo ======================================================
 echo Keep this window open while using the bot.
 echo.
