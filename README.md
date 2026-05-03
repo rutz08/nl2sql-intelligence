@@ -1,24 +1,28 @@
-# 🏛️ COSEC Master Intelligence: Enterprise NL2SQL Engine
+# 🏛️ COSEC Master Intelligence (SAHAY): Enterprise NL2SQL Engine
 
 [![Status](https://img.shields.io/badge/Status-Production--Ready-success.svg)]()
 [![Model](https://img.shields.io/badge/Intelligence-Master--Grade-blue.svg)]()
 [![Security](https://img.shields.io/badge/Security-Read--Only--Enforced-red.svg)]()
+[![Logo](https://img.shields.io/badge/Sahay-Enabled-orange.svg)]()
 
-**COSEC Master Intelligence** is a high-precision Natural Language to SQL (NL2SQL) engine designed specifically for the Matrix COSEC ecosystem. It allows non-technical stakeholders to perform deep analytical audits on attendance, canteen, and security traffic using simple conversational English.
+**SAHAY** (Secure Attendance & Hybrid Analytical Yield) is a state-of-the-art Natural Language to SQL (NL2SQL) engine meticulously engineered for the **Matrix COSEC** ecosystem. It bridges the gap between complex MS SQL databases and non-technical business leaders, enabling high-fidelity analytical audits through simple, conversational English.
 
 ---
 
-## 🚀 Key Features
+## 🌟 The SAHAY Advantage
 
-*   **🧠 Master Intelligence Brain**: Powered by a 3,491-sample Bi-LSTM router for 100% schema accuracy.
-*   **🛡️ Hybrid Security Layer**: Deterministic business fail-safes combined with a strict Read-Only SQL Validator.
-*   **⚡ Multi-Model Resilience**: Intelligent failover logic across **Llama 3.3 70B**, Llama 4, and Qwen 3 models.
-*   **🥪 Cross-Domain Analytics**: Seamlessly joins Attendance, Canteen, Visitor (VMS), and ACS data in real-time.
-*   **🕒 Timezone Intelligence**: Native support for IST (+5:30) with complex date-math automation.
+SAHAY is not just an AI wrapper; it is a multi-layered intelligence platform that combines neural routing with deterministic safety.
+
+- **🧠 Neural Routing (Bi-LSTM)**: Uses a custom-trained Bidirectional Long Short-Term Memory (LSTM) network to predict exactly which database views are required for a query with >99% accuracy.
+- **🛡️ Enterprise-Grade Security**: A multi-stage validator ensures that only read-only queries are executed, protecting sensitive organizational data from modification or deletion.
+- **⚡ High-Availability Reasoning**: Orchestrates queries across a pool of elite LLMs (Llama 3.3 70B, Gemini, Qwen) with automatic failover and load balancing.
+- **📊 Unified Data Fabric**: Seamlessly correlates data across Time-Attendance, Canteen/Cafeteria Management, Visitor Management (VMS), and Access Control (ACS).
 
 ---
 
 ## 🗺️ System Architecture
+
+The SAHAY engine operates on a robust, modular pipeline designed for low latency and high reliability.
 
 ```mermaid
 graph TD
@@ -45,50 +49,85 @@ graph TD
 
 ---
 
-## 🛠️ Technology Stack
+## 📂 Project Structure
 
-*   **Backend**: Node.js / Express
-*   **Machine Learning**: PyTorch (Bi-LSTM architecture)
-*   **LLM Orchestration**: Groq API (Llama 3.3 70B Primary)
-*   **Database**: Microsoft SQL Server (COSEC_DEMO)
-*   **Frontend**: React / Tailwind CSS / Glassmorphism UI
+The project follows a clean, modular enterprise architecture for maximum maintainability:
+
+### ⚙️ `/core` (The Heart)
+- **`nl2sql_agent.js`**: The main Express server and orchestration engine. Handles routing, LLM calls, and health monitoring.
+- **`sql_validator.js`**: The security gateway. Enforces strict read-only policies using advanced regex and keyword blacklisting.
+
+### 🧠 `/intelligence` (The Brain)
+- **`predict_schema.py`**: The neural inference script that powers the Bi-LSTM routing engine.
+- **`lstm_skill_model.py`**: The neural network architecture and training logic.
+- **`cosec_router.pth` / `model_metadata.pkl`**: The trained brain and its vocabulary mappings.
+
+### 🎨 `/frontend` (The Face)
+- **`index.html`**: The Master Portal for the COSEC ecosystem.
+- **`react_frontend.html`**: The glassmorphic AI Intelligence Dashboard.
+- **`assets/`**: High-resolution brand assets and UI icons.
+
+### 📂 `/data` (The Knowledge)
+- **`nl2sql-skill.md`**: The exhaustive T-SQL rules and schema definitions provided to the AI.
+- **`*.jsonl`**: Rich training datasets used to fine-tune the neural router.
+- **`query_analysis.log`**: Persistent audit trail for all AI-generated queries.
+
+### 📜 `/scripts` (Utilities)
+- **`start_bot.bat`**: One-click enterprise launcher for the entire system.
+- **`start_agent.bat`**: Specialized launcher for the AI Intelligence backend.
 
 ---
 
-## 📂 Directory Structure
+## 🛠️ Installation & Dependencies
 
-- `nl2sql_agent.js` - Core Orchestration & Middleware
-- `predict_schema.py` - Master Intelligence Inference Engine
-- `lstm_skill_model.py` - Neural Network Architecture & Training
-- `nl2sql-skill.md` - Technical Schema Context & Rules
-- `master_expansion_1200.jsonl` - High-fidelity training corpus
-- `sql_validator.js` - Security & Policy Enforcement Layer
-- `react_frontend.html` - Enterprise Intelligence Dashboard
+### 1. Prerequisites
+- **Node.js** (v18+ recommended)
+- **Python** (v3.10+ recommended)
+- **MS SQL Server** (with COSEC database and views installed)
 
----
+### 2. Backend Dependencies (Node.js)
+```bash
+npm install express mssql dotenv cors
+```
 
-## 🔐 Security & Privacy
+### 3. Intelligence Dependencies (Python)
+```bash
+pip install torch numpy pickle-mixin
+```
 
-This project is built with **Enterprise Safety** as a top priority:
-1.  **Read-Only Enforcement**: The system uses regex-based auditing to block `DROP`, `DELETE`, `TRUNCATE`, and `UPDATE` commands.
-2.  **Schema Abstraction**: AI interacts exclusively with optimized SQL Views, never directly with raw system tables.
-3.  **Local Context**: All database connection strings are managed via `.env` and are excluded from version control.
+### 4. Database Setup
+Ensure that the following views are created in your `COSEC_DEMO` database:
+- `Mx_VEW_DailyAttendance`
+- `Mx_VEW_DailyCnteenEvts`
+- `Mx_VEW_VistorReport`
+- `Mx_VEW_LiveRoomStatus`
+- `Mx_VEW_ControllerList`
 
 ---
 
 ## 🏁 Quick Start
 
-1.  **Install Dependencies**:
-    ```bash
-    npm install
-    pip install torch torchvision torchaudio
+1.  **Clone & Install**:
+    Follow the installation steps above to set up your environment.
+2.  **Environment Setup**:
+    Create a `.env` file in the root directory:
+    ```env
+    DB_USER=your_db_user
+    DB_PASSWORD=your_db_password
+    DB_SERVER=your_db_server
+    DB_NAME=COSEC_DEMO
+    GROQ_API_KEY=your_groq_api_key
     ```
-2.  **Configure Environment**:
-    Create a `.env` file with your `DB_USER`, `DB_PASSWORD`, and `GROQ_API_KEY`.
-3.  **Launch the Engine**:
-    ```bash
-    node nl2sql_agent.js
-    ```
+3.  **Run with One Click**:
+    Simply double-click `scripts/start_bot.bat` to launch the server and the dashboard simultaneously.
 
 ---
-&copy; 2026 Team Sahay. Powered by the Master Intelligence Engine.
+
+## 🔐 Security Protocols
+
+- **Read-Only Lock**: No `INSERT`, `UPDATE`, or `DELETE` commands can ever pass the validator.
+- **View-Level Abstraction**: The AI never sees raw tables, only curated analytical views.
+- **Zero Hallucination**: If the LSTM router cannot find a confident schema match, the system gracefully degrades rather than generating invalid SQL.
+
+---
+&copy; 2026 **Matrix Comsec Pvt. Ltd.** | *Right People in Right Place at Right Time*
