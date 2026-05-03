@@ -16,7 +16,7 @@ labels = [
     "Mx_VEW_RBMonthlyATDSummary", "Mx_VEW_RBYearlyATDSummary"
 ]
 
-output_file = 'oracle_expansion_1200.jsonl'
+output_file = 'master_expansion_1200.jsonl'
 samples = []
 
 # 1. Random Permutation Generator (Joins)
@@ -44,4 +44,4 @@ with open(output_file, 'w', encoding='utf-8') as out:
     for s in samples:
         out.write(json.dumps(s) + "\n")
 
-print(f"Created {len(samples)} oracle expansion samples.")
+print(f"Created {len(samples)} master expansion samples.")

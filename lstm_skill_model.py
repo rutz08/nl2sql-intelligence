@@ -30,7 +30,7 @@ class COSECSchemaPredictor(nn.Module):
 
 def train_model():
     # 1. Load Data
-    data_files = ['oracle_expansion_1200.jsonl', 'mixed_genre_100.jsonl', 'universal_diversity_data.jsonl', 'lstm_training_data.jsonl', 'manual_training_data.jsonl', 'comprehensive_training_data.jsonl', 'join_training_data.jsonl', 'complex_join_data_500.jsonl', 'mixed_data_200.jsonl']
+    data_files = ['master_expansion_1200.jsonl', 'mixed_genre_100.jsonl', 'universal_diversity_data.jsonl', 'lstm_training_data.jsonl', 'manual_training_data.jsonl', 'comprehensive_training_data.jsonl', 'join_training_data.jsonl', 'complex_join_data_500.jsonl', 'mixed_data_200.jsonl']
     prompts = []
     targets = []
     all_labels = set()
