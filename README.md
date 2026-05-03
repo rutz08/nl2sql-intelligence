@@ -91,4 +91,4 @@ This project is built with **Enterprise Safety** as a top priority:
     ```
 
 ---
-&copy; 2026 Matrix COSEC Intelligence Division. Powered by the Master Intelligence Engine.
+&copy; 2026 Team Sahay. Powered by the Master Intelligence Engine.
