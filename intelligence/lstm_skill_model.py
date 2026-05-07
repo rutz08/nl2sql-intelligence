@@ -31,7 +31,7 @@ class COSECSchemaPredictor(nn.Module):
 def train_model():
     # 1. Load Data
     data_dir = os.path.join(os.path.dirname(__file__), '../data')
-    data_files = ['master_expansion_1200.jsonl', 'mixed_genre_100.jsonl', 'universal_diversity_data.jsonl', 'lstm_training_data.jsonl', 'manual_training_data.jsonl', 'comprehensive_training_data.jsonl', 'join_training_data.jsonl', 'complex_join_data_500.jsonl', 'mixed_data_200.jsonl']
+    data_files = ['master_expansion_1200.jsonl', 'mixed_genre_100.jsonl', 'universal_diversity_data.jsonl', 'lstm_training_data.jsonl', 'manual_training_data.jsonl', 'comprehensive_training_data.jsonl', 'join_training_data.jsonl', 'complex_join_data_500.jsonl', 'mixed_data_200.jsonl', 'neural_expansion_200.jsonl', 'neural_expansion_300.jsonl']
     data_files = [os.path.join(data_dir, df) for df in data_files]
     prompts = []
     targets = []

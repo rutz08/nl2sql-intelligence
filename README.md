@@ -67,8 +67,11 @@ The project follows a clean, modular enterprise architecture for maximum maintai
 - **`react_frontend.html`**: The glassmorphic AI Intelligence Dashboard.
 - **`assets/`**: High-resolution brand assets and UI icons.
 
-### 📂 `/data` (The Knowledge)
+### 📂 `/docs` (The Documentation)
 - **`nl2sql-skill.md`**: The exhaustive T-SQL rules and schema definitions provided to the AI.
+- **`sa_architecture_walkthrough.md`**: Beginner-friendly C4 architectural guide.
+
+### 📂 `/data` (The Knowledge)
 - **`*.jsonl`**: Rich training datasets used to fine-tune the neural router.
 - **`query_analysis.log`**: Persistent audit trail for all AI-generated queries.
 
@@ -130,4 +133,13 @@ Ensure that the following views are created in your `COSEC_DEMO` database:
 - **Zero Hallucination**: If the LSTM router cannot find a confident schema match, the system gracefully degrades rather than generating invalid SQL.
 
 ---
+
+## 🏛️ Architectural Walkthrough
+
+For a detailed, beginner-friendly explanation of how SAHAY works—including its C4-level architecture, code-dependency stories, and real-world use cases—see our:
+
+👉 **[First-Class Architecture & Code Guide](docs/sa_architecture_walkthrough.md)**
+
+---
+
 &copy; 2026 **Matrix Comsec Pvt. Ltd.** | *Right People in Right Place at Right Time*
