@@ -59,6 +59,22 @@ The agent will be available at: **http://localhost:3000**
 
 ---
 
+## 🗄️ Database Migration (Transferring Data)
+
+If you want to move the data from your old laptop to this one:
+
+### 1. On the OLD Laptop:
+- Run `BACKUP_DATABASE.bat`.
+- Copy the generated `COSEC_DEMO_Backup.bak` file to the new laptop.
+
+### 2. On the NEW Laptop:
+- Open SQL Server Management Studio (SSMS).
+- Right-click **Databases** -> **Restore Database...**
+- Select **Device** and choose the `.bak` file you copied.
+- Ensure the database name is `COSEC_DEMO`.
+
+---
+
 ## 🔍 Verification
 1.  Open `http://localhost:3000/react_frontend.html` in your browser.
 2.  Ask a simple question: *"Show me today's attendance."*
