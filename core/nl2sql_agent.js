@@ -30,7 +30,7 @@ const API_KEY_POOL = [
 
 let currentKeyIndex = 0;
 const TARGET_MODEL = "llama-3.3-70b-versatile";
-const GEMINI_MODEL = "gemini-1.5-flash"; // Stable version for paid tier
+const GEMINI_MODEL = "gemini-flash-latest"; // Universal alias for latest flash
 const AI_TIMEOUT = 60000; // 60 second timeout for API calls
 
 // Helper to call Groq API for a specific API Key
@@ -216,6 +216,7 @@ const poolConfig = {
 console.log("--- System Diagnostics ---");
 console.log(`Database Target: ${poolConfig.server} -> ${poolConfig.database}`);
 console.log(`Gemini API Key: ${process.env.GEMINI_API_KEY ? "DETECTED" : "MISSING"}`);
+console.log(`Gemini Model: ${GEMINI_MODEL}`);
 console.log(`Groq API Keys: ${API_KEY_POOL.length} detected`);
 console.log("--------------------------");
 
