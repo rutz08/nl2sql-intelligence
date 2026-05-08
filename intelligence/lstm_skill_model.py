@@ -29,9 +29,10 @@ class COSECSchemaPredictor(nn.Module):
         return self.sigmoid(out)
 
 def train_model():
+    print("Initializing training...")
     # 1. Load Data
     data_dir = os.path.join(os.path.dirname(__file__), '../data')
-    data_files = ['master_expansion_1200.jsonl', 'mixed_genre_100.jsonl', 'universal_diversity_data.jsonl', 'lstm_training_data.jsonl', 'manual_training_data.jsonl', 'comprehensive_training_data.jsonl', 'join_training_data.jsonl', 'complex_join_data_500.jsonl', 'mixed_data_200.jsonl', 'neural_expansion_200.jsonl', 'neural_expansion_300.jsonl']
+    data_files = ['complex_join_success_100.jsonl', 'master_expansion_1200.jsonl', 'mixed_genre_100.jsonl', 'universal_diversity_data.jsonl', 'lstm_training_data.jsonl', 'manual_training_data.jsonl', 'comprehensive_training_data.jsonl', 'join_training_data.jsonl', 'complex_join_data_500.jsonl', 'mixed_data_200.jsonl', 'neural_expansion_200.jsonl', 'neural_expansion_300.jsonl']
     data_files = [os.path.join(data_dir, df) for df in data_files]
     prompts = []
     targets = []
@@ -104,7 +105,7 @@ def train_model():
 
     # 5. Training Loop
     print("Starting training...")
-    epochs = 2000
+    epochs = 500
     for epoch in range(epochs):
         model.train()
         optimizer.zero_grad()
@@ -113,7 +114,7 @@ def train_model():
         loss.backward()
         optimizer.step()
         
-        if (epoch + 1) % 20 == 0:
+        if epoch == 0 or (epoch + 1) % 50 == 0:
             print(f"Epoch [{epoch+1}/{epochs}], Loss: {loss.item():.4f}")
 
     # 6. Save Model and Metadata

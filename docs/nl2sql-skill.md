@@ -74,6 +74,8 @@ Use for "Who is in [Room Name]?" or "Last seen location".
 - **PassFromDate**: Check-in time
 - **PassToDate**: Check-out time
 - **Status**: Current status (Expected, Checked In, Checked Out, Exited)
+- **HostUserID**: ID of the employee hosting the visitor.
+- **HostName**: Full name of the employee hosting the visitor.
 
 ### 4. Canteen Transactions (`Mx_VEW_DailyCnteenEvts`)
 Use for meal counts and canteen spending.
@@ -149,7 +151,8 @@ Use for meal counts and canteen spending.
 
 **Table: `Mx_VSTRMst`** (Visitor Master)
 - **Use Case:** Visitor names and identity details.
-- **Key Columns:** `VSTRID`, `VstrName`, `Organization`, `MobileNo`, `IDProofNo`.
+- **Key Columns**: `VSTRID`, `VstrName`, `Organization`, `MobileNo`, `IDProofNo`.
+- **Note**: Join with `Mx_VSTRPassTrn` to see Host details.
 
 ### 5. Access Control (ACS)
 **View: `Mx_VEW_RBACSEvents`** (Rich Access Control Events)
@@ -168,6 +171,7 @@ Use for meal counts and canteen spending.
 - **Use Case:** Daily food consumption logs.
 - **Key Columns:** `UserID`, `UserName`, `FullName`, `DptName`, `BrcName`, `PDate`, `ItemName`, `Quantity`, `TotalAmount`.
 - **CRITICAL**: Use `PDate` for all canteen date filters. `Transaction_date` is INVALID.
+- **FUZZY MATCHING**: Always use `LIKE` with wildcards for item names (e.g., `WHERE ItemName LIKE '%Lunch%'`) as database names vary.
 
 ### 7. User Profiles
 **View: `Mx_VEW_UserDetails`**
@@ -280,4 +284,31 @@ WHERE DptName = 'Admin'
   AND PDate >= DATEADD(WEEK, -1, GETDATE())
 GROUP BY ItemName
 ORDER BY TotalConsumed DESC
+```
+
+**User:** "give me attendance of april month. i want all the user row wise with name and user id, i want daily work time in hh:mm column wise for all the proper dates of the month, and horizontal total per user for month and vertical total for all user per date. make sure all the work time is in HH:MM"
+**SQL:**
+```sql
+SELECT 
+      ISNULL(CAST(T1.UserID AS VARCHAR), 'TOTAL') AS [User ID], 
+      ISNULL(T1.FullName, 'Vertical Total') AS [Name],
+     FORMAT(SUM(CASE WHEN T2.PDate = '2026-04-01' THEN ISNULL(T2.WorkTime, 0) ELSE 0 END) / 60, '00') + ':' + FORMAT(SUM(CASE WHEN T2.PDate = '2026-04-01' THEN ISNULL(T2.WorkTime, 0) ELSE 0 END) % 60, '00') AS [2026-04-01],
+     FORMAT(SUM(CASE WHEN T2.PDate = '2026-04-02' THEN ISNULL(T2.WorkTime, 0) ELSE 0 END) / 60, '00') + ':' + FORMAT(SUM(CASE WHEN T2.PDate = '2026-04-02' THEN ISNULL(T2.WorkTime, 0) ELSE 0 END) % 60, '00') AS [2026-04-02],
+     FORMAT(SUM(CASE WHEN T2.PDate = '2026-04-03' THEN ISNULL(T2.WorkTime, 0) ELSE 0 END) / 60, '00') + ':' + FORMAT(SUM(CASE WHEN T2.PDate = '2026-04-03' THEN ISNULL(T2.WorkTime, 0) ELSE 0 END) % 60, '00') AS [2026-04-03],
+     FORMAT(SUM(ISNULL(T2.WorkTime, 0)) / 60, '00') + ':' + FORMAT(SUM(ISNULL(T2.WorkTime, 0)) % 60, '00') AS [Monthly Total] 
+FROM Mx_VEW_UserDetails T1 
+LEFT JOIN Mx_VEW_DailyAttendance T2 ON T1.UserID = T2.UserID AND T2.PDate >= '2026-04-01' AND T2.PDate <= '2026-04-30' 
+GROUP BY GROUPING SETS ((T1.UserID, T1.FullName), ()) 
+ORDER BY GROUPING(T1.UserID), T1.UserID
+```
+*(Note: Continue the pattern for all dates in the month. Use `GROUPING SETS` for totals.)*
+
+**User:** "Show me the visitor trend for the last 3 months."
+**SQL:**
+```sql
+SELECT FORMAT(VPassDate, 'MMM yyyy') as Month, COUNT(*) as [Total Visitors]
+FROM Mx_VEW_VistorReport
+WHERE VPassDate >= DATEADD(month, -3, CAST(GETDATE() AS DATE))
+GROUP BY FORMAT(VPassDate, 'MMM yyyy'), YEAR(VPassDate), MONTH(VPassDate)
+ORDER BY YEAR(VPassDate), MONTH(VPassDate)
 ```

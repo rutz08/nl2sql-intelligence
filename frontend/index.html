@@ -4,90 +4,137 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Matrix COSEC | Master Portal</title>
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --matrix-bg: #e6e6e6;
-            --matrix-header: #f2f2f2;
-            --matrix-tile: #4d4d4d;
+            --matrix-bg: #f8f9fa;
+            --matrix-header: #ffffff;
+            --matrix-tile: #444444;
             --matrix-tile-hover: #333333;
-            --matrix-blue: #0078d4;
-            --matrix-text: #333333;
-            --matrix-subtext: #777777;
-            --sidebar-header: #0089d0;
+            --matrix-blue: #0089d0;
+            --matrix-text-primary: #1a1a1a;
+            --matrix-text-secondary: #666666;
+            --matrix-border: #e1e4e8;
+            --tile-size: 115px;
+            --sidebar-width: 340px;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        
         body { 
-            font-family: 'Segoe UI', Arial, sans-serif; 
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             background-color: var(--matrix-bg);
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150' viewBox='0 0 100 100'%3E%3Cg fill='%23cccccc' fill-opacity='0.1'%3E%3Cpath d='M10 10h5v5h-5zM30 20h5v5h-5zM50 10h5v5h-5zM70 30h5v5h-5zM90 10h5v5h-5zM20 50h5v5h-5zM40 70h5v5h-5zM60 50h5v5h-5zM80 80h5v5h-5zM10 90h5v5h-5z'/%3E%3Ccircle cx='25' cy='15' r='2'/%3E%3Ccircle cx='75' cy='45' r='2'/%3E%3Ccircle cx='15' cy='65' r='2'/%3E%3Ccircle cx='85' cy='15' r='2'/%3E%3Cpath d='M45 45l5 5m-5 0l5-5' stroke='%23cccccc' stroke-width='0.5'/%3E%3C/g%3E%3C/svg%3E");
-            color: var(--matrix-text);
+            /* Complex Schematic Background from the user's photo */
+            background-image: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), url('assets/bg_schematic_complex.png');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            color: var(--matrix-text-primary);
             height: 100vh;
             display: flex;
             flex-direction: column;
             overflow: hidden;
+            -webkit-font-smoothing: antialiased;
         }
 
         /* Header */
         header {
             background: var(--matrix-header);
-            height: 55px;
+            height: 60px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 0 15px;
-            border-bottom: 1px solid #ccc;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            padding: 0 24px;
+            border-bottom: 1px solid var(--matrix-border);
+            z-index: 10;
         }
 
         .logo-area { display: flex; align-items: center; gap: 10px; }
-        .logo-area svg { height: 32px; }
-        .tagline { font-size: 13px; color: #555; font-style: italic; border-left: 1px solid #ccc; padding-left: 10px; margin-left: 5px; height: 30px; display: flex; align-items: center; }
+        .logo-area img { height: 32px; object-fit: contain; }
+        
+        .logo-text { 
+            font-weight: 700; 
+            font-size: 20px; 
+            color: #333;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-family: 'Inter', sans-serif;
+        }
+        .logo-text span { color: #cc0000; }
 
-        .header-tools { display: flex; align-items: center; gap: 20px; }
+        .tagline { 
+            font-size: 12px; 
+            color: var(--matrix-text-secondary); 
+            font-style: italic; 
+            border-left: 1px solid #ddd; 
+            padding-left: 10px; 
+            margin-left: 8px; 
+            height: 20px; 
+            display: flex; 
+            align-items: center;
+            font-weight: 400;
+        }
+
+        .header-tools { display: flex; align-items: center; gap: 16px; }
         .power-btn { 
-            width: 28px; height: 28px; 
-            border: 1px solid #ccc; 
+            width: 32px; 
+            height: 32px; 
+            border: 1px solid var(--matrix-border); 
             border-radius: 4px; 
             display: flex; 
             align-items: center; 
             justify-content: center; 
             cursor: pointer;
             background: white;
-            color: #444;
-            font-weight: bold;
+            color: #666;
+            transition: all 0.2s;
+        }
+        .power-btn:hover {
+            background: #fdf2f2;
+            color: #dc2626;
         }
 
-        /* Container */
-        .container {
+        /* Main Layout */
+        .main-wrapper {
             display: flex;
             flex: 1;
-            padding: 25px 40px;
-            gap: 50px;
+            overflow: hidden;
             position: relative;
         }
 
-        /* Grid */
-        .module-grid {
+        .content-area {
             flex: 1;
+            padding: 40px 60px;
+            display: flex;
+            justify-content: flex-start;
+            align-items: flex-start;
+            overflow-y: auto;
+        }
+
+        /* Module Grid (6 columns as per the user's photo) */
+        .module-grid {
             display: grid;
-            grid-template-columns: repeat(7, 125px);
-            grid-template-rows: repeat(3, 125px);
-            gap: 12px;
-            align-content: start;
+            grid-template-columns: repeat(6, var(--tile-size));
+            gap: 15px;
         }
 
         .tile {
             background: var(--matrix-tile);
-            width: 125px;
-            height: 125px;
+            width: var(--tile-size);
+            height: var(--tile-size);
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            transition: background 0.1s;
+            transition: all 0.15s ease;
             position: relative;
             border: 3px solid transparent;
+            border-radius: 0; /* Square tiles as per photo */
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
         }
 
         .tile:hover {
@@ -96,272 +143,362 @@
 
         .tile.active {
             border-color: var(--matrix-blue);
-            box-shadow: 0 0 15px rgba(0, 120, 212, 0.4);
+            background: #2a2a2a;
         }
 
         .tile svg {
-            width: 65px;
-            height: 65px;
+            width: 60%;
+            height: 60%;
             fill: white;
         }
 
+        /* Sahay Tile */
         .tile.sahay {
-            background: #222;
+            background: #ffffff;
+        }
+        .tile.sahay img {
+            width: 70%;
+            height: 70%;
+            object-fit: contain;
         }
 
         .badge {
             position: absolute;
-            top: 6px;
-            right: 6px;
-            background: #ffa500;
+            top: 4px;
+            right: 4px;
+            background: #f59e0b;
             color: white;
-            font-size: 9px;
-            padding: 2px 5px;
-            font-weight: bold;
+            font-size: 8px;
+            padding: 1px 3px;
+            font-weight: 700;
             text-transform: uppercase;
+            border-radius: 1px;
         }
 
-        /* Sidebar Drawer */
-        .drawer {
-            width: 320px;
+        /* Sidebar Sidebar */
+        .sidebar {
+            width: var(--sidebar-width);
             background: white;
-            border: 1px solid #bbb;
-            box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
+            border-left: 1px solid var(--matrix-border);
             display: flex;
             flex-direction: column;
+            box-shadow: -4px 0 15px rgba(0,0,0,0.02);
+            z-index: 5;
         }
 
-        .drawer-header {
-            padding: 15px 20px;
+        .sidebar-header {
+            padding: 32px 24px 16px;
             text-align: center;
         }
 
-        .drawer-header h2 {
-            color: #0089d0;
+        .sidebar-header h2 {
+            color: var(--matrix-blue);
             font-size: 20px;
-            font-weight: 500;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+            text-transform: uppercase;
         }
 
-        .drawer-content {
-            padding: 0 20px 20px 20px;
+        .sidebar-content {
+            padding: 0 28px 24px;
             flex: 1;
             overflow-y: auto;
         }
 
-        .drawer-desc {
-            font-size: 13.5px;
-            color: #555;
-            line-height: 1.5;
-            margin-bottom: 20px;
+        .module-description {
+            font-size: 14px;
+            color: var(--matrix-text-secondary);
+            line-height: 1.6;
+            margin-bottom: 24px;
         }
 
-        .drawer-sub {
-            font-weight: bold;
+        .sidebar-subtitle {
+            font-weight: 700;
             font-size: 13px;
-            color: #0089d0;
-            margin-bottom: 12px;
+            color: var(--matrix-blue);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
         .feature-list {
             list-style: none;
-            padding-left: 0;
         }
 
         .feature-list li {
             font-size: 13px;
-            color: #666;
-            padding: 5px 0;
-            position: relative;
-            padding-left: 15px;
+            color: #4b5563;
+            padding: 6px 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
         }
 
         .feature-list li::before {
             content: "■";
-            position: absolute;
-            left: 0;
-            top: 7px;
+            color: var(--matrix-blue);
             font-size: 8px;
-            color: #0089d0;
+            margin-top: 4px;
         }
 
-        .launch-btn {
-            margin-top: auto;
-            padding: 15px;
-            background: #f8f8f8;
-            border-top: 1px solid #ddd;
-            text-align: center;
+        .action-area {
+            padding: 24px;
+            background: #fafafa;
+            border-top: 1px solid var(--matrix-border);
+            display: flex;
+            justify-content: center;
         }
 
-        .btn {
+        .btn-launch {
             display: inline-block;
             background: var(--matrix-blue);
             color: white;
             text-decoration: none;
-            padding: 8px 30px;
+            padding: 10px 24px;
             font-size: 14px;
-            font-weight: bold;
+            font-weight: 600;
             border-radius: 2px;
-            transition: background 0.2s;
+            transition: all 0.2s;
+            text-align: center;
+            width: 100%;
         }
 
-        .btn:hover { background: #005a9e; }
+        .btn-launch:hover {
+            background: #0077b5;
+        }
 
         /* Footer */
-        .page-footer {
-            padding: 10px 15px;
+        footer {
+            padding: 10px 24px;
+            background: white;
+            border-top: 1px solid var(--matrix-border);
             font-size: 11px;
-            font-weight: bold;
-            color: #444;
+            font-weight: 600;
+            color: #666;
+            letter-spacing: 0.5px;
         }
 
-        /* SVG Logo Simulation */
-        .matrix-logo-text { font-family: Impact, sans-serif; font-size: 24px; color: #333; letter-spacing: -1px; }
-        .matrix-logo-red { color: #cc0000; }
+        @media (max-width: 1100px) {
+            .module-grid {
+                grid-template-columns: repeat(4, var(--tile-size));
+            }
+        }
     </style>
 </head>
 <body>
 
     <header>
         <div class="logo-area">
-            <img src="assets/logo.jpeg" alt="Matrix Logo" style="height: 38px; border-radius: 4px;">
-            <div class="matrix-logo-text">MATRIX <span class="matrix-logo-red">COSEC</span></div>
+            <img src="assets/logo.jpeg" alt="Matrix Logo">
+            <div class="logo-text">MATRIX <span>COSEC</span></div>
             <div class="tagline">Right People in Right Place at Right Time</div>
         </div>
         <div class="header-tools">
-            <div class="power-btn" title="Logout">⏻</div>
+            <div class="power-btn" title="Logout">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18.36 6.64a9 9 0 1 1-12.73 0"></path><line x1="12" y1="2" x2="12" y2="12"></line></svg>
+            </div>
         </div>
     </header>
 
-    <div class="container">
-        <div class="module-grid" id="grid">
-            <!-- Row 1 -->
-            <div class="tile active" onclick="sel('users')">
-                <svg viewBox="0 0 24 24"><path d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z"/></svg>
-            </div>
-            <div class="tile" onclick="sel('attendance')">
-                <svg viewBox="0 0 24 24"><path d="M19,19H5V8H19M16,1V3H8V1H6V3H5C3.89,3 3,3.89 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5C21,3.89 20.1,3 19,3H18V1M17,12H12V17H17V12Z"/></svg>
-            </div>
-            <div class="tile" onclick="sel('devices')">
-                <svg viewBox="0 0 24 24"><path d="M17,1H7C5.89,1 5,1.89 5,3V21C5,22.1 5.89,23 7,23H17C18.1,23 19,22.1 19,21V3C19,1.89 18.1,1 17,1M17,19H7V5H17V19M16,16H13V13H11V16H8V18H11V21H13V18H16V16Z"/></svg>
-            </div>
-            <div class="tile sahay" id="sahay-tile" onclick="sel('sahay')">
-                <div class="badge">New</div>
-                <img src="assets/logo.jpeg" alt="Sahay Logo" style="width: 70px; height: 70px; object-contain; border-radius: 12px;">
-            </div>
-            <div class="tile" onclick="sel('access')">
-                <svg viewBox="0 0 24 24"><path d="M12,17A2,2 0 0,0 14,15C14,13.89 13.1,13 12,13A2,2 0 0,0 10,15A2,2 0 0,0 12,17M18,8H17V6A5,5 0 0,0 7,6V8H6A2,2 0 0,0 4,10V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V10A2,2 0 0,0 18,8M8,6A4,4 0 0,1 16,6V8H8V6M18,20H6V10H18V20Z"/></svg>
-            </div>
-            <div class="tile" onclick="sel('canteen')">
-                <svg viewBox="0 0 24 24"><path d="M11,9H9V2H7V9H5V2H3V9C3,11.12 4.66,12.84 6.75,12.97V22H9.25V12.97C11.34,12.84 13,11.12 13,9V2H11V9M16,6V14H18.5V22H21V2H18.5C17.11,2 16,3.11 16,4.5V6Z"/></svg>
-            </div>
-            <div class="tile" onclick="sel('vms')">
-                <svg viewBox="0 0 24 24"><path d="M12,12C14.21,12 16,10.21 16,8C16,5.79 14.21,4 12,4C9.79,4 8,5.79 8,8C8,10.21 9.79,12 12,12M12,14C9.33,14 4,15.34 4,18V20H20V18C20,15.34 14.67,14 12,14Z"/></svg>
-            </div>
-            <!-- Row 2 -->
-            <div class="tile" onclick="sel('leave')">
-                <svg viewBox="0 0 24 24"><path d="M14,10H19.5L14,4.5V10M5,3H15L21,9V19A2,2 0 0,1 19,21H5C3.89,21 3,20.1 3,19V5C3,3.89 3.89,3 5,3M5,5V19H19V12H12V5H5Z"/></svg>
-            </div>
-            <div class="tile" onclick="sel('reports')">
-                <svg viewBox="0 0 24 24"><path d="M13,9H18.5L13,3.5V9M6,2H14L20,8V20A2,2 0 0,1 18,22H6C4.89,22 4,21.1 4,20V4C4,2.89 4.89,2 6,2M7,20H9V14H7V20M11,20H13V12H11V20M15,20H17V16H15V20Z"/></svg>
-            </div>
-            <div class="tile" onclick="sel('admin')">
-                <svg viewBox="0 0 24 24"><path d="M12,15.5A3.5,3.5 0 0,1 8.5,12A3.5,3.5 0 0,1 12,8.5A3.5,3.5 0 0,1 15.5,12A3.5,3.5 0 0,1 12,15.5M19.43,12.97C19.47,12.65 19.5,12.33 19.5,12C19.5,11.67 19.47,11.35 19.43,11.03L21.54,9.37C21.73,9.22 21.78,8.97 21.68,8.76L19.68,5.29C19.58,5.08 19.33,5 19.11,5.09L16.63,6.09C16.12,5.7 15.57,5.37 14.97,5.12L14.59,2.5C14.55,2.27 14.36,2.1 14.12,2.1H10.12C9.88,2.1 9.69,2.27 9.65,2.5L9.27,5.12C8.67,5.37 8.12,5.7 7.61,6.09L5.13,5.09C4.91,5 4.66,5.08 4.56,5.29L2.56,8.76C2.46,8.97 2.5,9.22 2.7,9.37L4.81,11.03C4.77,11.35 4.75,11.67 4.75,12C4.75,12.33 4.77,12.65 4.81,12.97L2.7,14.63C2.5,14.78 2.46,15.03 2.56,15.24L4.56,18.71C4.66,18.92 4.91,19 5.13,18.91L7.61,17.91C8.12,18.3 8.67,18.63 9.27,18.88L9.65,21.5C9.69,21.73 9.88,21.9 10.12,21.9H14.12C14.36,21.9 14.55,21.73 14.59,21.5L14.97,18.88C15.57,18.63 16.12,18.3 16.63,17.91L19.11,18.91C19.33,19 19.58,18.92 19.68,18.71L21.68,15.24C21.78,15.03 21.73,14.78 21.54,14.63L19.43,12.97Z"/></svg>
+    <div class="main-wrapper">
+        <div class="content-area">
+            <div class="module-grid" id="grid">
+                <!-- ROW 1 (6 Tiles) -->
+                <div class="tile" onclick="selectModule('monitor')" id="tile-monitor">
+                    <svg viewBox="0 0 24 24"><path d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z"/></svg>
+                </div>
+                <div class="tile" onclick="selectModule('users')" id="tile-users">
+                    <svg viewBox="0 0 24 24"><path d="M16,13C15.71,13 15.38,13 15.03,13.05C16.19,13.89 17,15 17,16.5V19H23V16.5C23,14.17 18.33,13 16,13M8,13C5.67,13 1,14.17 1,16.5V19H15V16.5C15,14.17 10.33,13 8,13M8,11A3,3 0 0,0 11,8A3,3 0 0,0 8,5A3,3 0 0,0 5,8A3,3 0 0,0 8,11M16,11A3,3 0 0,0 19,8A3,3 0 0,0 16,5A3,3 0 0,0 13,8A3,3 0 0,0 16,11Z"/></svg>
+                </div>
+                <div class="tile" onclick="selectModule('devices')" id="tile-devices">
+                    <svg viewBox="0 0 24 24"><path d="M17,1H7C5.89,1 5,1.89 5,3V21C5,22.1 5.89,23 7,23H17C18.1,23 19,22.1 19,21V3C19,1.89 18.1,1 17,1M17,19H7V5H17V19M16,16H13V13H11V16H8V18H11V21H13V18H16V16Z"/></svg>
+                </div>
+                <div class="tile" onclick="selectModule('task')" id="tile-task">
+                    <svg viewBox="0 0 24 24"><path d="M19,3H14.82C14.4,1.84 13.3,1 12,1C10.7,1 9.6,1.84 9.18,3H5A2,2 0 0,0 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5A2,2 0 0,0 19,3M12,3A1,1 0 0,1 13,4A1,1 0 0,1 12,5A1,1 0 0,1 11,4A1,1 0 0,1 12,3M14,17H7V15H14V17M17,13H7V11H17V13M17,9H7V7H17V9Z"/></svg>
+                </div>
+                <div class="tile" onclick="selectModule('enterprise')" id="tile-enterprise">
+                    <svg viewBox="0 0 24 24"><path d="M12,5.5A3.5,3.5 0 0,1 15.5,9A3.5,3.5 0 0,1 12,12.5A3.5,3.5 0 0,1 8.5,9A3.5,3.5 0 0,1 12,5.5M5,8C5.56,8 6.08,8.15 6.53,8.42C6.38,9.85 6.8,11.27 7.66,12.38C7.16,13.34 6.16,14 5,14A3,3 0 0,1 2,11A3,3 0 0,1 5,8M19,8A3,3 0 0,1 22,11A3,3 0 0,1 19,14C17.84,14 16.84,13.34 16.34,12.38C17.2,11.27 17.62,9.85 17.47,8.42C17.92,8.15 18.44,8 19,8M5.5,18.25C5.5,16 8,14.5 11,14.5C11,14.5 11.22,14.5 11.5,14.5C11.5,14.5 11.72,14.5 12,14.5C12,14.5 12.22,14.5 12.5,14.5C12.78,14.5 13,14.5 13,14.5C16,14.5 18.5,16 18.5,18.25V20H5.5V18.25Z"/></svg>
+                </div>
+                <div class="tile" onclick="selectModule('access')" id="tile-access">
+                    <svg viewBox="0 0 24 24"><path d="M12,17A2,2 0 0,0 14,15C14,13.89 13.1,13 12,13A2,2 0 0,0 10,15A2,2 0 0,0 12,17M18,8H17V6A5,5 0 0,0 7,6V8H6A2,2 0 0,0 4,10V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V10A2,2 0 0,0 18,8M8,6A4,4 0 0,1 16,6V8H8V6M18,20H6V10H18V20Z"/></svg>
+                </div>
+                
+                <!-- ROW 2 (6 Tiles) -->
+                <div class="tile" onclick="selectModule('attendance')" id="tile-attendance">
+                    <svg viewBox="0 0 24 24"><path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4M12.5,7V12.25L17,14.92L16.25,16.15L11,13V7H12.5Z"/></svg>
+                </div>
+                <div class="tile" onclick="selectModule('vms')" id="tile-vms">
+                    <svg viewBox="0 0 24 24"><path d="M4,4H7L9,2H15L17,4H20A2,2 0 0,1 22,6V18A2,2 0 0,1 20,20H4A2,2 0 0,1 2,18V6A2,2 0 0,1 4,4M12,7A5,5 0 0,0 7,12A5,5 0 0,0 12,17A5,5 0 0,0 17,12A5,5 0 0,0 12,7M12,9A3,3 0 0,1 15,12A3,3 0 0,1 12,15A3,3 0 0,1 9,12A3,3 0 0,1 12,9Z"/></svg>
+                </div>
+                <div class="tile" onclick="selectModule('integration')" id="tile-integration">
+                    <svg viewBox="0 0 24 24"><path d="M21,15.75L15,15.75L15,12.75L21,12.75L21,15.75M12,19.5L6,19.5L6,16.5L12,16.5L12,19.5M12,9L6,9L6,6L12,6L12,9M21,11.25L15,11.25L15,8.25L21,8.25L21,11.25M4,15.75L4,11.25L2,11.25L2,15.75L4,15.75M2,8.25L4,8.25L4,3.75L2,3.75L2,8.25M2,20.25L4,20.25L4,15.75L2,15.75L2,20.25Z"/></svg>
+                </div>
+                <div class="tile" onclick="selectModule('canteen')" id="tile-canteen">
+                    <svg viewBox="0 0 24 24"><path d="M11,9H9V2H7V9H5V2H3V9C3,11.12 4.66,12.84 6.75,12.97V22H9.25V12.97C11.34,12.84 13,11.12 13,9V2H11V9M16,6V14H18.5V22H21V2H18.5C17.11,2 16,3.11 16,4.5V6Z"/></svg>
+                </div>
+                <div class="tile" onclick="selectModule('multisite')" id="tile-multisite">
+                    <svg viewBox="0 0 24 24"><path d="M12,18.17L8.83,15L7.42,16.41L12,21L16.59,16.41L15.17,15L12,18.17M12,5.83L15.17,9L16.58,7.59L12,3L7.41,7.59L8.83,9L12,5.83Z"/></svg>
+                </div>
+                <div class="tile" onclick="selectModule('cycle')" id="tile-cycle">
+                    <svg viewBox="0 0 24 24"><path d="M12,18A6,6 0 1,0 6,12A6,6 0 0,0 12,18M12,4A8,8 0 1,1 4,12A8,8 0 0,1 12,4M12,6.5A5.5,5.5 0 1,0 17.5,12A5.5,5.5 0 0,0 12,6.5Z"/></svg>
+                </div>
+
+                <!-- ROW 3 (3 Tiles from photo + SAHAY) -->
+                <div class="tile" onclick="selectModule('mobile-vms')" id="tile-mobile-vms">
+                    <svg viewBox="0 0 24 24"><path d="M17,19H7V5H17M17,1H7C5.89,1 5,1.89 5,3V21C5,22.1 5.89,23 7,23H17C18.1,23 19,22.1 19,21V3C19,1.89 18.1,1 17,1Z"/></svg>
+                </div>
+                <div class="tile" onclick="selectModule('analytics-gear')" id="tile-analytics-gear">
+                    <svg viewBox="0 0 24 24"><path d="M12,15.5A3.5,3.5 0 0,1 8.5,12A3.5,3.5 0 0,1 12,8.5A3.5,3.5 0 0,1 15.5,12A3.5,3.5 0 0,1 12,15.5M19.43,12.97C19.47,12.65 19.5,12.33 19.5,12C19.5,11.67 19.47,11.35 19.43,11.03L21.54,9.37C21.73,9.22 21.78,8.97 21.68,8.76L19.68,5.29C19.58,5.08 19.33,5 19.11,5.09L16.63,6.09C16.12,5.7 15.57,5.37 14.97,5.12L14.59,2.5C14.55,2.27 14.36,2.1 14.12,2.1H10.12C9.88,2.1 9.69,2.27 9.65,2.5L9.27,5.12C8.67,5.37 8.12,5.7 7.61,6.09L5.13,5.09C4.91,5 4.66,5.08 4.56,5.29L2.56,8.76C2.46,8.97 2.5,9.22 2.7,9.37L4.81,11.03C4.77,11.35 4.75,11.67 4.75,12C4.75,12.33 4.77,12.65 4.81,12.97L2.7,14.63C2.5,14.78 2.46,15.03 2.56,15.24L4.56,18.71C4.66,18.92 4.91,19 5.13,18.91L7.61,17.91C8.12,18.3 8.67,18.63 9.27,18.88L9.65,21.5C9.69,21.73 9.88,21.9 10.12,21.9H14.12C14.36,21.9 14.55,21.73 14.59,21.5L14.97,18.88C15.57,18.63 16.12,18.3 16.63,17.91L19.11,18.91C19.33,19 19.58,18.92 19.68,18.71L21.68,15.24C21.78,15.03 21.73,14.78 21.54,14.63L19.43,12.97Z"/></svg>
+                </div>
+                <div class="tile" onclick="selectModule('stats')" id="tile-stats">
+                    <svg viewBox="0 0 24 24"><path d="M12,2C6.48,2 2,6.48 2,12C2,17.52 6.48,22 12,22C17.52,22 22,17.52 22,12C22,6.48 17.52,2 12,2M12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4M11,6V13L16,16L16.75,14.75L12.5,12.25V6H11Z"/></svg>
+                </div>
+                
+                <!-- SAHAY (THE LAST ONE) -->
+                <div class="tile sahay" id="tile-sahay" onclick="selectModule('sahay')">
+                    <div class="badge">New</div>
+                    <img src="assets/logo.jpeg" alt="Sahay Logo">
+                </div>
             </div>
         </div>
 
-        <div class="drawer">
-            <div class="drawer-header">
-                <h2 id="title">SAHAY</h2>
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2 id="sidebar-title">Admin Monitoring</h2>
             </div>
-            <div class="drawer-content">
-                <p class="drawer-desc" id="desc">Advanced AI Intelligence for COSEC. Query attendance, canteen spend, and visitors using Natural Language.</p>
-                <div class="drawer-sub">With this Module, we can:</div>
-                <ul class="feature-list" id="features">
-                    <li>Analyze Daily Punch Data</li>
-                    <li>Track Canteen Transactions</li>
-                    <li>Monitor Visitor Traffic</li>
-                    <li>Generate Analytical Summaries</li>
-                    <li>Real-time Organizational Reporting</li>
+            <div class="sidebar-content">
+                <p class="module-description" id="sidebar-desc">Centralized monitoring of system status, active alerts, and real-time user activity across all sites.</p>
+                <div class="sidebar-subtitle">With this Module, we can:</div>
+                <ul class="feature-list" id="sidebar-features">
+                    <li>Monitor Real-time Activity</li>
+                    <li>Configure System Alerts</li>
+                    <li>Manage Site Gateway Status</li>
+                    <li>Track Administrative Tasks</li>
                 </ul>
             </div>
-            <div class="launch-btn">
-                <a href="react_frontend.html" class="btn" id="btn-launch">Launch Module</a>
+            <div class="action-area" id="action-area" style="display: none;">
+                <a href="react_frontend.html" class="btn-launch" id="btn-launch">Launch Module</a>
             </div>
-        </div>
+        </aside>
     </div>
 
-    <div class="page-footer">
+    <footer>
         MATRIX COMSEC PVT. LTD.
-    </div>
+    </footer>
 
     <script>
-        const data = {
+        const moduleData = {
+            monitor: {
+                title: "Admin Monitoring",
+                desc: "Centralized monitoring of system status, active alerts, and real-time user activity.",
+                features: ["Real-time Activity Feed", "Site Gateway Monitoring", "Active Alarm View", "Admin Log Audit"]
+            },
             users: {
                 title: "Users",
-                desc: "Allows Single and Multi-level User Configuration and Credential Management.",
-                features: ["Create User Profiles", "Assign Device Access", "Enroll Credentials", "Define Authorities", "Monitor Blocked Users"]
+                desc: "Enterprise user management with granular access levels and credential synchronization.",
+                features: ["User Enrollment", "Credential Management", "Role-based Access", "Profile Templates"]
+            },
+            devices: {
+                title: "Devices",
+                desc: "Configure and manage Matrix hardware controllers and biometric readers.",
+                features: ["Device Configuration", "Firmware Management", "Connectivity Status", "Hardware Diagnostics"]
+            },
+            task: {
+                title: "Job Processing",
+                desc: "Manage scheduled tasks, data synchronization, and automated system maintenance.",
+                features: ["Schedule Sync Jobs", "Monitor Task Queue", "Error Notifications", "Performance Optimization"]
+            },
+            enterprise: {
+                title: "Enterprise Structure",
+                desc: "Define the hierarchical structure of your organization for multi-site management.",
+                features: ["Define Multi-site Nodes", "Department Mapping", "Group Policies", "Reporting Hierarchy"]
+            },
+            access: {
+                title: "Access Control",
+                desc: "Secure doors and access points with time-zone based policies and anti-passback rules.",
+                features: ["Define Access Groups", "Time-zone Scheduling", "Anti-passback Rules", "Emergency Control"]
             },
             attendance: {
                 title: "Attendance",
-                desc: "Enterprise-grade Time-Attendance management system with real-time tracking.",
-                features: ["Track Real-time Attendance", "Shift Management", "Overtime Tracking", "Late-in/Early-out Reports"]
+                desc: "Comprehensive time-attendance management with shift planning and leave tracking.",
+                features: ["Shift Scheduling", "Overtime Calculation", "Late-in/Early-out tracking", "Attendance Policies"]
+            },
+            vms: {
+                title: "Visitor Management",
+                desc: "Register and track visitors with badge printing and escort requirements.",
+                features: ["Visitor Registration", "Badge Printing", "Host Notifications", "Visit History"]
+            },
+            integration: {
+                title: "System Integration",
+                desc: "Connect COSEC with 3rd party HRMS, Fire Alarm, and BMS systems.",
+                features: ["API Configuration", "Database Sync", "Event Trigger Mapping", "Webhook Setup"]
+            },
+            canteen: {
+                title: "Canteen Management",
+                desc: "Cashless canteen operations with subsidized billing and menu management.",
+                features: ["Menu Planner", "Cashless Transactions", "Subsidized Billing", "Consumption Analysis"]
+            },
+            multisite: {
+                title: "Site Connect",
+                desc: "Manage connectivity between branch controllers and the central server.",
+                features: ["Branch Sync Status", "Network Load Balancing", "Remote Config Sync", "Offline Access Logic"]
+            },
+            cycle: {
+                title: "Lifecycle Admin",
+                desc: "Monitor system health cycles and database maintenance schedules.",
+                features: ["Database Cleanup", "Log Archival", "Health Check Cycles", "Optimization Scripts"]
+            },
+            'mobile-vms': {
+                title: "Mobile VMS",
+                desc: "Manage visitor access and registration via mobile devices for field security.",
+                features: ["Mobile Registration", "QR Code Check-in", "Field Alert Processing", "Mobile Badge View"]
+            },
+            'analytics-gear': {
+                title: "System Analytics",
+                desc: "Deep dive into system performance and security event patterns.",
+                features: ["Event Trend Analysis", "Security Posture Score", "Resource Usage Monitoring", "Predictive Alerts"]
+            },
+            stats: {
+                title: "Real-time Stats",
+                desc: "Live dashboard of occupancy, throughput, and system throughput metrics.",
+                features: ["Occupancy Tracking", "Door Throughput", "Peak Hour Analysis", "Live Alert Dashboard"]
             },
             sahay: {
                 title: "SAHAY",
                 desc: "Advanced AI Intelligence for COSEC. Query attendance, canteen spend, and visitors using Natural Language.",
                 features: ["Analyze Daily Punch Data", "Track Canteen Transactions", "Monitor Visitor Traffic", "Generate Analytical Summaries", "Real-time Organizational Reporting"]
-            },
-            devices: {
-                title: "Devices",
-                desc: "Monitor and configure Matrix hardware across your network infrastructure.",
-                features: ["Device Configuration", "Health Monitoring", "Firmware Updates", "Event Log Sync"]
-            },
-            access: {
-                title: "Access Control",
-                desc: "Secure physical premises with granular policies and anti-passback rules.",
-                features: ["Manage Access Points", "Time-zone Policies", "Anti-passback Rules", "Fire Integration"]
-            },
-            canteen: {
-                title: "Canteen",
-                desc: "Cashless canteen management with menu and subsidized billing support.",
-                features: ["Menu Management", "Cashless Transactions", "Subsidized Billing", "Consumption Reports"]
-            },
-            vms: {
-                title: "VMS",
-                desc: "Visitor registration and tracking with badge printing and escort management.",
-                features: ["Visitor Pre-registration", "Badge Printing", "Escort Management", "Watchlist Alerts"]
             }
         };
 
-        function sel(id) {
+        function selectModule(id) {
             document.querySelectorAll('.tile').forEach(t => t.classList.remove('active'));
-            event.currentTarget.classList.add('active');
+            const selectedTile = document.getElementById(`tile-${id}`);
+            if (selectedTile) selectedTile.classList.add('active');
 
-            const m = data[id] || data['users'];
-            document.getElementById('title').innerText = m.title;
-            document.getElementById('desc').innerText = m.desc;
+            const data = moduleData[id] || moduleData['monitor'];
+            document.getElementById('sidebar-title').innerText = data.title;
+            document.getElementById('sidebar-desc').innerText = data.desc;
             
-            const fl = document.getElementById('features');
-            fl.innerHTML = '';
-            m.features.forEach(f => {
+            const featureList = document.getElementById('sidebar-features');
+            featureList.innerHTML = '';
+            data.features.forEach(f => {
                 const li = document.createElement('li');
                 li.innerText = f;
-                fl.appendChild(li);
+                featureList.appendChild(li);
             });
 
-            const lb = document.getElementById('btn-launch');
+            const actionArea = document.getElementById('action-area');
             if (id === 'sahay') {
-                lb.href = "react_frontend.html";
-                lb.style.display = "inline-block";
+                actionArea.style.display = "flex";
             } else {
-                lb.style.display = "none";
+                actionArea.style.display = "none";
             }
         }
 
-        // Initialize with SAHAY
-        window.onload = () => {
-            document.getElementById('sahay-tile').click();
-        };
+        window.addEventListener('DOMContentLoaded', () => {
+            selectModule('monitor');
+        });
     </script>
 </body>
 </html>

@@ -228,6 +228,7 @@ try {
 const SHARED_RULES = `
 - **IST NATIVE**: The database and all timestamps are in **IST**. DO NOT perform any UTC conversions in SQL or in your text summaries. Report times exactly as they appear (e.g., if DB says 09:00, report 09:00 AM).
 - **SHIFT INTELLIGENCE**: When asked for a specific shift (e.g., 'General shift'), prioritize filtering by the \`WorkingShift\` column (e.g., \`WHERE WorkingShift = 'General'\`). Avoid adding strict time inequalities on \`ActualInTime\` or \`ActualOutTime\` unless the user specifically asks for employees who arrived early or stayed late.
+- **EMPLOYEE MAPPING**: When a user mentions "Employee X" (e.g., "Employee 1"), this ALWAYS refers to \`UserID = X\`. In the visitor context (\`Mx_VEW_VistorReport\`), it also refers to \`HostUserID = X\`.
 - **TIME FORMATTING**: 
   - \`ActualInTime\` and \`ActualOutTime\` are **DATETIME**. You can use \`FORMAT()\` on them.
   - \`ShiftStart\` and \`ShiftEnd\` are **VARCHAR**. You MUST \`CAST(ShiftStart AS TIME)\` before using \`FORMAT()\` or comparisons.
@@ -237,9 +238,10 @@ const SHARED_RULES = `
   - \`Mx_VEW_DailyAttendance\`: UserID, FullName, PDate, WorkingShift, ShiftStart, ShiftEnd, ActualInTime, ActualOutTime, WorkTime, BreakTime.
   - \`Mx_VEW_LiveRoomStatus\`: UserID, FullName, DptName, CurrentRoom, LastSeen.
   - \`Mx_CnteenPunchTrn\`: UserID, PunchDate, Quantity, ItemName.
-- **VISITOR LOGIC**: Use 'Mx_VEW_VistorReport' for all visitor queries. Status values are: 'Expected', 'Checked In', 'Checked Out', 'Exited'.
-  - **SCHEMA**: PassNo, VistorName, Organization, MobileNo, VPassDate, PassFromDate, PassToDate, Status.
-  - **LIMITATION**: 'Mx_VEW_VistorReport' DOES NOT contain UserID or Host information. NEVER use \`UserID\` or \`FullName\` in filters for this table. If asked for visitors by a specific host, you cannot fulfill it with SQL; simply return a query that selects all checked-in visitors and explain the limitation in the summary.
+- **VISITOR LOGIC**: Use 'Mx_VEW_VistorReport' for all visitor queries.
+  - **SCHEMA**: PassNo, VistorName, Organization, MobileNo, VPassDate, PassFromDate, PassToDate, Status, HostUserID, HostName.
+- **CANTEEN LOGIC**: 
+  - **FUZZY MATCHING**: Always use ` + "`" + "LIKE" + "`" + ` with wildcards for ` + "`" + "ItemName" + "`" + ` (e.g., ` + "`" + "WHERE ItemName LIKE '%Lunch%'" + "`" + `).
   - **EXAMPLE**:
     **User:** "Who are the visitors checked in by user ID 1?"
     **SQL:**
@@ -441,6 +443,12 @@ USER REQUEST: ${userPrompt}
             }
         }
 
+        // --- New Syntax Fail-Safe: Fix missing closing brackets in CAST or Aliases ---
+        // Handles cases like [D21 AS VARCHAR -> [D21] AS VARCHAR
+        generatedSql = generatedSql.replace(/\[([a-zA-Z0-9_]+)\s+AS\s+VARCHAR/gi, '[$1] AS VARCHAR');
+        // Handles cases like [D21) -> [D21])
+        generatedSql = generatedSql.replace(/\[([a-zA-Z0-9_]+)\)/gi, '[$1])');
+
 
 
         // Step 2: Validate the generated SQL
@@ -457,8 +465,8 @@ USER REQUEST: ${userPrompt}
         const records = dbResult.recordset;
         console.log(`[Database Execution]: Success. ${records.length} records retrieved.`);
 
-        // Step 4: Generate a Human-Friendly Summary (Using Groq)
-        console.log(`[Summary Generation]: Requesting summary from Groq...`);
+        // Step 4: Generate a Human-Friendly Summary (Prioritizing Gemini)
+        console.log(`[Summary Generation]: Requesting summary from Gemini...`);
         
         // --- Date Normalization for AI Summary (Prevent UTC hallucination) ---
         const formattedRecords = records.map(row => {
@@ -476,32 +484,23 @@ USER REQUEST: ${userPrompt}
 
         let humanAnswer = "";
         try {
-            if (records && records.length > 0) {
-                const summaryPrompt = `
-You are COSEC Intelligence, the intelligent assistant for Matrix COSEC.
-Below is a raw result from a database query based on the user's question.
-Summarize this data into a helpful, natural language summary for the user.
+            // Step 4: Generate Summary (always run for analytical/limitation queries)
+            const secondSummaryPrompt = `
+SYSTEM: You are a data analyst for COSEC. Summarize the results of the following query.
+USER PROMPT: ${userPrompt}
+SQL EXECUTED: ${generatedSql}
+DATA (JSON): ${JSON.stringify(records.slice(0, 50))}
 
-USER QUESTION: "${userPrompt}"
-QUERY RESULTS: ${JSON.stringify(formattedRecords.slice(0, 10))} ${records.length > 10 ? '(and ' + (records.length - 10) + ' more rows)' : ''}
-
-SHARED INTELLIGENCE RULES (Apply these to your summary):
-${SHARED_RULES}
-
-INSTRUCTIONS:
-- Be concise and friendly.
-- If there are many rows, mention the count and highlight key ones.
+RULES:
+- If data is empty, explain that no matching records were found, but ALSO check if the user asked for something not in the schema (like a Host) and explain that limitation if applicable.
+- Keep it concise (2-3 lines).
 - Don't mention "JSON" or "Database".
-- Just give the answer directly.
 `;
-                humanAnswer = await queryAI(summaryPrompt);
-                console.log(`[Summary Generation]: Success.`);
-            } else {
-                humanAnswer = "I couldn't find any records matching your request.";
-            }
+            humanAnswer = await queryAI(secondSummaryPrompt);
+            console.log(`[Summary Generation]: Success.`);
         } catch (sErr) {
             console.error(`[Summary Error]:`, sErr);
-            humanAnswer = "I've retrieved the data, but I hit a rate limit while generating the summary. Please see the table below.";
+            humanAnswer = records.length > 0 ? "I've retrieved the data, but I hit a rate limit while generating the summary." : "I couldn't find any records matching your request.";
         }
         
         // Step 5: Return Results to Frontend
@@ -516,6 +515,9 @@ INSTRUCTIONS:
             humanAnswer: humanAnswer.trim(),
             queryExecuted: generatedSql,
             data: records,
+            columns: dbResult.recordset.columns ? 
+                Object.keys(dbResult.recordset.columns).sort((a, b) => dbResult.recordset.columns[a].index - dbResult.recordset.columns[b].index) : 
+                (records.length > 0 ? Object.keys(records[0]) : []),
             modelUsed: lastModelUsed
         });
 
@@ -534,6 +536,11 @@ INSTRUCTIONS:
         }
         res.status(500).json({ error: errorMsg, details: details });
     }
+});
+
+// Health check endpoint for dashboard and QA scripts
+app.get('/api/health', (req, res) => {
+    res.json({ status: 'online', timestamp: new Date().toISOString() });
 });
 
 // Serve the frontend dashboard

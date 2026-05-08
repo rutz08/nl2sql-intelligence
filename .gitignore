@@ -9,3 +9,5 @@ build/
 .vscode/
 .idea/
 *.jsonl
+scratch/
+out.txt
