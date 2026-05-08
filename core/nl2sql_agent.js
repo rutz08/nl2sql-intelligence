@@ -93,7 +93,7 @@ function callGeminiApi(apiKey, prompt) {
         const options = {
             hostname: 'generativelanguage.googleapis.com',
             port: 443,
-            path: `/v1/models/${GEMINI_MODEL}:generateContent?key=${apiKey}`,
+            path: `/v1beta/models/${GEMINI_MODEL}:generateContent?key=${apiKey}`,
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
