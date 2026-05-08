@@ -199,23 +199,30 @@ function predictSchema(prompt) {
     }
 }
 
-// 2. MS SQL Database Configuration
-const dbConfig = {
+// --- Database Connection Pool ---
+const poolConfig = {
     user: process.env.DB_USER || 'sa',
-    password: process.env.DB_PASSWORD || '12345',
-    server: process.env.DB_SERVER || 'localhost', 
-    database: process.env.DB_NAME || 'COSEC_DEMO',
+    password: process.env.DB_PASSWORD,
+    server: process.env.DB_SERVER || 'localhost',
+    database: process.env.DB_DATABASE || process.env.DB_NAME || 'COSEC_DEMO',
     options: {
-        encrypt: false, 
+        encrypt: false, // For local development
         trustServerCertificate: true,
         useUTC: false
     }
 };
 
+// Startup Diagnostic: Verify Environment
+console.log("--- System Diagnostics ---");
+console.log(`Database Target: ${poolConfig.server} -> ${poolConfig.database}`);
+console.log(`Gemini API Key: ${process.env.GEMINI_API_KEY ? "DETECTED" : "MISSING"}`);
+console.log(`Groq API Keys: ${API_KEY_POOL.length} detected`);
+console.log("--------------------------");
+
 let pool;
 async function getPool() {
     if (pool && pool.connected) return pool;
-    pool = await sql.connect(dbConfig);
+    pool = await sql.connect(poolConfig);
     return pool;
 }
 
