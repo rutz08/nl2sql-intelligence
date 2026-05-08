@@ -30,7 +30,7 @@ const API_KEY_POOL = [
 
 let currentKeyIndex = 0;
 const TARGET_MODEL = "llama-3.3-70b-versatile";
-const GEMINI_MODEL = "gemini-flash-latest"; // Updated to current stable latest
+const GEMINI_MODEL = "gemini-1.5-flash"; // Stable version for paid tier
 const AI_TIMEOUT = 60000; // 60 second timeout for API calls
 
 // Helper to call Groq API for a specific API Key
@@ -93,7 +93,7 @@ function callGeminiApi(apiKey, prompt) {
         const options = {
             hostname: 'generativelanguage.googleapis.com',
             port: 443,
-            path: `/v1beta/models/${GEMINI_MODEL}:generateContent?key=${apiKey}`,
+            path: `/v1/models/${GEMINI_MODEL}:generateContent?key=${apiKey}`,
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -106,14 +106,17 @@ function callGeminiApi(apiKey, prompt) {
             res.on('data', (d) => body += d);
             res.on('end', () => {
                 try {
+                    if (res.statusCode !== 200) {
+                        return reject(new Error(`Gemini API Error (Status ${res.statusCode}): ${body}`));
+                    }
                     const response = JSON.parse(body);
                     if (response.candidates && response.candidates.length > 0) {
                         resolve(response.candidates[0].content.parts[0].text);
                     } else {
-                        reject(new Error(`Gemini API Error: ${JSON.stringify(response)}`));
+                        reject(new Error(`Gemini API Error (No Candidates): ${JSON.stringify(response)}`));
                     }
                 } catch (e) {
-                    reject(e);
+                    reject(new Error(`Gemini JSON Parse Error: ${e.message} | Body: ${body}`));
                 }
             });
         });
